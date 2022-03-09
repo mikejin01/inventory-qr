@@ -27,17 +27,18 @@ import { BrowserRouter as  Router, Routes, Route, Link, Navigate } from 'react-r
         <Route path="/success" element={<Success />} />
         
       </Routes>
-*/
-function App() {
-  const user = true;
-  return (
-    <Router>
+      <Router>
       <Navbar />
       <Announcement />
       
       <Newsletter />
       <Footer />
     </Router>
+*/
+function App() {
+  const user = true;
+  return (
+    <Navbar />
   );
 }
 
