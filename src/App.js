@@ -16,7 +16,10 @@ import Success from "./pages/Success";*/
 import { BrowserRouter as  Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 
 /*
-<Routes>
+<Router>
+      <Navbar />
+      <Announcement />
+      <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/products/:category" element={<ProductList />} />
         <Route path="/product/:sku" element={<Product />} />
@@ -25,12 +28,7 @@ import { BrowserRouter as  Router, Routes, Route, Link, Navigate } from 'react-r
         <Route path="/register" element={user ? <Navigate to="/"/> : <Register/>} />
         <Route path="/pay" element={<Pay />} />
         <Route path="/success" element={<Success />} />
-        
       </Routes>
-      <Router>
-      <Navbar />
-      <Announcement />
-      
       <Newsletter />
       <Footer />
     </Router>
@@ -38,7 +36,15 @@ import { BrowserRouter as  Router, Routes, Route, Link, Navigate } from 'react-r
 function App() {
   const user = true;
   return (
-    <Navbar />
+    <Router>
+      <Navbar />
+      <Announcement />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+      </Routes>
+      <Newsletter />
+      <Footer />
+    </Router>
   );
 }
 
