@@ -16,13 +16,17 @@ import Success from "./pages/Success";*/
 import { BrowserRouter as  Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 
 /*
-<Route path="/products/:category" element={<ProductList />} />
+<Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/products/:category" element={<ProductList />} />
         <Route path="/product/:sku" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>} />
         <Route path="/register" element={user ? <Navigate to="/"/> : <Register/>} />
         <Route path="/pay" element={<Pay />} />
         <Route path="/success" element={<Success />} />
+        
+      </Routes>
 */
 function App() {
   const user = true;
@@ -30,10 +34,7 @@ function App() {
     <Router>
       <Navbar />
       <Announcement />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        
-      </Routes>
+      
       <Newsletter />
       <Footer />
     </Router>
