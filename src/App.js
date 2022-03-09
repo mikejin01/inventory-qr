@@ -6,6 +6,10 @@ import Announcement from './components/Announcement'
 import Newsletter from './components/Newsletter'
 import Footer from './components/Footer'
 import Home from "./pages/Home";
+import Inventory from "./pages/Inventory";
+import PurchaseOrders from "./pages/Purchase Orders";
+//import Home from "./pages/Home";
+
 /*import ProductList from "./pages/ProductList";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
@@ -41,6 +45,8 @@ function App() {
       <Announcement />
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route path="/Inventory" element={<Inventory />} />
+        <Route path="/PurchaseOrders" element={<PurchaseOrders />} />
       </Routes>
       <Newsletter />
       <Footer />

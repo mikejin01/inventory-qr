@@ -102,9 +102,9 @@ const Navbar = () => {
 					<Input placeholder="Search"/>
 					<Search style={{color:"gray", fontSize:16}}/>
 					</SearchContainer>
-					<MenuItem>Inventory</MenuItem>
-					<MenuItem>Purchase Orders</MenuItem>
-					<MenuItem>Scan</MenuItem>
+					<Link to={`/`}><MenuItem>Inventory</MenuItem></Link>
+					<Link to={`/`}><MenuItem>Purchase Orders</MenuItem></Link>
+					<Link to={`/`}><MenuItem>Scan</MenuItem></Link>
 				</Left>
 				<Link to={`/`}>	
 					<Center>
