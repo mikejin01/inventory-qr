@@ -26,7 +26,7 @@ import { BrowserRouter as  Router, Routes, Route, Link, Navigate } from 'react-r
 
 //const express = require("express");
 //const app = express();
-const mongoose = require("mongoose");
+//const mongoose = require("mongoose");
 //const dotenv = require("dotenv");
 //const userRoute = require("./routes/user");
 //const productRoute = require("./routes/product");
@@ -34,18 +34,18 @@ const mongoose = require("mongoose");
 const orderRoute = require("./routes/order");
 const authRoute = require("./routes/auth");
 const stripeRoute = require("./routes/stripe");*/
-const cors = require("cors");
+//const cors = require("cors");
 
 //dotenv.config();
 console.log("here!!")
-mongoose.connect(
+/*mongoose.connect(
   process.env.MONGO_URL
 ).then( ()=>
   console.log("db connected!!")
 )
 .catch( (err)=>{
   console.log(err);
-});/**/
+});*/
 //shop
 
 /*app.use(cors());
