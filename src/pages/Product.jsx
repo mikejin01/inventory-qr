@@ -7,6 +7,9 @@ import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 import { Remove, Add } from '@material-ui/icons'
 import { mobile } from "../responsive"
+import { BrowserRouter as  Router, Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
+import { publicRequest } from '../requestMethods';
+import { useState, useEffect } from 'react'
 
 const Container = styled.div`
 `
@@ -27,7 +30,7 @@ const Image = styled.img`
 	${mobile({ height: "40vh" })};
 
 `
-const InfoContainer = styled.select`
+const InfoContainer = styled.div`
 	flex: 1;
 	padding: 0px 50px;
 	${mobile({ padding: "10px" })};
@@ -112,6 +115,19 @@ const Button = styled.button`
 `
 
 const Product = () => {
+	const location = useLocation();
+	const id = location.pathname.split("/")[2];
+	const [product, setProduct] = useState({});
+	const [quantity, setQuantity] = useState(1);
+	useEffect(()=>{
+		const getProduct = async ()=> {
+			try{
+				const res = await publicRequest.get("/products/find/"+id)
+				setProduct(res.data);
+ 			}catch{}
+		};
+		getProduct();
+	},[id]);
 	return(
 		<Container>	
 			<Wrapper>
@@ -119,9 +135,9 @@ const Product = () => {
 					<Image src="https://amdiscountfurniture.com/wp-content/uploads/2022/02/A8000304-H-10X8-CROPAFHS-PDP-Zoomed-1200x800.jpg" />
 				</ImgContainer>
 			<InfoContainer>
-				<Title>Wall Decor</Title>
-				<Desc>Enjoy all your massage and relaxation needs and then some with the new Aura massage chair. Featuring essentials like an L-track that massages from neck to glutes and zero gravity positions, this chair provides comprehensive relief from the stresses of everyday life. Lumbar heat works to loosen the muscles in your lower back, while foot rollers provide a reflexology massage to the soles of your feet. Balance your own Aura with the latest from Infinity.</Desc>
-				<Price>$20</Price>
+				<Title>{product.title}</Title>
+				<Desc>{product.desc}</Desc>
+				<Price>${product.price}</Price>
 				<FilterContainer>
 					<Filter>
 						<FilterTitle>Color</FilterTitle>
@@ -154,11 +170,6 @@ const Product = () => {
 				</AddContainer>
 			</InfoContainer>
 			</Wrapper>
-				
-			
-			
-			<Categories />
-			<Products />
 
 		</Container>
 		) 

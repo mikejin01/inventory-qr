@@ -43,7 +43,7 @@ const Option = styled.option`
 	<Footer /> */
 const Inventory = () => {
 	const location = useLocation();
-	const category = location.pathname.split("/")[2];
+	const category = 'sofa';//location.pathname.split("/")[2];
 	console.log("category is "+category+"!!!!!");
 	const [filters, setFilters] = useState({});
 	const [sort, setSort] = useState("newest");

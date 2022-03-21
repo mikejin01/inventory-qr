@@ -1,8 +1,9 @@
 import styled from "styled-components"
 import { FavoriteBorderOutlined, SearchOutlined, ShoppingCartOutlined } from '@material-ui/icons'
+import { BrowserRouter as  Router, Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 
 const Info = styled.div`
-	opacity: 0;
+	opacity: 100;
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -11,7 +12,7 @@ const Info = styled.div`
 	background-color: rgba(0,0,0,0.2);
 	z-index: 3;
 	display: flex;
-	flex-direction: column;
+	/*flex-direction: column;*/
 	align-items: center;
 	justify-content: center;
 	transition: all 0.5s ease;
@@ -22,11 +23,12 @@ const Container = styled.div`
 	flex: 1;
 	margin: 5px;
 	min-width: 280px;
-	/*width: 25%;*/
-	height: 350px;
+	/*width: 25%;
+	height: 350px;*/
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border: solid 1px blue;
 	/*background-color: papayawhip;*/
 	position: relative;
 	&:hover ${Info}{
@@ -48,10 +50,16 @@ const Image = styled.img`
 `
 
 const Title = styled.h1`
-	color: white;
-	margin-bottom: 20px;
-
+	flex: 1;
+	color: blue;
+	margin-bottom: 2px;
 `
+const Desc = styled.h1` //p
+	flex: 2;
+	color: black;
+	margin-bottom: 2px;
+`
+
 const Icon = styled.div`
 	width: 40px;
 	height: 40px;
@@ -67,28 +75,18 @@ const Icon = styled.div`
 		transform: scale(1.1);
 	}
 `
-
-
+/* <Info></Info>  */
 const Product = ({item}) => {
 	return(
 		<Container>
-			<Circle/>
-			<Image src={item.img}/>
-			<Info>
-				<Title>{item.title}</Title>
-				<Icon>
-					<ShoppingCartOutlined/> 
-				</Icon>
-				<Icon>
-					<SearchOutlined/> 
-				</Icon>
-				<Icon>
-					<FavoriteBorderOutlined/> 
-				</Icon>
-			</Info> 
-			
+			<Link to ={`/product/${item._id}`}>
+				<SearchOutlined/> 
+			</Link>
+			<Title>{item.sku}</Title>
+			<Desc>{item.title}</Desc>
+			<Title>{item.stockQuantity}</Title>
 		</Container>
-		) 
+	) 
 }
 
 export default  Product

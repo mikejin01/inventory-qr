@@ -6,10 +6,11 @@ import axios from "axios";
 
 
 const Container = styled.div`
-	display: flex;
 	padding: 20px;
+	/*display: flex;
+	
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: space-between;*/
 `
 
 const Products = ({category, filters, sort}) => {
@@ -23,8 +24,8 @@ const Products = ({category, filters, sort}) => {
 		 	try {
 				const res = await axios.get(
 					/**/category 
-					? `http://localhost:5000/api/products?category=${category}`
-					: "http://localhost:5000/api/products"
+					? `https://inventory-qr-api.herokuapp.com/api/products?category=${category}`
+					: "https://inventory-qr-api.herokuapp.com/api/products"
 				);
 				//console.log(res.data);
 				setProducts(res.data);
@@ -48,13 +49,14 @@ const Products = ({category, filters, sort}) => {
 
 	return(
 		<Container>
-			{filteredProducts.map(item=>(
-				<Product item={item} key={item.id} />
-
-
-			))}
+			{category 
+				? filteredProducts.map((item) =>
+				<Product item={item} key={item.id} />)
+				: products.map((item) =>
+				<Product item={item} key={item.id} />)
+			}
 		</Container>
-		) 
+	)
 }
 
 export default  Products

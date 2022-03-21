@@ -10,12 +10,12 @@ import Inventory from "./pages/Inventory";
 import PurchaseOrders from "./pages/Purchase Orders";
 //import Home from "./pages/Home";
 
-/*import ProductList from "./pages/ProductList";
+import ProductList from "./pages/ProductList";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Pay from "./pages/Pay";
+/*import Pay from "./pages/Pay";
 import Success from "./pages/Success";*/
 import { BrowserRouter as  Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 
@@ -72,6 +72,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/Inventory" element={<Inventory />} />
+        <Route path="/product/:sku" element={<Product />} />
         <Route path="/PurchaseOrders" element={<PurchaseOrders />} />
       </Routes>
       <Newsletter />
