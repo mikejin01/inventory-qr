@@ -118,7 +118,7 @@ const Product = () => {
 	const location = useLocation();
 	const id = location.pathname.split("/")[2];
 	const [product, setProduct] = useState({});
-	const [quantity, setQuantity] = useState(1);
+	const [quantity, setQuantity] = useState(2);
 	useEffect(()=>{
 		const getProduct = async ()=> {
 			try{
@@ -128,6 +128,13 @@ const Product = () => {
 		};
 		getProduct();
 	},[id]);
+	const handleQuantity = (type) => {
+		if (type === "dec") {
+			quantity>1 && setQuantity(quantity-1)
+		} else {
+			setQuantity(quantity+1)
+		}
+	}
 	return(
 		<Container>	
 			<Wrapper>
@@ -136,35 +143,32 @@ const Product = () => {
 				</ImgContainer>
 			<InfoContainer>
 				<Title>{product.title}</Title>
+				<Desc>SKU: {product.sku}</Desc>
 				<Desc>{product.desc}</Desc>
 				<Price>${product.price}</Price>
 				<FilterContainer>
 					<Filter>
 						<FilterTitle>Color</FilterTitle>
-						<FilterColor color="black"/>
-						<FilterColor color="darakblue"/>
-						<FilterColor color="gray"/>
+						{product.color?.map((c)=>(
+							<FilterColor color={c} key={c}/>
+						))}
 					</Filter>
 					<Filter>
 						<FilterTitle>Material</FilterTitle>
 						<FilterMaterial>
-							<FilterMaterialOption>
-								Metal
+						{product.material?.map((m) => (
+							<FilterMaterialOption key={m}>
+								{m}
 							</FilterMaterialOption>
-							<FilterMaterialOption>
-								Wood
-							</FilterMaterialOption>
-							<FilterMaterialOption>
-								Marble
-							</FilterMaterialOption>
+						))}
 						</FilterMaterial>
 					</Filter>
 				</FilterContainer>
 				<AddContainer>
 					<QuantityContainer>
-						<Remove/>
-						<Quantity>1</Quantity>
-						<Add/>
+						<Remove onClick={()=>handleQuantity("dec")}/>
+						<Quantity>{quantity}</Quantity>
+						<Add onClick={()=>handleQuantity("inc")}/>
 					</QuantityContainer>
 					<Button>ADD TO CART</Button>
 				</AddContainer>
