@@ -8,6 +8,7 @@ import Products from '../components/Products'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 import { mobile } from "../responsive"
+import { Search, ShoppingCartOutlined } from '@material-ui/icons'
 import { BrowserRouter as  Router, Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 
 const Container = styled.div`
@@ -35,12 +36,20 @@ const Select = styled.select`
 	${mobile({ margin: "10px 0px" })};
 `
 
+const SearchContainer = styled.div`
+	border: 0.5px solid lightgray;
+	display: flex;
+	align-items: center;
+	margin-left: 25px;
+	padding: 5px;
+`
+const Input = styled.input`
+	border: none;
+	${mobile({ width: "50px" })};
+`
+
 const Option = styled.option`
 `
-/*	<Announcement />
-	<Navbar />
-	<Newsletter />
-	<Footer /> */
 const Inventory = () => {
 	const location = useLocation();
 	const category = 'sofa';//location.pathname.split("/")[2];
@@ -56,6 +65,15 @@ const Inventory = () => {
 		});
 	};
 	console.log(filters);
+	const handleSearch = (e)=> {
+		//console.log("handleSearch!!!!!!!!!!"+e.target.value);
+		//const value = e.target.value;
+		console.log("handleSearch: "+e.target.value); //.toLowerCase
+		setFilters({
+			...filters,
+			["sku"]: e.target.value.toLowerCase(),// e.target.value.toLowerCase() "meble-eva-kbl",//onChange=
+		});
+	}
 	return(
 		<Container>
 			<Title>{category}</Title>
@@ -72,14 +90,12 @@ const Inventory = () => {
 						<Option>Blue</Option>
 						<Option>Yellow</Option>
 					</Select>
-					<Select name="material" onChange={handleFilters}>
-						<Option disabled>
-							Material
-						</Option>
-						<Option>Metal</Option>
-						<Option>Wood</Option>
-						<Option>Marble</Option>
-					</Select>
+				</Filter>
+				<Filter>
+					<SearchContainer name="sku">
+						<Input placeholder="Search" onChange={handleSearch} />
+						<Search style={{color:"gray", fontSize:16}} onClick={handleSearch}/>
+					</SearchContainer>
 				</Filter>
 				<Filter>
 					<FilterText>Sort Products:</FilterText>
