@@ -8,7 +8,7 @@ import Products from '../components/Products'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 import { mobile } from "../responsive"
-import { Search, ShoppingCartOutlined } from '@material-ui/icons'
+import { Search, ShoppingCartOutlined, AddCircleOutlined } from '@material-ui/icons'
 import { BrowserRouter as  Router, Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 
 const Container = styled.div`
@@ -96,6 +96,14 @@ const Inventory = () => {
 						<Input placeholder="Search" onChange={handleSearch} />
 						<Search style={{color:"gray", fontSize:16}} onClick={handleSearch}/>
 					</SearchContainer>
+				</Filter>
+				<Filter>
+					<FilterText>
+						<Link to={`/NewProduct`}>
+						<AddCircleOutlined style={{color:"gray", fontSize:16}}/>
+						Add Product
+						</Link>
+					</FilterText>
 				</Filter>
 				<Filter>
 					<FilterText>Sort Products:</FilterText>

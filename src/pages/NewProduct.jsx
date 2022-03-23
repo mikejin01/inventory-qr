@@ -7,12 +7,14 @@ import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 import { Remove, Add } from '@material-ui/icons'
 import { mobile } from "../responsive"
-import { BrowserRouter as  Router, Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
-import { publicRequest } from '../requestMethods';
+import { BrowserRouter as  Router, Routes, Route, Link, useNavigate, Navigate, useLocation } from 'react-router-dom';
+import { publicRequest, userRequest } from '../requestMethods';
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import axios from "axios";
 
 const Container = styled.div`
+	display: flex;
 	align-items: center;
 	justify-content: center;
 `
@@ -152,24 +154,51 @@ const NewProduct = () => {
 			setQuantity(quantity+1)
 		}
 	}
-	const [username, setUsername] = useState("")
-	const [password, setPassword] = useState("")*/
+	*/
 	//const dispatch = useDispatch();
 	//const {isFetching, error} = useSelector((state) => state.user);
 	/*
-	onChange={(e)=>setUsername(e.target.value)}
-	onChange={(e)=>setPassword(e.target.value)}
-
-
-
-
-
-
 	
 	*/
+	const [new_sku, setSku] = useState("")
+	const [new_title, setTitle] = useState("")
+	const navigate  = useNavigate();
 	const handleClick = (e)=> {
-		//e.preventDefault()
+		console.log("handleClick!!!!!!!")
+		e.preventDefault()
 		//login(dispatch, {username, password});
+		const addProduct = async ()=> {
+			try{
+				const newProduct = {
+					"title": new_title,
+					"sku": new_sku,
+				    "desc": "good",
+				    "img": "meble-200.jpg",
+				    "category": ["sofa", "living room"],
+				    "size": ["Q"],
+					"color": ["RED"],
+				    "price": 1999,
+				    "cost": 402,
+				    "stockQuantity": 0
+				};
+				console.log(newProduct)
+				const res = await userRequest.post("/products", newProduct) 
+				/*const res = await axios.post('https://inventory-qr-api.herokuapp.com/api/products', article, {
+				  	headers: {
+				  		token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhhOTgyZTI4NjY4MTgxZmM5MDc0YSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0Nzg4MDY5NiwiZXhwIjoxNjQ4MTM5ODk2fQ.yBAYlkWiFqrGOXWrqd2trJI6sLsQg9Z7TvH4ZC5YhO4"
+				  	}
+				  })*/
+				console.log(res.data);
+				navigate("/Inventory"); 
+ 			}catch{}
+		};
+		addProduct();/**/
+	}
+	const formatInput = (event) => {
+	  const attribute = event.target.getAttribute('name');
+	  const removeExtraSpace = (s) => s.trim().split(/ +/).join('');
+	  console.log("object = "+removeExtraSpace(event.target.value)); 
+	  event.target.value = removeExtraSpace(event.target.value);
 	}
 	return(
 		<Container>	
@@ -178,16 +207,17 @@ const NewProduct = () => {
 			<Form>
 				<Desc>SKU:</Desc>
 				<Input 
-					placeholder="SKU" 	
+					placeholder="SKU" onBlur={formatInput}	onChange={(e)=>setSku(e.target.value)}
+	
 				/> 
 				<Desc>Title:</Desc>
 				<Input 
-					placeholder="Title" 	
+					placeholder="Title" onChange={(e)=>setTitle(e.target.value)}
 				/> 
 				<ImgContainer>
 					<Image src="https://amdiscountfurniture.com/wp-content/uploads/2022/02/A8000304-H-10X8-CROPAFHS-PDP-Zoomed-1200x800.jpg" />
 				</ImgContainer>
-				<Button onClick={handleClick}>LOGIN</Button>
+				<Button onClick={handleClick}>ADD PRODUCT</Button>
 
 			</Form>
 
