@@ -13,11 +13,16 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Container = styled.div`
+	align-items: center;
+	justify-content: center;
 `
 const Wrapper = styled.div`
-	padding: 50px;
+	width: 50%;
+	padding: 20px;
+	background-color: white;
+	${mobile({ width: "85%" })};
 	display: flex;
-	${mobile({ padding: "10px", flexDirection: "column" })};
+	flex-direction: column;
 `
 
 const ImgContainer = styled.div`
@@ -154,6 +159,13 @@ const NewProduct = () => {
 	/*
 	onChange={(e)=>setUsername(e.target.value)}
 	onChange={(e)=>setPassword(e.target.value)}
+
+
+
+
+
+
+	
 	*/
 	const handleClick = (e)=> {
 		//e.preventDefault()
@@ -162,26 +174,21 @@ const NewProduct = () => {
 	return(
 		<Container>	
 			<Wrapper>
-
 			<Title>New Product</Title>
 			<Form>
 				<Desc>SKU:</Desc>
 				<Input 
-					placeholder="SKU" 
-					
+					placeholder="SKU" 	
 				/> 
 				<Desc>Title:</Desc>
 				<Input 
-					placeholder="Title" 
-					type="password"
-					
+					placeholder="Title" 	
 				/> 
 				<ImgContainer>
 					<Image src="https://amdiscountfurniture.com/wp-content/uploads/2022/02/A8000304-H-10X8-CROPAFHS-PDP-Zoomed-1200x800.jpg" />
 				</ImgContainer>
 				<Button onClick={handleClick}>LOGIN</Button>
-				<Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-				<Link>CREATE A NEW ACCOUNT</Link>
+
 			</Form>
 
 			</Wrapper>
