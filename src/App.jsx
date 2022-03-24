@@ -29,6 +29,14 @@ console.log("hi!");*/
 
 function App() {
   const user = useSelector((state)=>state.user.currentUser);
+  if (user != null) {
+    console.log("logged in as "+user.email);
+    console.log("accessToken = "+user.accessToken);
+    
+    //console.log(useSelector((state)=>state);
+  }
+  
+  //console.log("user: "+(state)=>state.user.currentUser);
   return (
     <Router>
       <Navbar />

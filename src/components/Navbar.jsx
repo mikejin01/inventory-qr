@@ -7,12 +7,13 @@ import { mobile } from "../responsive"
 import { BrowserRouter as  Router, Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 import { useSelector } from "react-redux"
 import { useState, useEffect } from 'react'
+import { logout } from "../redux/userRedux";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div`
 	/*height: 60px;
 	background-color: black;*/
 	/*$ {mobile({height: "50px"})};*/
-	
 `;
 
 const Wrapper = styled.div`
@@ -96,7 +97,31 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
 	const cart = useSelector(state => state.cart)
+	const user = useSelector(state => state.user)
 	console.log(cart);
+	console.log(user);
+	if (user != null) {
+	    console.log("logged in as "+user.email);
+	    console.log("accessToken = "+user.accessToken);
+	    
+	    //console.log(useSelector((state)=>state);
+	}
+	const dispatch = useDispatch();
+	const logOutAction = async () => {
+
+		//handlePrint();
+		console.log("logOutAction");
+		dispatch(logout());
+	    /*try {
+	 		const sku = item.sku;
+	        const response = await QRCode.toDataURL(sku);
+	      	//console.log(response);
+	      	setImageUrl(response);
+	      	handlePrint();
+	    }catch (error) {
+	      console.log(error);
+	    }*/
+	}
 	return(
 		<Container>
 			<Wrapper>	
@@ -118,7 +143,13 @@ const Navbar = () => {
 				</Link> 
 				<Right>
 					<MenuItem>Register</MenuItem>
-					<MenuItem>Sign In</MenuItem>
+					{
+						user.currentUser == null ? (
+							<Link to={`/login`}><MenuItem>Sign In</MenuItem></Link>
+			            ) : (
+			            	<MenuItem onClick={logOutAction}>Log Out</MenuItem>
+			            )
+					}
 				</Right>
 			</Wrapper>	
 		</Container>

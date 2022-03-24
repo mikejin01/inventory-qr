@@ -183,14 +183,11 @@ const NewProduct = () => {
 				};
 				console.log(newProduct)
 				const res = await userRequest.post("/products", newProduct) 
-				/*const res = await axios.post('https://inventory-qr-api.herokuapp.com/api/products', article, {
-				  	headers: {
-				  		token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhhOTgyZTI4NjY4MTgxZmM5MDc0YSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0Nzg4MDY5NiwiZXhwIjoxNjQ4MTM5ODk2fQ.yBAYlkWiFqrGOXWrqd2trJI6sLsQg9Z7TvH4ZC5YhO4"
-				  	}
-				  })*/
 				console.log(res.data);
 				navigate("/Inventory"); 
- 			}catch{}
+ 			} catch(err) {
+ 				alert("error: "+err);
+ 			}
 		};
 		addProduct();/**/
 	}

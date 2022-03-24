@@ -50,10 +50,13 @@ const Input = styled.input`
 
 const Option = styled.option`
 `
+
+
 const Inventory = () => {
 	const location = useLocation();
-	const category = 'sofa';//location.pathname.split("/")[2];
-	console.log("category is "+category+"!!!!!");
+
+	const category = '';//sofalocation.pathname.split("/")[2];
+	//console.log("category is "+category+"!!!!!");
 	const [filters, setFilters] = useState({});
 	const [sort, setSort] = useState("newest");
 
@@ -76,7 +79,11 @@ const Inventory = () => {
 	}
 	return(
 		<Container>
-			<Title>{category}</Title>
+			<Title>
+				
+				{category != '' ? ( {category}
+		              ) : null}
+			</Title>
 			<FilterContainer>
 				<Filter>
 					<FilterText>Filter Products:</FilterText>
@@ -84,11 +91,35 @@ const Inventory = () => {
 						<Option disabled>
 							Color
 						</Option>
-						<Option>White</Option>
-						<Option>Black</Option>
-						<Option>Red</Option>
-						<Option>Blue</Option>
-						<Option>Yellow</Option>
+						<Option>Barstool</Option>
+						<Option>Bed</Option>
+						<Option>Bookcase</Option>
+						<Option>Box Spring</Option>
+						<Option>Cabinet</Option>
+						<Option>Chest</Option>
+						<Option>Desk</Option>
+						<Option>Dining Table</Option>
+						<Option>Dining Chair</Option>
+						<Option>Dresser</Option>
+						<Option>Dresser Mirrors</Option>
+						<Option>End Table</Option>
+						<Option>Loveseat</Option>
+						<Option>Lamp</Option>
+						<Option>Mattress</Option>
+						<Option>Nightstand</Option>
+						<Option>Ottoman</Option>
+						<Option>Pillow</Option>
+						<Option>Rug</Option>
+						<Option>Sofa</Option>
+						<Option>Sectional</Option>
+						<Option>Sofa Table</Option>
+						<Option>Sleeper</Option>
+						<Option>Server</Option>
+						<Option>TV Stand</Option>
+						<Option>Vanity</Option>
+						<Option>Wall Decor</Option>
+						<Option>Wall Art</Option>
+						<Option>Other</Option>
 					</Select>
 				</Filter>
 				<Filter>
