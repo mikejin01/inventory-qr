@@ -10,6 +10,9 @@ import Footer from '../components/Footer'
 //import { QrCodeScannerOutlined  } from '@material-ui/icons'
 import { mobile } from "../responsive"
 import { DeveloperModeOutlined  } from '@material-ui/icons'
+import QRCode from 'qrcode';
+import { QrReader } from 'react-qr-reader';
+import { useState, useEffect } from 'react'
 
 const Container = styled.div`
 	display: flex;
@@ -46,6 +49,15 @@ const Button = styled.button`
 
 	*/
 const Home = () => {
+	const [scanResultWebCam, setScanResultWebCam] =  useState('');
+	const handleErrorWebCam = (error) => {
+	    console.log(error);
+	}
+	const handleScanWebCam = (result) => {
+	    if (result){
+	        setScanResultWebCam(result);
+	    }
+	}
 	return(
 		<Container>	
 			<Wrapper>
@@ -53,6 +65,15 @@ const Home = () => {
 			<Button>
 				<DeveloperModeOutlined/>Scanner
 			</Button>
+
+			<h3>Qr Code Scan by Web Cam</h3>
+             <QrReader
+             delay={300}
+             style={{width: '100%'}}
+             onError={handleErrorWebCam}
+             onScan={handleScanWebCam}
+             />
+             <h3>Scanned By WebCam Code: {scanResultWebCam}</h3>
 
 			</Wrapper>
 
