@@ -115,7 +115,8 @@ const Product = ({item}) => {
 	const generateQrCode = async () => {
 	    try {
 	 		const sku = item.sku;
-	        const response = await QRCode.toDataURL(sku);
+	 		const _id = item._id;
+	        const response = await QRCode.toDataURL(_id);
 	      	//console.log(response);
 	      	setImageUrl(response);
 	      	handlePrint();
