@@ -138,7 +138,7 @@ class QRScan extends React.Component {
                         try {
                             const res = await axios.get(
                                 //"https://inventory-qr-api.herokuapp.com/api/products/"+id
-                                "https://inventory-qr-api.herokuapp.com/api/products/find/6238aa0ee28668181fc9074e"
+                                "https://inventory-qr-api.herokuapp.com/api/products/find/623a2c1e6f9c8838e7b4189f"
                             );
                             //console.log(res.data);
                             alert(res.data.sku);
