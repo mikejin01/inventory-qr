@@ -141,7 +141,7 @@ class QRScan extends React.Component {
                                 "https://inventory-qr-api.herokuapp.com/api/products/find/6238aa0ee28668181fc9074e"
                             );
                             //console.log(res.data);
-                            alert(res.data);
+                            alert(res.data.sku);
                             //setProducts(res.data);
                         } catch (err) {
                             console.log(err);
