@@ -53,7 +53,7 @@ class QRScan extends React.Component {
         width: 40%;
         border: none;
         padding: 15px 20px;
-        background-color: green;
+        background-color: red;
         color: white;
         cursor: pointer;
         margin-bottom: 10px;
@@ -66,10 +66,10 @@ class QRScan extends React.Component {
     const [new_title, setTitle] = useState(product.title)
     const [new_category, setCategory] = useState(product.category)
     const [new_quantity, setQuantity] = useState("")*/
-    const handleClick = (e)=> {
+    const handleStockIn = (e)=> {
         console.log("handleClick!!!!!!!")
         e.preventDefault()
-        const addProduct = async ()=> {
+        const StockIn = async ()=> {
             try{
                 /*const newProduct = {
                     "title": new_title,
@@ -85,21 +85,26 @@ class QRScan extends React.Component {
                 console.log(newProduct)
                 const res = await userRequest.put("/products/"+id)
                 console.log(res.data);
-                navigate("/Inventory"); */
+                navigate("/Inventory"); 
+
+                <div style={{color: "red", width: "100%", backgroundColor: "green"}}>
+                <h1 >Hello Style!</h1>
+            </div>
+            */
             } catch(err) {
                 alert("error: "+err);
             }
         };
-        addProduct();/**/
+        StockIn();/**/
     }
 
-    const handleDelete = (e)=> {
+    const handleStockOut = (e)=> {
         e.preventDefault()
-        const deleteProduct = async ()=> {
+        const StockOut = async ()=> {
             try{
                 var proceed = window.confirm("Are you sure you want to proceed?");
                 if (proceed) {
-                    const res = await userRequest.delete("/products/"+id)
+                    const res = await userRequest.put("/products/"+id)
                     console.log(res.data);
                     //navigate("/Inventory");
                 } else {
@@ -109,13 +114,11 @@ class QRScan extends React.Component {
                 alert("error: "+err);
             }
         };
-        deleteProduct();/**/
+        StockOut();/**/
     }
     return (
         <div style={{ width: "100%" }}>
-            <div style={{color: "red", width: "100%", backgroundColor: "green"}}>
-                <h1 >Hello Style!</h1>
-            </div>
+            
             <QrReader style={{height: 500, width: 500, 
                 borderRadius: 10}}
                 delay={this.state.delay}
@@ -123,7 +126,7 @@ class QRScan extends React.Component {
                 onError={this.handleError}
                 onScan={this.handleScan}
                 constraints={{ facingMode: 'environment' }}
-                onResult={(result, error) => {
+                /*onResult={(result, error) => {
                   if (!!result) {
                     //setData(result?.text);
                     this.setState({
@@ -133,13 +136,13 @@ class QRScan extends React.Component {
                   if (!!error) {
                     console.info(error);
                   }
-                }}
+                }}*/
             />
             <p>{this.state.result}</p>
-            <StockInButton onClick={handleClick}>
+            <StockInButton onClick={handleStockIn}>
                 Stock In
             </StockInButton>
-            <StockOutButton onClick={handleDelete}>
+            <StockOutButton onClick={handleStockOut}>
                 Stock Out
             </StockOutButton>
             
