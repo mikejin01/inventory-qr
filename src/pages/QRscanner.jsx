@@ -37,10 +37,31 @@ class QRScan extends React.Component {
     */
 
   render() {
+
+    const StockInButton = styled.button`
+        width: 40%;
+        border: none;
+        padding: 15px 20px;
+        background-color: green;
+        color: white;
+        cursor: pointer;
+        margin-bottom: 10px;
+    `
+    const StockOutButton = styled.button`
+        width: 40%;
+        border: none;
+        padding: 15px 20px;
+        background-color: green;
+        color: white;
+        cursor: pointer;
+        margin-bottom: 10px;
+    `
     return (
         <div>
-
-            <QrReader style={{height: 50, width: 500, 
+            <div style={{color: "red", width: 100%, backgroundColor: "green"}}>
+                <h1 >Hello Style!</h1>
+            </div>
+            <QrReader style={{height: 500, width: 500, 
                 borderRadius: 10}}
                 delay={this.state.delay}
                 //style={{width: '100%'}}
@@ -60,6 +81,12 @@ class QRScan extends React.Component {
                 }}
             />
             <p>{this.state.result}</p>
+            <StockInButton onClick={handleClick}>
+                Stock In
+            </StockInButton>
+            <StockOutButton onClick={handleDelete}>
+                Stock Out
+            </StockOutButton>
             
         </div>
     );
