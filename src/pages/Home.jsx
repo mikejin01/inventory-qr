@@ -11,8 +11,14 @@ import Footer from '../components/Footer'
 import { mobile } from "../responsive"
 import { DeveloperModeOutlined  } from '@material-ui/icons'
 import QRCode from 'qrcode';
-import { QrReader } from 'react-qr-reader';
+//import { QrReader } from 'react-qr-reader';
 import { useState, useEffect } from 'react'
+//import { BarCodeScanner } from 'expo-barcode-scanner';
+import QRScan from './QRscanner'
+//import { QrScan } from 'react-qr-reader'
+import QrReader from 'react-qr-scanner'
+import { Component } from 'react'
+
 
 const Container = styled.div`
 	display: flex;
@@ -48,6 +54,62 @@ const Button = styled.button`
 			<Products />
 
 	*/
+
+
+/*
+
+
+<script type="text/javascript">
+function onScanSuccess(qrCodeMessage) {
+    document.getElementById('result').innerHTML = '<span class="result">'+qrCodeMessage+'</span>';
+}
+function onScanError(errorMessage) {
+  //handle scan error
+}
+var html5QrcodeScanner = new Html5QrcodeScanner(
+    "reader", { fps: 10, qrbox: 250 });
+html5QrcodeScanner.render(onScanSuccess, onScanError);
+</script>
+*/
+
+class Scanner extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      delay: 100,
+      result: 'No result',
+    }
+
+    this.handleScan = this.handleScan.bind(this)
+  }
+  handleScan(data){
+    this.setState({
+      result: data,
+    })
+  }
+  handleError(err){
+    console.error(err)
+  }
+  render(){
+    const previewStyle = {
+      height: 240,
+      width: 320,
+    }
+
+    return(
+      <div>
+        <QrReader
+          delay={this.state.delay}
+          style={previewStyle}
+          onError={this.handleError}
+          onScan={this.handleScan}
+          />
+        <p>{this.state.result}</p>
+      </div>
+    )
+  }
+}
+
 const Home = () => {
 	const [scanResultWebCam, setScanResultWebCam] =  useState('');
 	const handleErrorWebCam = (error) => {
@@ -58,15 +120,34 @@ const Home = () => {
 	        setScanResultWebCam(result);
 	    }
 	}
-	return(
-		<Container>	
-			<Wrapper>
 
-			<Button>
-				<DeveloperModeOutlined/>Scanner
-			</Button>
+	
 
-			<h3>Qr Code Scan by Web Cam</h3>
+	/*const script = document.createElement("script");
+	  script.src = "html5-qrcode.min.js";
+	  script.async = true;
+	  script.onload = () => this.scriptLoaded();
+
+	  document.body.appendChild(script)
+
+	  <style>
+			    {`	
+			    	.result{
+					    background-color: green;
+					    color:#fff;
+					    padding:20px;
+					}
+					.row{
+					    display:flex;
+					}
+
+			    `
+			    }
+		  	</style>
+
+
+
+<h3>Qr Code Scan by Web Cam</h3>
              <QrReader
              delay={300}
              style={{width: '100%'}}
@@ -74,6 +155,28 @@ const Home = () => {
              onScan={handleScanWebCam}
              />
              <h3>Scanned By WebCam Code: {scanResultWebCam}</h3>
+	  ;*/
+
+	const [data, setData] = useState('No result');
+
+	return(
+		<Container>	
+			
+			<Wrapper>
+			<Scanner />
+
+			<Button>
+				<DeveloperModeOutlined/>Scanner
+			</Button>
+
+
+			<h1>Hello QR Code Reader</h1>
+      		<QRScan />
+
+
+			
+
+
 
 			</Wrapper>
 
