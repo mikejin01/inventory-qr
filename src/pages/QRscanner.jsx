@@ -32,7 +32,7 @@ class QRScan extends React.Component {
             style={{width: '100%'}}
             onError={this.handleError}
             onScan={this.handleScan}
-            facingMode={{'rear'}}
+            facingMode={'rear'}
             onResult={(result, error) => {
               if (!!result) {
                 //setData(result?.text);
