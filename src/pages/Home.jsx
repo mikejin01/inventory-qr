@@ -102,6 +102,7 @@ class Scanner extends Component {
         <QrReader
           delay={this.state.delay}
           style={previewStyle}
+          facingMode={'rear'}
           onError={this.handleError}
           onScan={this.handleScan}
           />
@@ -147,7 +148,7 @@ const Home = () => {
 		  	</style>
 
 
-<Scanner />
+
 <h3>Qr Code Scan by Web Cam</h3>
              <QrReader
              delay={300}
@@ -164,17 +165,12 @@ const Home = () => {
 	return(
 		<Container>	
 			<Wrapper>
-			
-			<Button>
-				<DeveloperModeOutlined/>Scanner
-			</Button>
-			Scanner!!!!!!!!!!
-      		<QRScan />
-
-
-			
-
-
+				<Scanner />
+				<Button>
+					<DeveloperModeOutlined/>Scanner
+				</Button>
+				Scanner!!!!!!!!!!
+		  		<QRScan />
 
 			</Wrapper>
 

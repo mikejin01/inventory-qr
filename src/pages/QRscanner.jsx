@@ -14,9 +14,14 @@ class QRScan extends React.Component {
     });
   };
 
-  handleError = (err) => {
-    console.error(err);
-  };
+    handleError = (err) => {
+        console.error(err);
+    };
+
+    /*const previewStyle = {
+        height: 240,
+        width: 320,
+    }*/
 
   render() {
     return (
