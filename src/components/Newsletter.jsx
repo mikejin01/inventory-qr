@@ -10,7 +10,6 @@ const Container = styled.div`
 	justify-content: center;
 	flex-direction: column;
 	${mobile({ display: "none"})};
-
 `
 const Title = styled.h1`
 	font-size: 70px;

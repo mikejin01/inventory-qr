@@ -12,8 +12,9 @@ import { useDispatch } from "react-redux";
 
 const Container = styled.div`
 	/*height: 60px;
-	background-color: black;*//**/
-	${mobile({height: "50px"})};
+	background-color: black;
+	*/
+	${mobile({ display: "none", height: "50px" })};
 `;
 
 const Wrapper = styled.div`
