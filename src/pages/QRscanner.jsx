@@ -167,7 +167,8 @@ class QRScan extends React.Component {
                             );
                             //console.log(res.data);
                             alert(res.data.sku);
-                            this.props.setOpen(false)
+                            this.props.setOpen(true)
+                            //this.props.setOpen(false)
                             //createThreeButtonAlert();
 
 
