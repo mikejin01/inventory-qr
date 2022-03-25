@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { BrowserRouter as  Router, Routes, Route, Link, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import axios from "axios";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
+//import Popup from 'reactjs-popup';
+//import 'reactjs-popup/dist/index.css';
 
 class QRScan extends React.Component {
   state = {
@@ -120,6 +120,7 @@ class QRScan extends React.Component {
         StockOut();/**/
     }
 
+
     /*const createThreeButtonAlert = () =>
     Alert.alert(
       "Alert Title",
@@ -167,12 +168,9 @@ class QRScan extends React.Component {
                             );
                             //console.log(res.data);
                             alert(res.data.sku);
-                            this.props.setOpen(true)
+                            //this.props.setOpen(true)
                             //this.props.setOpen(false)
                             //createThreeButtonAlert();
-
-
-
                             //setProducts(res.data);
                         } catch (err) {
                             console.log(err);
