@@ -70,13 +70,28 @@ const ContactItem = styled.div`
 const Payment = styled.img`
 	width: 50%;
 `
-
+/*
+<Center>
+				<Title>Useful Links</Title>
+				<List>
+					<ListItem>Home</ListItem>
+					<ListItem>Cart</ListItem>
+					<ListItem>Wall Art</ListItem>
+					<ListItem>Wall Decor</ListItem>
+					<ListItem>Rug</ListItem>
+					<ListItem>My Account</ListItem>
+					<ListItem>Order Tracking</ListItem>
+					<ListItem>Wishlist</ListItem>
+					<ListItem>Terms</ListItem>
+				</List>
+			</Center>
+*/
 
 const Footer = () => {
 	return(
 		<Container> 
 			<Left>
-				<Logo>Furnishing Warehouse</Logo>
+				<Logo>Inventory QR</Logo>
 				<Desc>With global headquarters and an extensive network of logistics hubs and customer service centers, we’re here to create that feeling of home for everyone, anywhere.</Desc>
 				<SocialContainer>
 					<SocialIcon color="3B5999">
@@ -93,20 +108,6 @@ const Footer = () => {
 					</SocialIcon>
 				</SocialContainer>
 			</Left>
-			<Center>
-				<Title>Useful Links</Title>
-				<List>
-					<ListItem>Home</ListItem>
-					<ListItem>Cart</ListItem>
-					<ListItem>Wall Art</ListItem>
-					<ListItem>Wall Decor</ListItem>
-					<ListItem>Rug</ListItem>
-					<ListItem>My Account</ListItem>
-					<ListItem>Order Tracking</ListItem>
-					<ListItem>Wishlist</ListItem>
-					<ListItem>Terms</ListItem>
-				</List>
-			</Center>
 			<Right>
 				<Title>Contact</Title>
 				<ContactItem>

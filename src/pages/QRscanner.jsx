@@ -2,7 +2,8 @@ import React from "react";
 //import QrReader from "react-qr-scanner";
 import { QrReader } from 'react-qr-reader';
 import { useState, useEffect } from 'react'
-
+import { publicRequest, userRequest } from '../requestMethods';
+import { useDispatch, useSelector } from 'react-redux'
 
 
 class QRScan extends React.Component {
@@ -15,39 +16,14 @@ class QRScan extends React.Component {
     this.setState({
       result: data
     });
+    alert("hi");
   };
 
     handleError = (err) => {
         console.error(err);
     };
 
-    /*const previewStyle = {
-        height: 240,
-        width: 320,
-    }
-
-    
-
-
-    <Button onClick={() => setSelfie(!selfie)}>
-                <FlipCameraIos color="primary" fontSize="large" />
-            </Button>
-
-            <QrReader
-              onError={handleError}
-              onScan={handleScan}
-              //facingMode={selfie ? "user" : "environment"}
-              className="c-scanner__qr"
-              constraints={
-                  {
-                      video: {
-                          facingMode: { exact: selfie ? "user" : "environment"}
-                      }
-                  }
-              }
-            />
-
-
+    /*
             constraints={
                 {
                     video: {
@@ -61,8 +37,6 @@ class QRScan extends React.Component {
     */
 
   render() {
-
-
     return (
         <div>
 
