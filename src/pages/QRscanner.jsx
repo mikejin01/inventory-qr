@@ -1,6 +1,9 @@
 import React from "react";
 //import QrReader from "react-qr-scanner";
 import { QrReader } from 'react-qr-reader';
+import { useState, useEffect } from 'react'
+
+
 
 class QRScan extends React.Component {
   state = {
@@ -23,67 +26,89 @@ class QRScan extends React.Component {
         width: 320,
     }
 
+    
 
-    <div>
-        <Button onClick={() => setSelfie(!selfie)}>
-        <FlipCameraIos color="primary" fontSize="large" />
-      </Button>
 
-        <QrReader
-          onError={handleError}
-          onScan={handleScan}
-          //facingMode={selfie ? "user" : "environment"}
-          className="c-scanner__qr"
-          constraints={
-              {
-                  video: {
-                      facingMode: { exact: selfie ? "user" : "environment"}
+    <Button onClick={() => setSelfie(!selfie)}>
+                <FlipCameraIos color="primary" fontSize="large" />
+            </Button>
+
+            <QrReader
+              onError={handleError}
+              onScan={handleScan}
+              //facingMode={selfie ? "user" : "environment"}
+              className="c-scanner__qr"
+              constraints={
+                  {
+                      video: {
+                          facingMode: { exact: selfie ? "user" : "environment"}
+                      }
                   }
               }
-          }
-        />
+            />
 
 
+
+        constraints={
+                      {
+                          video: {
+                              facingMode:   "environment",
+                          }
+                      }
+                  }
+                //exact: selfie ? "user" :
+
+                //facingMode: 'user'
+                //facingMode={'environment'}
+
+
+                constraints={
+                    {
+                        video: {
+                              facingMode: { exact: selfie ? "user" : "environment"}
+                        }
+                    }
+                }
+
+                exact: selfie ? "user" : 
+
+
+                constraints={
+                    {
+                        video: {
+                              facingMode: { "environment"}
+                        }
+                    }
+                }
 
     */
 
   render() {
     return (
-      
+        <div>
 
-
-
-        <QrReader
-            delay={this.state.delay}
-            //style={previewStyle}
-            style={{width: '100%'}}
-            onError={this.handleError}
-            onScan={this.handleScan}
-            //facingMode: 'user'
-            facingMode={'user'}
-            constraints={
-                  {
-                      video: {
-                          facingMode: {  "environment"}
-                      }
+            <QrReader
+                delay={this.state.delay}
+                style={{width: '100%'}}
+                onError={this.handleError}
+                onScan={this.handleScan}
+                constraints={{ facingMode: 'environment' }}
+                onResult={(result, error) => {
+                  if (!!result) {
+                    //setData(result?.text);
+                    this.setState({
+                      result: result?.text
+                    });
                   }
-              }
-            //exact: selfie ? "user" :
-            onResult={(result, error) => {
-              if (!!result) {
-                //setData(result?.text);
-                this.setState({
-                  result: result?.text
-                });
-              }
 
-              if (!!error) {
-                console.info(error);
-              }
-            }}
-        />
-        <p>{this.state.result}</p>
-      </div>
+                  if (!!error) {
+                    console.info(error);
+                  }
+                }}
+            />
+            <p>{this.state.result}</p>
+            
+        </div>
     );
   }
 }
