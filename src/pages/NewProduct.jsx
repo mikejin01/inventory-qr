@@ -174,11 +174,11 @@ const NewProduct = () => {
 					"sku": new_sku,
 				    "desc": "good",
 				    "img": "meble-200.jpg",
-				    "category": ["sofa", "living room"],
-				    "size": ["Q"],
-					"color": ["RED"],
-				    "price": 1999,
-				    "cost": 402,
+				    "category": ["Other"],
+				    "size": [""],
+					"color": [""],
+				    "price": 0,
+				    "cost": 0,
 				    "stockQuantity": 0
 				};
 				console.log(newProduct)
