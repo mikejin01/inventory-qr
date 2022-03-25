@@ -168,7 +168,7 @@ const Home = () => {
 			<Button>
 				<DeveloperModeOutlined/>Scanner
 			</Button>
-
+			Scanner!!!!!!!!!!
       		<QRScan />
 
 
