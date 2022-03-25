@@ -21,11 +21,38 @@ class QRScan extends React.Component {
     /*const previewStyle = {
         height: 240,
         width: 320,
-    }*/
+    }
+
+
+    <div>
+        <Button onClick={() => setSelfie(!selfie)}>
+        <FlipCameraIos color="primary" fontSize="large" />
+      </Button>
+
+        <QrReader
+          onError={handleError}
+          onScan={handleScan}
+          //facingMode={selfie ? "user" : "environment"}
+          className="c-scanner__qr"
+          constraints={
+              {
+                  video: {
+                      facingMode: { exact: selfie ? "user" : "environment"}
+                  }
+              }
+          }
+        />
+
+
+
+    */
 
   render() {
     return (
-      <div>
+      
+
+
+
         <QrReader
             delay={this.state.delay}
             //style={previewStyle}
@@ -34,6 +61,14 @@ class QRScan extends React.Component {
             onScan={this.handleScan}
             //facingMode: 'user'
             facingMode={'user'}
+            constraints={
+                  {
+                      video: {
+                          facingMode: {  "environment"}
+                      }
+                  }
+              }
+            //exact: selfie ? "user" :
             onResult={(result, error) => {
               if (!!result) {
                 //setData(result?.text);
