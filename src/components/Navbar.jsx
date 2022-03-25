@@ -120,17 +120,21 @@ const Navbar = () => {
 	      	handlePrint();
 	    }catch (error) {
 	      console.log(error);
-	    }*/
+	    }
+
+		<SearchContainer>
+					<Input placeholder="Search"/>
+					<Search style={{color:"gray", fontSize:16}}/>
+					</SearchContainer>
+
+	    */
 	}
 	return(
 		<Container>
 			<Wrapper>	
 				<Left>
 					<Language>EN</Language>
-					<SearchContainer>
-					<Input placeholder="Search"/>
-					<Search style={{color:"gray", fontSize:16}}/>
-					</SearchContainer>
+					
 					<Link to={`/Inventory`}><MenuItem>Inventory</MenuItem></Link>
 					<Link to={`/PurchaseOrders`}><MenuItem>Purchase Orders</MenuItem></Link>
 					<Link to={`/`}><MenuItem>Scan</MenuItem></Link>
