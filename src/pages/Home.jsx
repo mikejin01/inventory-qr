@@ -132,32 +132,10 @@ const Home = () => {
 
 	  document.body.appendChild(script)
 
-	  <style>
-			    {`	
-			    	.result{
-					    background-color: green;
-					    color:#fff;
-					    padding:20px;
-					}
-					.row{
-					    display:flex;
-					}
-
-			    `
-			    }
-		  	</style>
 
 
 
-<h3>Qr Code Scan by Web Cam</h3>
-             <QrReader
-             delay={300}
-             style={{width: '100%'}}
-             onError={handleErrorWebCam}
-             onScan={handleScanWebCam}
-             />
-             <h3>Scanned By WebCam Code: {scanResultWebCam}</h3>
-             <h1>Hello QR Code Reader</h1>
+
 	  ;*/
 
 	const [data, setData] = useState('No result');
@@ -166,6 +144,16 @@ const Home = () => {
 		<Container>	
 			<Wrapper>
 				<Scanner />
+				<h3>Qr Code Scan by Web Cam</h3>
+	             <QrReader
+	             delay={300}
+	             style={{width: '100%'}}
+	             facingMode={'rear'}
+	             onError={handleErrorWebCam}
+	             onScan={handleScanWebCam}
+	             />
+	             <h3>Scanned By WebCam Code: {scanResultWebCam}</h3>
+	             <h1>Hello QR Code Reader</h1>
 				<Button>
 					<DeveloperModeOutlined/>Scanner
 				</Button>
