@@ -138,7 +138,7 @@ const Home = () => {
 
 
 
-
+	Scanner!!!!!!!!!!
 	  ;*/
 
 	const [data, setData] = useState('No result');
@@ -150,7 +150,7 @@ const Home = () => {
 				<Button>
 					<DeveloperModeOutlined/>Scanner
 				</Button>
-				Scanner!!!!!!!!!!
+				
 		  		<QRScan />
 
 			</Wrapper>

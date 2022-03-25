@@ -6,6 +6,7 @@ import { publicRequest, userRequest } from '../requestMethods';
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { BrowserRouter as  Router, Routes, Route, Link, useNavigate, Navigate, useLocation } from 'react-router-dom';
+import axios from "axios";
 
 class QRScan extends React.Component {
   state = {
@@ -123,20 +124,36 @@ class QRScan extends React.Component {
                 borderRadius: 10}}
                 delay={this.state.delay}
                 //style={{width: '100%'}}
-                onError={this.handleError}
-                onScan={this.handleScan}
+                /*onError={this.handleError}
+                onScan={this.handleScan}*/
                 constraints={{ facingMode: 'environment' }}
-                /*onResult={(result, error) => {
+                onResult={(result, error) => {
                   if (!!result) {
                     //setData(result?.text);
                     this.setState({
                       result: result?.text
                     });
+
+                    const getProducts = async ()=>{
+                        try {
+                            const res = await axios.get(
+                                //"https://inventory-qr-api.herokuapp.com/api/products/"+id
+                                "https://inventory-qr-api.herokuapp.com/api/products/find/6238aa0ee28668181fc9074e"
+                            );
+                            //console.log(res.data);
+                            alert(res.data);
+                            //setProducts(res.data);
+                        } catch (err) {
+                            console.log(err);
+                        }
+                     }
+                     getProducts();
+                    //const res = await publicRequest.put("/products/"+id)
                   }
                   if (!!error) {
                     console.info(error);
                   }
-                }}*/
+                }}
             />
             <p>{this.state.result}</p>
             <StockInButton onClick={handleStockIn}>
