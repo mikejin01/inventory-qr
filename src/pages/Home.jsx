@@ -18,7 +18,7 @@ import QRScan from './QRscanner'
 //import { QrScan } from 'react-qr-reader'
 import QrReader from 'react-qr-scanner'
 import { Component } from 'react'
-import { mobile } from "../responsive"
+
 
 
 const Container = styled.div`
