@@ -180,7 +180,9 @@ const Product = ({item}) => {
 	const addToOrder = async () => {
 		try {
 	 		const sku = item.sku;
-	        const qrCode = await QRCode.toDataURL(sku);
+	 		const _id = item._id;
+	        //const response = await QRCode.toDataURL(_id);
+	        const qrCode = await QRCode.toDataURL(_id);
 	      	//console.log(response);
 	      	//setImageUrl(qrCode);
 	      	//console.log(item);
