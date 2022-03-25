@@ -61,12 +61,15 @@ class QRScan extends React.Component {
     */
 
   render() {
+
+
     return (
         <div>
 
-            <QrReader
+            <QrReader style={{height: 50, width: 500, 
+                borderRadius: 10}}
                 delay={this.state.delay}
-                style={{width: '100%'}}
+                //style={{width: '100%'}}
                 onError={this.handleError}
                 onScan={this.handleScan}
                 constraints={{ facingMode: 'environment' }}
