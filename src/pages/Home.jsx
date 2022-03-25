@@ -16,7 +16,8 @@ import { useState, useEffect } from 'react'
 //import { BarCodeScanner } from 'expo-barcode-scanner';
 import QRScan from './QRscanner'
 //import { QrScan } from 'react-qr-reader'
-import QrReader from 'react-qr-scanner'
+import { QrReader } from 'react-qr-reader';
+//import QrReader from 'react-qr-scanner'
 import { Component } from 'react'
 
 
