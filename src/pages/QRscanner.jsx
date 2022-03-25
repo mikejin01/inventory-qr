@@ -4,7 +4,8 @@ import { QrReader } from 'react-qr-reader';
 import { useState, useEffect } from 'react'
 import { publicRequest, userRequest } from '../requestMethods';
 import { useDispatch, useSelector } from 'react-redux'
-
+import styled from 'styled-components'
+import { BrowserRouter as  Router, Routes, Route, Link, useNavigate, Navigate, useLocation } from 'react-router-dom';
 
 class QRScan extends React.Component {
   state = {
@@ -38,6 +39,7 @@ class QRScan extends React.Component {
 
   render() {
 
+    
     const StockInButton = styled.button`
         width: 40%;
         border: none;
@@ -56,9 +58,62 @@ class QRScan extends React.Component {
         cursor: pointer;
         margin-bottom: 10px;
     `
+
+    const id = "";
+    //const navigate  = useNavigate();
+    /*const [product, setProduct] = useState({});
+    const [new_sku, setSku] = useState(product.sku)
+    const [new_title, setTitle] = useState(product.title)
+    const [new_category, setCategory] = useState(product.category)
+    const [new_quantity, setQuantity] = useState("")*/
+    const handleClick = (e)=> {
+        console.log("handleClick!!!!!!!")
+        e.preventDefault()
+        const addProduct = async ()=> {
+            try{
+                /*const newProduct = {
+                    "title": new_title,
+                    "sku": new_sku,
+                    "desc": "good",
+                    "img": "meble-200.jpg",
+                    "category": new_category,
+                    
+                };
+                
+                
+                
+                console.log(newProduct)
+                const res = await userRequest.put("/products/"+id)
+                console.log(res.data);
+                navigate("/Inventory"); */
+            } catch(err) {
+                alert("error: "+err);
+            }
+        };
+        addProduct();/**/
+    }
+
+    const handleDelete = (e)=> {
+        e.preventDefault()
+        const deleteProduct = async ()=> {
+            try{
+                var proceed = window.confirm("Are you sure you want to proceed?");
+                if (proceed) {
+                    const res = await userRequest.delete("/products/"+id)
+                    console.log(res.data);
+                    //navigate("/Inventory");
+                } else {
+                  //don't proceed
+                }
+            } catch(err) {
+                alert("error: "+err);
+            }
+        };
+        deleteProduct();/**/
+    }
     return (
-        <div>
-            <div style={{color: "red", width: 100%, backgroundColor: "green"}}>
+        <div style={{ width: "100%" }}>
+            <div style={{color: "red", width: "100%", backgroundColor: "green"}}>
                 <h1 >Hello Style!</h1>
             </div>
             <QrReader style={{height: 500, width: 500, 
