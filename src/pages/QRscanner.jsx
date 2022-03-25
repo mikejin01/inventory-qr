@@ -48,38 +48,15 @@ class QRScan extends React.Component {
             />
 
 
-
-        constraints={
-                      {
-                          video: {
-                              facingMode:   "environment",
-                          }
-                      }
-                  }
-                //exact: selfie ? "user" :
-
-                //facingMode: 'user'
-                //facingMode={'environment'}
-
-
-                constraints={
-                    {
-                        video: {
-                              facingMode: { exact: selfie ? "user" : "environment"}
-                        }
+            constraints={
+                {
+                    video: {
+                          facingMode: { exact: selfie ? "user" : "environment"}
                     }
                 }
+            }
 
-                exact: selfie ? "user" : 
-
-
-                constraints={
-                    {
-                        video: {
-                              facingMode: { "environment"}
-                        }
-                    }
-                }
+            exact: selfie ? "user" : 
 
     */
 
@@ -100,7 +77,6 @@ class QRScan extends React.Component {
                       result: result?.text
                     });
                   }
-
                   if (!!error) {
                     console.info(error);
                   }
