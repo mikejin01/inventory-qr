@@ -7,6 +7,7 @@ const Container = styled.div`
 	display: flex;
 	${mobile({ flexDirection: "column "})};
 `
+//${mobile({ display: "none", display: "flex", flexDirection:"column" })};
 const Left = styled.div`
 	flex: 1;
 	display: flex;

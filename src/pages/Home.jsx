@@ -18,6 +18,7 @@ import QRScan from './QRscanner'
 //import { QrScan } from 'react-qr-reader'
 import QrReader from 'react-qr-scanner'
 import { Component } from 'react'
+import { mobile } from "../responsive"
 
 
 const Container = styled.div`
@@ -146,7 +147,7 @@ const Home = () => {
 		  	</style>
 
 
-
+<Scanner />
 <h3>Qr Code Scan by Web Cam</h3>
              <QrReader
              delay={300}
@@ -155,22 +156,19 @@ const Home = () => {
              onScan={handleScanWebCam}
              />
              <h3>Scanned By WebCam Code: {scanResultWebCam}</h3>
+             <h1>Hello QR Code Reader</h1>
 	  ;*/
 
 	const [data, setData] = useState('No result');
 
 	return(
 		<Container>	
-			
 			<Wrapper>
-			<Scanner />
-
+			
 			<Button>
 				<DeveloperModeOutlined/>Scanner
 			</Button>
 
-
-			<h1>Hello QR Code Reader</h1>
       		<QRScan />
 
 
