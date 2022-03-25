@@ -47,20 +47,10 @@ const Button = styled.button`
 	background-color: teal;
 	color: white;
 `
-/*	<Announcement />
-	<Navbar />
-	<Newsletter />
-	<Footer /> 
-
-<Categories />
-			<Products />
-
-	*/
+/*	*/
 
 
 /*
-
-
 <script type="text/javascript">
 function onScanSuccess(qrCodeMessage) {
     document.getElementById('result').innerHTML = '<span class="result">'+qrCodeMessage+'</span>';
@@ -134,17 +124,7 @@ const Home = () => {
 	  document.body.appendChild(script)
 
 
-
-
-
-	  ;*/
-
-	const [data, setData] = useState('No result');
-
-	return(
-		<Container>	
-			<Wrapper>
-				<Scanner />
+	<Scanner />
 				<h3>Qr Code Scan by Web Cam</h3>
 	             <QrReader
 	             delay={300}
@@ -155,6 +135,18 @@ const Home = () => {
 	             />
 	             <h3>Scanned By WebCam Code: {scanResultWebCam}</h3>
 	             <h1>Hello QR Code Reader</h1>
+
+
+
+
+	  ;*/
+
+	const [data, setData] = useState('No result');
+
+	return(
+		<Container>	
+			<Wrapper>
+				
 				<Button>
 					<DeveloperModeOutlined/>Scanner
 				</Button>

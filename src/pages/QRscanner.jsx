@@ -29,9 +29,10 @@ class QRScan extends React.Component {
         <QrReader
             delay={this.state.delay}
             //style={previewStyle}
+            style={{width: '100%'}}
             onError={this.handleError}
             onScan={this.handleScan}
-            facingMode={'rear'}
+            facingMode={{'rear'}}
             onResult={(result, error) => {
               if (!!result) {
                 //setData(result?.text);
