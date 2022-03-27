@@ -207,7 +207,7 @@ const QRScan = () => {
     `
 
     const id = "";
-    //const navigate  = useNavigate();
+    const navigate  = useNavigate();
     const [product, setProduct] = useState({});
     /*const [new_sku, setSku] = useState(product.sku)
     const [new_title, setTitle] = useState(product.title)
@@ -219,7 +219,7 @@ const QRScan = () => {
         const StockIn = async ()=> {
             try{
                 const updatedProduct = {
-                    "stockQuantity": {product.stockQuantity}
+                    "stockQuantity": product.stockQuantity+1,
                 };
                 /*
                 "size": ["Q"],
@@ -228,7 +228,7 @@ const QRScan = () => {
                     "cost": 402,
                     "stockQuantity": 0
                 */
-                console.log(newProduct)
+                console.log(updatedProduct)
                 const res = await userRequest.put("/products/"+product._id, updatedProduct)
                 console.log(res.data);
                 navigate("/Inventory"); 
@@ -262,7 +262,7 @@ const QRScan = () => {
             try{
                 var proceed = window.confirm("Are you sure you want to proceed?");
                 if (proceed) {
-                    const res = await userRequest.put("/products/"+_id)
+                    const res = await userRequest.put("/products/"+product._id)
                     console.log(res.data);
                     //navigate("/Inventory");
                 } else {
