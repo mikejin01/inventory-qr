@@ -218,6 +218,20 @@ const QRScan = () => {
         e.preventDefault()
         const StockIn = async ()=> {
             try{
+                const updatedProduct = {
+                    "stockQuantity": {product.stockQuantity}
+                };
+                /*
+                "size": ["Q"],
+                    "color": ["RED"],
+                    "price": 1999,
+                    "cost": 402,
+                    "stockQuantity": 0
+                */
+                console.log(newProduct)
+                const res = await userRequest.put("/products/"+product._id, updatedProduct)
+                console.log(res.data);
+                navigate("/Inventory"); 
                 /*const newProduct = {
                     "title": new_title,
                     "sku": new_sku,
@@ -248,7 +262,7 @@ const QRScan = () => {
             try{
                 var proceed = window.confirm("Are you sure you want to proceed?");
                 if (proceed) {
-                    const res = await userRequest.put("/products/"+id)
+                    const res = await userRequest.put("/products/"+_id)
                     console.log(res.data);
                     //navigate("/Inventory");
                 } else {
@@ -305,13 +319,15 @@ const QRScan = () => {
           </button>
           <Popup open={open} closeOnDocumentClick onClose={closeModal}>
             <div className="modal" style={{backgroundColor: "black", color: "gold"}}>
-              <a className="close" onClick={closeModal}>
+                <a className="close" onClick={closeModal}>
                 &times;
-              </a>
-              {product.sku}
+                </a>
+                {product.sku}
+                <br/>
                 <StockInButton onClick={handleStockIn}>
                     Stock In
                 </StockInButton>
+                <br/>
                 <StockOutButton onClick={handleStockOut}>
                     Stock Out
                 </StockOutButton>
@@ -341,7 +357,7 @@ const QRScan = () => {
                                 //"https://inventory-qr-api.herokuapp.com/api/products/find/623a2c1e6f9c8838e7b4189f"
                             );
                             //console.log(res.data);
-                            alert(res.data.sku+" "+res.data.stockQuantity);
+                            //alert(res.data.sku+" "+res.data.stockQuantity);
                             setProduct(res.data);
                             setOpen(o => !o);
                             //ControlledPopupNew("hi");

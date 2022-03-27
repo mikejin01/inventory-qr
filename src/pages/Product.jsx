@@ -223,8 +223,8 @@ const Product = () => {
 	defaultValue={product.title}
 
 	<Input 
-						defaultValue="hi" placeholder="" onChange={(e)=>setCategory([e.target.value])}
-					/>
+		defaultValue="hi" placeholder="" onChange={(e)=>setCategory([e.target.value])}
+	/>
 	*/
 	return(
 		<Container>	
