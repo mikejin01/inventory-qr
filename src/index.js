@@ -32,20 +32,26 @@ app.get('/', function(req, res){
 app.listen(PORT, function(err){
     if (err) console.log(err);
     console.log("Server listening on PORT", PORT);
-});*/
+});
+
+
+
+
+  
+*/
 
 ReactDOM.render(
 
-  <HashRouter>
+  
     <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+        <HashRouter>
         <App />
+        </HashRouter>
       </PersistGate>
     </Provider>
-    </React.StrictMode>
-  </HashRouter>
-  ,
+    </React.StrictMode>,
   document.getElementById('root')
 );
 
