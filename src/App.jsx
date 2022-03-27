@@ -28,7 +28,7 @@ import { HashRouter } from 'react-router-dom'
 console.log("hi!");*/
 
 
-/*function App() {
+function App() {
   const user = useSelector((state)=>state.user.currentUser);
   if (user != null) {
     console.log("logged in as "+user.email);
@@ -54,9 +54,15 @@ console.log("hi!");*/
       <Footer />
     </Router>
   );
-}*/
-
-class App extends Component {
+}/**/
+/*const user = useSelector((state)=>state.user.currentUser);
+  if (user != null) {
+    console.log("logged in as "+user.email);
+    //console.log("accessToken = "+user.accessToken);
+    
+    //console.log(useSelector((state)=>state);
+  }*/
+/*class App extends Component {
 //function App() {
 state = {
     data: null
@@ -78,13 +84,7 @@ state = {
     return body;
   };
 
-  /*const user = useSelector((state)=>state.user.currentUser);
-  if (user != null) {
-    console.log("logged in as "+user.email);
-    //console.log("accessToken = "+user.accessToken);
-    
-    //console.log(useSelector((state)=>state);
-  }*/
+  
 
   render() {
     
@@ -105,6 +105,6 @@ state = {
       </Router>
     );
   }
-}
+}*/
 
 export default App;

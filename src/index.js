@@ -36,8 +36,8 @@ app.listen(PORT, function(err){
 
 
 
-
-  
+<HashRouter>
+  </HashRouter>
 */
 
 ReactDOM.render(
@@ -46,9 +46,9 @@ ReactDOM.render(
     <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <HashRouter>
+        
         <App />
-        </HashRouter>
+        
       </PersistGate>
     </Provider>
     </React.StrictMode>,
