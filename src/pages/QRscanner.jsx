@@ -7,8 +7,32 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { BrowserRouter as  Router, Routes, Route, Link, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import axios from "axios";
-//import Popup from 'reactjs-popup';
+import Popup from 'reactjs-popup';
 //import 'reactjs-popup/dist/index.css';
+//import Warper from './Warper';
+  
+const ControlledPopup = (e) => {
+  const [open, setOpen] = useState(false);
+  const closeModal = () => setOpen(false);
+  return (
+    <div>
+      <button type="button" className="button" onClick={() => setOpen(o => !o)}>
+        Controlled Popup
+      </button>
+      <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+        <div className="modal" style={{backgroundColor: "black", color: "gold"}}>
+          <a className="close" onClick={closeModal}>
+            &times;
+          </a>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae magni
+          omnis delectus nemo, maxime molestiae dolorem numquam mollitia, voluptate
+          ea, accusamus excepturi deleniti ratione sapiente! Laudantium, aperiam
+          doloribus. Odit, aut.
+        </div>
+      </Popup>
+    </div>
+  );
+};
 
 class QRScan extends React.Component {
   state = {
@@ -137,15 +161,22 @@ class QRScan extends React.Component {
         },
         { text: "OK", onPress: () => console.log("OK Pressed") }
       ]
+
+
+      <div>
+                <h4>Popup - GeeksforGeeks</h4>
+                <Popup trigger={<button> Click to open popup </button>} 
+                 position="right center">
+                  <div>GeeksforGeeks</div>
+                  <button>Click here</button>
+                </Popup>
+            </div>
     );*/
+
+
     return (
         <div style={{ width: "100%" }}>
-            <Popup open={this.props.open} position="center">
-                <div>Popup content here !!</div>
-            </Popup>
-
-
-            
+            <ControlledPopup/>
             <QrReader style={{height: 500, width: 500, 
                 borderRadius: 10}}
                 delay={this.state.delay}
@@ -168,6 +199,7 @@ class QRScan extends React.Component {
                             );
                             //console.log(res.data);
                             alert(res.data.sku);
+                            ControlledPopup("hi");
                             //this.props.setOpen(true)
                             //this.props.setOpen(false)
                             //createThreeButtonAlert();
