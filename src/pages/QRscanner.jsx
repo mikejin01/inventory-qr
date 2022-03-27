@@ -11,9 +11,12 @@ import Popup from 'reactjs-popup';
 //import 'reactjs-popup/dist/index.css';
 //import Warper from './Warper';
   
+
+
+ 
 const ControlledPopup = (e) => {
-  const [open, setOpen] = useState(false);
-  const closeModal = () => setOpen(false);
+    const [open, setOpen] = useState(false);
+    const closeModal = () => setOpen(false); 
   return (
     <div>
       <button type="button" className="button" onClick={() => setOpen(o => !o)}>
@@ -57,7 +60,8 @@ const ControlledPopupNew = (e) => {
   );
 };
 
-class QRScan extends React.Component {
+//class QRScan extends React.Component {
+const QRScan = () => {
   state = {
     delay: 100,
     result: "No result"
@@ -87,7 +91,7 @@ class QRScan extends React.Component {
 
     */
 
-  render() {
+  //render() {
 
     
     const StockInButton = styled.button`
