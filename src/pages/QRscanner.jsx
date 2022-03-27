@@ -232,6 +232,7 @@ const QRScan = () => {
                 const res = await userRequest.put("/products/"+product._id, updatedProduct)
                 console.log(res.data);
                 navigate("/"); 
+                alert(product.sku+" Stock In Done");
             } catch(err) {
                 alert("error: "+err);
             }
@@ -243,8 +244,8 @@ const QRScan = () => {
         e.preventDefault()
         const StockOut = async ()=> {
             try{
-                var proceed = window.confirm("Are you sure you want to proceed?");
-                if (proceed) {
+                //var proceed = window.confirm("Are you sure you want to proceed?");
+                //if (proceed) {
                     const updatedProduct = {
                         "stockQuantity": product.stockQuantity-1,
                     };
@@ -258,13 +259,14 @@ const QRScan = () => {
                     console.log(updatedProduct)
                     const res = await userRequest.put("/products/"+product._id, updatedProduct)
                     console.log(res.data);
-                    navigate("/"); 
+                    //navigate(); 
+                    alert(product.sku+" Stock Out Done");
                     //const res = await userRequest.put("/products/"+product._id)
                     //console.log(res.data);
                     //navigate("/Inventory");
-                } else {
+                //} else {
                   //don't proceed
-                }
+                //}
             } catch(err) {
                 alert("error: "+err);
             }
