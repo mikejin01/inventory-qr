@@ -13,8 +13,9 @@ import { useDispatch } from "react-redux";
 const Container = styled.div`
 	/*height: 60px;
 	background-color: black;
+	display: "none", 
 	*/
-	${mobile({ display: "none", height: "50px" })};
+	${mobile({ height: "50px" })};
 `;
 
 const Wrapper = styled.div`
@@ -29,6 +30,7 @@ const Left = styled.div`
 	flex: 1;
 	display: flex;
 	align-items: center;
+	${mobile({ display: "none" })};
 `;
 const Language = styled.span`
 	font-size: 14px;
@@ -41,6 +43,7 @@ const SearchContainer = styled.div`
 	align-items: center;
 	margin-left: 25px;
 	padding: 5px;
+	${mobile({ display: "none" })};
 `
 
 const Input = styled.input`
