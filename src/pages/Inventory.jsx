@@ -64,17 +64,18 @@ const Inventory = () => {
 		const value = e.target.value;
 		setFilters({
 			...filters,
-			[e.target.name]: value.toLowerCase,
+			[e.target.name]: [value],
 		});
 	};
 	console.log(filters);
 	const handleSearch = (e)=> {
 		//console.log("handleSearch!!!!!!!!!!"+e.target.value);
 		//const value = e.target.value;
-		console.log("handleSearch: "+e.target.value); //.toLowerCase
+		console.log("!handleSearch: "+e.target.value); //.toLowerCase
+		console.log("!!!!!!!!!"); //.toLowerCase
 		setFilters({
-			...filters,
-			["sku"]: e.target.value.toLowerCase(),// e.target.value.toLowerCase() "meble-eva-kbl",//onChange=
+			//...filters,
+			["sku"]: e.target.value.toLowerCase(),//  e.target.value.toLowerCase() "meble-eva-kbl",//onChange=
 		});
 	}
 	return(
@@ -87,7 +88,7 @@ const Inventory = () => {
 			<FilterContainer>
 				<Filter>
 					<FilterText>Filter Products:</FilterText>
-					<Select name="color" onChange={handleFilters}>
+					<Select name="category" onChange={handleFilters}>
 						<Option disabled>
 							Color
 						</Option>

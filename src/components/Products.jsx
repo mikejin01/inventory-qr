@@ -44,6 +44,16 @@ const Products = ({category, filters, sort}) => {
 	 		)
 	 	);
 	}, [products, category, filters]);
+	useEffect(()=>{
+		console.log("here!!!!!!!!");
+	 	//setFilteredProducts(
+	 		products.filter(item => 
+	 			Object.entries(filters).every(([key, value])=>
+	 				item[key].includes(value) //|| item['title'].includes(value)
+	 			)
+	 		)
+	 	//);
+	}, [products, filters]);
 
 	return(
 		<Container>
