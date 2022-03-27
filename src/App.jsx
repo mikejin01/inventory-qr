@@ -20,7 +20,7 @@ import Success from "./pages/Success";*/
 import { BrowserRouter as  Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { useSelector } from "react-redux"
-
+import { HashRouter } from 'react-router-dom'
 
 //global.fetch = require('node-fetch')
 
