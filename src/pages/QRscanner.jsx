@@ -37,28 +37,7 @@ const ControlledPopup = (e) => {
   );
 };
 
-const ControlledPopupNew = (e) => {
-  const [open, setOpen] = useState(false);
-  const closeModal = () => setOpen(false);
-  return (
-    <div>
-      <button type="button" className="button" onClick={() => setOpen(o => !o)}>
-        Controlled Popup
-      </button>
-      <Popup open="true" closeOnDocumentClick onClose={closeModal}>
-        <div className="modal" style={{backgroundColor: "black", color: "gold"}}>
-          <a className="close" onClick={closeModal}>
-            &times;
-          </a>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae magni
-          omnis delectus nemo, maxime molestiae dolorem numquam mollitia, voluptate
-          ea, accusamus excepturi deleniti ratione sapiente! Laudantium, aperiam
-          doloribus. Odit, aut.
-        </div>
-      </Popup>
-    </div>
-  );
-};
+
 
 
 /*
@@ -229,8 +208,8 @@ const QRScan = () => {
 
     const id = "";
     //const navigate  = useNavigate();
-    /*const [product, setProduct] = useState({});
-    const [new_sku, setSku] = useState(product.sku)
+    const [product, setProduct] = useState({});
+    /*const [new_sku, setSku] = useState(product.sku)
     const [new_title, setTitle] = useState(product.title)
     const [new_category, setCategory] = useState(product.category)
     const [new_quantity, setQuantity] = useState("")*/
@@ -315,9 +294,35 @@ const QRScan = () => {
     <ControlledPopup/>
 
     */
+    const [open, setOpen] = useState(false);
+    const closeModal = () => setOpen(false);
+
+    const ControlledPopupNew = (e) => {
+      return (
+        <div>
+          <button type="button" className="button" onClick={() => setOpen(o => !o)}>
+            Controlled Popup
+          </button>
+          <Popup open={open} closeOnDocumentClick onClose={closeModal}>
+            <div className="modal" style={{backgroundColor: "black", color: "gold"}}>
+              <a className="close" onClick={closeModal}>
+                &times;
+              </a>
+              {product.sku}
+                <StockInButton onClick={handleStockIn}>
+                    Stock In
+                </StockInButton>
+                <StockOutButton onClick={handleStockOut}>
+                    Stock Out
+                </StockOutButton>
+            </div>
+          </Popup>
+        </div>
+      );
+    };
     return (
         <div style={{ width: "100%" }}>
-            
+            <ControlledPopupNew/>
             <QrReader style={{height: 500, width: 500, 
                 borderRadius: 10}}
                 delay={100}
@@ -328,7 +333,7 @@ const QRScan = () => {
                     /*this.setState({
                       result: result?.text
                     });*/
-
+                    state.result = result?.text;
                     const getProducts = async ()=>{
                         try {
                             const res = await axios.get(
@@ -336,8 +341,10 @@ const QRScan = () => {
                                 //"https://inventory-qr-api.herokuapp.com/api/products/find/623a2c1e6f9c8838e7b4189f"
                             );
                             //console.log(res.data);
-                            alert(res.data.sku);
-                            ControlledPopupNew("hi");
+                            alert(res.data.sku+" "+res.data.stockQuantity);
+                            setProduct(res.data);
+                            setOpen(o => !o);
+                            //ControlledPopupNew("hi");
                             //this.props.setOpen(true)
                             //this.props.setOpen(false)
                             //createThreeButtonAlert();
