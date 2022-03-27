@@ -1,6 +1,7 @@
 //import logo from './logo.svg';
 import './App.css';
 import React from 'react'
+import { Component } from 'react';
 import Navbar from './components/Navbar'
 import Announcement from './components/Announcement'
 import Newsletter from './components/Newsletter'
@@ -27,7 +28,7 @@ import { useSelector } from "react-redux"
 console.log("hi!");*/
 
 
-function App() {
+/*function App() {
   const user = useSelector((state)=>state.user.currentUser);
   if (user != null) {
     console.log("logged in as "+user.email);
@@ -53,6 +54,47 @@ function App() {
       <Footer />
     </Router>
   );
+}*/
+
+class App extends Component {
+state = {
+    data: null
+  };
+
+  componentDidMount() {
+    this.callBackendAPI()
+      .then(res => this.setState({ data: res.express }))
+      .catch(err => console.log(err));
+  }
+    // fetching the GET route from the Express server which matches the GET route from server.js
+  callBackendAPI = async () => {
+    const response = await fetch('/express_backend');
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      throw Error(body.message) 
+    }
+    return body;
+  };
+
+  render() {
+    return (
+        <Router>
+        <Navbar />
+        <Announcement />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/Inventory" element={<Inventory />} />
+          <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>} />
+          <Route path="/NewProduct" element={<NewProduct />} />
+          <Route path="/product/:sku" element={<Product />} />
+          <Route path="/PurchaseOrders" element={<PurchaseOrders />} />
+        </Routes>
+        <Newsletter />
+        <Footer />
+      </Router>
+    );
+  }
 }
 
 export default App;
