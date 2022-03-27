@@ -51,133 +51,7 @@ const ControlledPopup = (e) => {
 
             exact: selfie ? "user" : 
 
-    */
-/*class QRScan extends React.Component {
-  state = {
-    delay: 100,
-    result: "No result"
-  };
-
-  handleScan = (data) => {
-    this.setState({
-      result: data
-    });
-    alert("hi");
-  };
-
-    handleError = (err) => {
-        console.error(err);
-    };
-
-    
-
-  render() {
-
-    
-    const StockInButton = styled.button`
-        width: 40%;
-        border: none;
-        padding: 15px 20px;
-        background-color: green;
-        color: white;
-        cursor: pointer;
-        margin-bottom: 10px;
-    `
-    const StockOutButton = styled.button`
-        width: 40%;
-        border: none;
-        padding: 15px 20px;
-        background-color: red;
-        color: white;
-        cursor: pointer;
-        margin-bottom: 10px;
-    `
-
-    const id = "";
-    const handleStockIn = (e)=> {
-        console.log("handleClick!!!!!!!")
-        e.preventDefault()
-        const StockIn = async ()=> {
-            try{
-            } catch(err) {
-                alert("error: "+err);
-            }
-        };
-        StockIn();
-    }
-
-    const handleStockOut = (e)=> {
-        e.preventDefault()
-        const StockOut = async ()=> {
-            try{
-                var proceed = window.confirm("Are you sure you want to proceed?");
-                if (proceed) {
-                    const res = await userRequest.put("/products/"+id)
-                    console.log(res.data);
-                    //navigate("/Inventory");
-                } else {
-                  //don't proceed
-                }
-            } catch(err) {
-                alert("error: "+err);
-            }
-        };
-        StockOut();
-    }
-
-    return (
-        <div style={{ width: "100%" }}>
-            
-            <QrReader style={{height: 500, width: 500, 
-                borderRadius: 10}}
-                delay={this.state.delay}
-                //style={{width: '100%'}}
-
-                constraints={{ facingMode: 'environment' }}
-                onResult={(result, error) => {
-                  if (!!result) {
-                    //setData(result?.text);
-                    this.setState({
-                      result: result?.text
-                    });
-
-                    const getProducts = async ()=>{
-                        try {
-                            const res = await axios.get(
-                                "https://inventory-qr-api.herokuapp.com/api/products/find/"+result.text
-                                //"https://inventory-qr-api.herokuapp.com/api/products/find/623a2c1e6f9c8838e7b4189f"
-                            );
-                            //console.log(res.data);
-                            alert(res.data.sku);
-                            ControlledPopupNew("hi");
-                            //this.props.setOpen(true)
-                            //this.props.setOpen(false)
-                            //createThreeButtonAlert();
-                            //setProducts(res.data);
-                        } catch (err) {
-                            console.log(err);
-                        }
-                     }
-                     getProducts();
-                    //const res = await publicRequest.put("/products/"+id)
-                  }
-                  if (!!error) {
-                    console.info(error);
-                  }
-                }}
-            />
-            <p>{this.state.result}</p>
-            <StockInButton onClick={handleStockIn}>
-                Stock In
-            </StockInButton>
-            <StockOutButton onClick={handleStockOut}>
-                Stock Out
-            </StockOutButton>
-            
-        </div>
-    );
-  }
-}*//**/
+*/
 
 
 
@@ -233,6 +107,7 @@ const QRScan = () => {
                 console.log(res.data);
                 navigate("/"); 
                 alert(product.sku+" Stock In Done");
+                setOpen(false);
             } catch(err) {
                 alert("error: "+err);
             }
@@ -261,6 +136,7 @@ const QRScan = () => {
                     console.log(res.data);
                     //navigate(); 
                     alert(product.sku+" Stock Out Done");
+                    setOpen(false);
                     //const res = await userRequest.put("/products/"+product._id)
                     //console.log(res.data);
                     //navigate("/Inventory");
@@ -358,7 +234,8 @@ const QRScan = () => {
                             //console.log(res.data);
                             //alert(res.data.sku+" "+res.data.stockQuantity);
                             setProduct(res.data);
-                            setOpen(o => !o);
+                            //setOpen(o => !o);
+                            setOpen(true);
                             //ControlledPopupNew("hi");
                             //this.props.setOpen(true)
                             //this.props.setOpen(false)
