@@ -231,24 +231,7 @@ const QRScan = () => {
                 console.log(updatedProduct)
                 const res = await userRequest.put("/products/"+product._id, updatedProduct)
                 console.log(res.data);
-                navigate("/Inventory"); 
-                /*const newProduct = {
-                    "title": new_title,
-                    "sku": new_sku,
-                    "desc": "good",
-                    "img": "meble-200.jpg",
-                    "category": new_category,
-                    
-                };
-                console.log(newProduct)
-                const res = await userRequest.put("/products/"+id)
-                console.log(res.data);
-                navigate("/Inventory"); 
-
-                <div style={{color: "red", width: "100%", backgroundColor: "green"}}>
-                <h1 >Hello Style!</h1>
-            </div>
-            */
+                navigate("/"); 
             } catch(err) {
                 alert("error: "+err);
             }
@@ -262,8 +245,22 @@ const QRScan = () => {
             try{
                 var proceed = window.confirm("Are you sure you want to proceed?");
                 if (proceed) {
-                    const res = await userRequest.put("/products/"+product._id)
+                    const updatedProduct = {
+                        "stockQuantity": product.stockQuantity-1,
+                    };
+                    /*
+                    "size": ["Q"],
+                        "color": ["RED"],
+                        "price": 1999,
+                        "cost": 402,
+                        "stockQuantity": 0
+                    */
+                    console.log(updatedProduct)
+                    const res = await userRequest.put("/products/"+product._id, updatedProduct)
                     console.log(res.data);
+                    navigate("/"); 
+                    //const res = await userRequest.put("/products/"+product._id)
+                    //console.log(res.data);
                     //navigate("/Inventory");
                 } else {
                   //don't proceed
