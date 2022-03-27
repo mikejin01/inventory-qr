@@ -34,6 +34,29 @@ const ControlledPopup = (e) => {
   );
 };
 
+const ControlledPopupNew = (e) => {
+  const [open, setOpen] = useState(false);
+  const closeModal = () => setOpen(false);
+  return (
+    <div>
+      <button type="button" className="button" onClick={() => setOpen(o => !o)}>
+        Controlled Popup
+      </button>
+      <Popup open="true" closeOnDocumentClick onClose={closeModal}>
+        <div className="modal" style={{backgroundColor: "black", color: "gold"}}>
+          <a className="close" onClick={closeModal}>
+            &times;
+          </a>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae magni
+          omnis delectus nemo, maxime molestiae dolorem numquam mollitia, voluptate
+          ea, accusamus excepturi deleniti ratione sapiente! Laudantium, aperiam
+          doloribus. Odit, aut.
+        </div>
+      </Popup>
+    </div>
+  );
+};
+
 class QRScan extends React.Component {
   state = {
     delay: 100,
@@ -171,12 +194,17 @@ class QRScan extends React.Component {
                   <button>Click here</button>
                 </Popup>
             </div>
-    );*/
+    );
+
+
+    <ControlledPopup/>
+
+    */
 
 
     return (
         <div style={{ width: "100%" }}>
-            <ControlledPopup/>
+            
             <QrReader style={{height: 500, width: 500, 
                 borderRadius: 10}}
                 delay={this.state.delay}
@@ -199,7 +227,7 @@ class QRScan extends React.Component {
                             );
                             //console.log(res.data);
                             alert(res.data.sku);
-                            ControlledPopup("hi");
+                            ControlledPopupNew("hi");
                             //this.props.setOpen(true)
                             //this.props.setOpen(false)
                             //createThreeButtonAlert();
