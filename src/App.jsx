@@ -57,6 +57,7 @@ console.log("hi!");*/
 }*/
 
 class App extends Component {
+//function App() {
 state = {
     data: null
   };
@@ -77,7 +78,16 @@ state = {
     return body;
   };
 
+  /*const user = useSelector((state)=>state.user.currentUser);
+  if (user != null) {
+    console.log("logged in as "+user.email);
+    //console.log("accessToken = "+user.accessToken);
+    
+    //console.log(useSelector((state)=>state);
+  }*/
+
   render() {
+    
     return (
         <Router>
         <Navbar />
@@ -85,7 +95,7 @@ state = {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/Inventory" element={<Inventory />} />
-          <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>} />
+          <Route path="/login" element={<Login/>} />
           <Route path="/NewProduct" element={<NewProduct />} />
           <Route path="/product/:sku" element={<Product />} />
           <Route path="/PurchaseOrders" element={<PurchaseOrders />} />
