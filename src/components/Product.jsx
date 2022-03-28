@@ -208,8 +208,10 @@ const Product = ({item}) => {
 	      	//console.log(response);
 	      	//setImageUrl(qrCode);
 	      	//console.log(item);
-			dispatch(addProduct({...item, qrCode, quantity, purchaseOrder})
+			dispatch(
+				addProduct({...item, qrCode, quantity, purchaseOrder})
 			);
+			alert(item.sku+"ADD TO Order Done");
 	    }catch (error) {
 	      console.log(error);
 	    }
