@@ -189,9 +189,7 @@ const QRScan = () => {
     const ControlledPopupNew = (e) => {
       return (
         <div>
-          <button type="button" className="button" onClick={() => setOpen(o => !o)}>
-            Controlled Popup
-          </button>
+          
           <Popup open={open} closeOnDocumentClick onClose={closeModal}>
             <div className="modal" style={{width: "300px", backgroundColor: "black", color: "gold"}}>
                 <a className="close" onClick={closeModal}>
@@ -211,6 +209,17 @@ const QRScan = () => {
         </div>
       );
     };
+    /*
+    <button type="button" className="button" onClick={() => setOpen(o => !o)}>
+            Controlled Popup
+          </button>
+    <StockInButton onClick={handleStockIn}>
+                Stock In
+            </StockInButton>
+            <StockOutButton onClick={handleStockOut}>
+                Stock Out
+            </StockOutButton>
+            */
     return (
         <div style={{ width: "100%" }}>
             <ControlledPopupNew/>
@@ -254,12 +263,7 @@ const QRScan = () => {
                 }}
             />
             <p>{state.result}</p>
-            <StockInButton onClick={handleStockIn}>
-                Stock In
-            </StockInButton>
-            <StockOutButton onClick={handleStockOut}>
-                Stock Out
-            </StockOutButton>
+            
             
         </div>
     );
