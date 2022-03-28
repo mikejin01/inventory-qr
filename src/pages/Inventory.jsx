@@ -54,9 +54,8 @@ const Option = styled.option`
 
 const Inventory = () => {
 	const location = useLocation();
-
-	const category = '';//sofalocation.pathname.split("/")[2];
-	//console.log("category is "+category+"!!!!!");
+	const category = "";//TV Stand sofalocation.pathname.split("/")[2];
+	console.log("category is "+category+"!!!!!");
 	const [filters, setFilters] = useState({});
 	const [sort, setSort] = useState("newest");
 
@@ -81,7 +80,6 @@ const Inventory = () => {
 	return(
 		<Container>
 			<Title>
-				
 				{category != '' ? ( {category}
 		              ) : null}
 			</Title>
@@ -152,7 +150,7 @@ const Inventory = () => {
 			<Products category={category} filters={filters} sort={sort} />
 		</Container>
 		) 
-}
+}//here
 
 export default  Inventory
 

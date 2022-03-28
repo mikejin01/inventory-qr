@@ -14,7 +14,7 @@ const Container = styled.div`
 `
 
 const Products = ({category, filters, sort}) => {
-	console.log(category, filters, sort);
+	//console.log(category, filters, sort);
 	const [products, setProducts] = useState([]);
 	const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -23,11 +23,15 @@ const Products = ({category, filters, sort}) => {
 		 const getProducts = async ()=>{
 		 	try {
 				const res = await axios.get(
-					/**/category 
+					/*category 
 					? `https://inventory-qr-api.herokuapp.com/api/products?category=${category}`
 					: "https://inventory-qr-api.herokuapp.com/api/products"
+					*/
+					//?category=TV Stand
+					"https://inventory-qr-api.herokuapp.com/api/products"
 				);
-				//console.log(res.data);
+				console.log("getProducts:");
+				console.log(res.data);
 				setProducts(res.data);
 			} catch (err) {
 				console.log(err);
@@ -35,7 +39,7 @@ const Products = ({category, filters, sort}) => {
 		 }
 		 getProducts();
 	}, [category]);
-	useEffect(()=>{
+	/*useEffect(()=>{
 	 	category && setFilteredProducts(
 	 		products.filter(item => 
 	 			Object.entries(filters).every(([key, value])=>
@@ -43,26 +47,41 @@ const Products = ({category, filters, sort}) => {
 	 			)
 	 		)
 	 	);
-	}, [products, category, filters]);
+	}, [products, category, filters]);*/
 	useEffect(()=>{
-		console.log("here!!!!!!!!");
-	 	//setFilteredProducts(
+		console.log("set Filtered Products!!!!!!!!");
+	 	setFilteredProducts(
 	 		products.filter(item => 
 	 			Object.entries(filters).every(([key, value])=>
-	 				item[key].includes(value) //|| item['title'].includes(value)
+	 				/*if (key == "category") {
+	 					
+	 					//item["category"].includes(value)
+	 				}
+	 				else {*/
+	 					item[key].includes(value) || item['title'].includes(value) || item["category"].indexOf(value[0]) > -1
+	 				//}
+	 				//item['title'].includes('YORK')
+	 				
 	 			)
 	 		)
-	 	//);
+	 	);
 	}, [products, filters]);
 
 	return(
 		<Container>
-			{category 
-				? filteredProducts.map((item) =>
+			{filteredProducts.map((item) =>
+				<Product item={item} key={item.id} />)}
+
+
+			
+			{
+			/*category 
+
+				/*? filteredProducts.map((item) =>
 				<Product item={item} key={item.id} />)
 				: products.map((item) =>
 				<Product item={item} key={item.id} />)
-			}
+			*/}
 		</Container>
 	)
 }
