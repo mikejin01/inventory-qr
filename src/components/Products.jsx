@@ -58,7 +58,7 @@ const Products = ({category, filters, sort}) => {
 	 					//item["category"].includes(value)
 	 				}
 	 				else {*/
-	 					item[key].includes(value) || item['title'].includes(value) || item["category"].indexOf(value[0]) > -1
+	 					item[key].toLowerCase().includes(value) || item['title'].toLowerCase().includes(value) || item["category"].indexOf(value[0]) > -1
 	 				//}
 	 				//item['title'].includes('YORK')
 	 				
