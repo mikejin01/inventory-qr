@@ -9,7 +9,7 @@ import { useReactToPrint } from "react-to-print";
 import React, { useRef } from "react";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
-
+import { mobile } from "../responsive"
 
 const Info = styled.div`
 	opacity: 100;
@@ -95,11 +95,31 @@ const Icon = styled.div`
 		transform: scale(1.1);
 	}
 `
+
+const ButtonArea = styled.div`
+	flex: 1;
+`
 const Button = styled.button`
 	flex: 1;
+	width: 100%;
 	border: none;
 	background-color: teal;
 	color: white;
+`
+
+const SearchContainer = styled.div`
+	border: 0.5px solid lightgray;
+	flex: 1;
+	/*display: flex;
+	margin-left: 25px;
+	*/
+	align-items: center;
+	padding: 5px;
+`
+const Input = styled.input`
+	width: 100%;
+	border: none;
+	${mobile({ width: "50px" })};
 `
 
 
@@ -183,18 +203,32 @@ const Product = ({item}) => {
 	 		const _id = item._id;
 	        //const response = await QRCode.toDataURL(_id);
 	        const qrCode = await QRCode.toDataURL(_id);
+	        var purchaseOrder = document.getElementById(item.sku+"_PurchaseOrder").value;
+	        //getElementsByClassName
 	      	//console.log(response);
 	      	//setImageUrl(qrCode);
 	      	//console.log(item);
-			dispatch(addProduct({...item, qrCode, quantity})
+			dispatch(addProduct({...item, qrCode, quantity, purchaseOrder})
 			);
 	    }catch (error) {
 	      console.log(error);
 	    }
 		//setProduct(item);
 		//update cart
-		
 	};
+	const handleSearch = (e)=> {
+		//console.log("handleSearch!!!!!!!!!!"+e.target.value);
+		//const value = e.target.value;
+		console.log("!handleSearch: "+e.target.value); //.toLowerCase
+		console.log("!!!!!!!!!"); //.toLowerCase
+		/*setFilters({
+			//...filters,
+			["sku"]: e.target.value.toLowerCase(),//  e.target.value.toLowerCase() "meble-eva-kbl",//onChange=
+		});*/
+	}
+	/*
+	name
+	*/
 	return(
 		<Container>
 			<Title>
@@ -204,9 +238,16 @@ const Product = ({item}) => {
 			</Title> 
 			<Desc>{item.title}</Desc>
 			<Title>{item.stockQuantity}</Title>
-			<Button onClick={addToOrder}>
-				<AddShoppingCartOutlined/>ADD TO Order
-			</Button>
+			<ButtonArea>
+				<SearchContainer> 
+					<Input id={`${item.sku}_PurchaseOrder`} placeholder="Purchase Order" onChange={handleSearch} />
+				</SearchContainer>
+				
+				<Button onClick={addToOrder}>
+					<AddShoppingCartOutlined/>ADD TO Order
+				</Button>
+			</ButtonArea>
+			
 			
 		</Container>
 	) 

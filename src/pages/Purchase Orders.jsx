@@ -290,6 +290,7 @@ const PurchaseOrders = () => {
 
 									<ProductSku><b>SKU: </b>{product.sku}</ProductSku>
 									<ProductName><b>Title: </b>{product.title}</ProductName>
+									<ProductName><b>Purchase Order: </b>{product.purchaseOrder}</ProductName>
 									<ProductSku><b>Date Printed: </b>{date}</ProductSku>
 								</Details>
 							</ProductDetail>

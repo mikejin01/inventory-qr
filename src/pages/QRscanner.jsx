@@ -193,7 +193,7 @@ const QRScan = () => {
             Controlled Popup
           </button>
           <Popup open={open} closeOnDocumentClick onClose={closeModal}>
-            <div className="modal" style={{backgroundColor: "black", color: "gold"}}>
+            <div className="modal" style={{width: "300px", backgroundColor: "black", color: "gold"}}>
                 <a className="close" onClick={closeModal}>
                 &times;
                 </a>
