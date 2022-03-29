@@ -43,7 +43,7 @@ const Products = ({category, filters, sort}) => {
 				      }
 				    });
 				}; */
-				res.data.sort((a, b) => (a.stockQuantity > b.stockQuantity) ? 1 : -1)
+				res.data.sort((a, b) => (a.stockQuantity < b.stockQuantity) ? 1 : -1)
 				setProducts(res.data);
 				/*products.sort((first, second) => {
 			      if ( first.stockQuantity == second.stockQuantity ) {
