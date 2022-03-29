@@ -96,6 +96,9 @@ const QRScan = () => {
                 const updatedProduct = {
                     "stockQuantity": product.stockQuantity+1,
                 };
+                const updatedActivity = {
+                    "status": "Stocked In",
+                };
                 /*
                 "size": ["Q"],
                     "color": ["RED"],
@@ -105,6 +108,7 @@ const QRScan = () => {
                 */
                 console.log(updatedProduct)
                 const res = await userRequest.put("/products/"+product._id, updatedProduct)
+                const res2 = await userRequest.put("/activities/"+activity._id, updatedActivity)
                 console.log(res.data);
                 navigate("/"); 
                 alert(product.sku+" Stock In Done");
@@ -125,6 +129,9 @@ const QRScan = () => {
                     const updatedProduct = {
                         "stockQuantity": product.stockQuantity-1,
                     };
+                    const updatedActivity = {
+                        "status": "Stocked Out",
+                    };
                     /*
                     "size": ["Q"],
                         "color": ["RED"],
@@ -134,6 +141,7 @@ const QRScan = () => {
                     */
                     console.log(updatedProduct)
                     const res = await userRequest.put("/products/"+product._id, updatedProduct)
+                    const res2 = await userRequest.put("/activities/"+activity._id, updatedActivity)
                     console.log(res.data);
                     //navigate(); 
                     alert(product.sku+" Stock Out Done");
