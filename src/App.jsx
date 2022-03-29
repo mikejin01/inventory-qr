@@ -34,9 +34,10 @@ function App() {
     console.log("logged in as "+user.email);
     console.log("accessToken = "+user.accessToken);
     
+    
     //console.log(useSelector((state)=>state);
   }
-  
+  document.title = "Inventory QR"
   //console.log("user: "+(state)=>state.user.currentUser);
   return (
     <Router>
