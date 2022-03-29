@@ -202,7 +202,10 @@ const Product = ({item}) => {
 	 		const sku = item.sku;
 	 		const _id = item._id;
 	        //const response = await QRCode.toDataURL(_id);
-	        const qrCode = await QRCode.toDataURL(_id);
+	        var currentTimeInSeconds=Math.floor(Date.now()/1000);
+	        //var currentTimeInMilliseconds=Date.now();
+	        alert(currentTimeInSeconds);
+	        const qrCode = await QRCode.toDataURL(_id+"-"+currentTimeInSeconds);
 	        var purchaseOrder = document.getElementById(item.sku+"_PurchaseOrder").value;
 	        //getElementsByClassName
 	      	//console.log(response);

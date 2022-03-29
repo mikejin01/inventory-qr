@@ -234,10 +234,19 @@ const QRScan = () => {
                       result: result?.text
                     });*/
                     state.result = result?.text;
+
+                    /*var sentence = "Oh a cookie!"
+
+                    result.text.split("-");*/
+
+                    // [ "Oh", "a", "cookie!" ]
                     const getProducts = async ()=>{
                         try {
+                            var productID = result.text.split("-")[0];
+                            var QRID = result.text;
+                            alert("productID: "+productID);
                             const res = await axios.get(
-                                "https://inventory-qr-api.herokuapp.com/api/products/find/"+result.text
+                                "https://inventory-qr-api.herokuapp.com/api/products/find/"+productID//result.text
                                 //"https://inventory-qr-api.herokuapp.com/api/products/find/623a2c1e6f9c8838e7b4189f"
                             );
                             //console.log(res.data);
