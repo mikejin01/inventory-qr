@@ -43,16 +43,17 @@ const Products = ({category, filters, sort}) => {
 				      }
 				    });
 				}; */
-				res.data.sort((first, second) => {
-			      if ( first.res.data[0].stockQuantity == second.res.data[0].stockQuantity ) {
+				
+				setProducts(res.data);
+				products.sort((first, second) => {
+			      if ( first.products[0].stockQuantity == second.products[0].stockQuantity ) {
 			        return -1;
-			      } else if ( first.res.data[0].stockQuantity > second.res.data[0].stockQuantity ) {
+			      } else if ( first.products[0].stockQuantity < second.products[0].stockQuantity ) {//>
 			        return -1;
 			      } else {
 			        return 1;
 			      }
 			    });
-				setProducts(res.data);
 			} catch (err) {
 				console.log(err);
 			}
