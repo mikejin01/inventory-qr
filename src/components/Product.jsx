@@ -217,6 +217,18 @@ const Product = ({item}) => {
 			const res = await userRequest.post("/activities", newActivity) 
 			console.log(res.data);
 			CodeGenerated = res.data._id;
+
+			alert("adding "+CodeGenerated);
+	        const qrCode = await QRCode.toDataURL(CodeGenerated);
+	        var purchaseOrder = document.getElementById(item.sku+"_PurchaseOrder").value;
+	        //getElementsByClassName
+	      	//console.log(response);
+	      	//setImageUrl(qrCode);
+	      	//console.log(item);
+			dispatch(
+				addProduct({...item, qrCode, quantity, purchaseOrder})
+			);
+			alert(item.sku+"ADD TO Order Done");
 			//navigate("/Inventory"); 
 			} catch(err) {
 				alert("error: "+err);
@@ -231,17 +243,7 @@ const Product = ({item}) => {
 	        
 	        //const qrCode = await QRCode.toDataURL(_id+"-"+currentTimeInSeconds);
 	        addActivity();
-	        alert("adding "+CodeGenerated);
-	        const qrCode = await QRCode.toDataURL(CodeGenerated);
-	        var purchaseOrder = document.getElementById(item.sku+"_PurchaseOrder").value;
-	        //getElementsByClassName
-	      	//console.log(response);
-	      	//setImageUrl(qrCode);
-	      	//console.log(item);
-			dispatch(
-				addProduct({...item, qrCode, quantity, purchaseOrder})
-			);
-			alert(item.sku+"ADD TO Order Done");
+
 	    }catch (error) {
 	      console.log(error);
 	    }
