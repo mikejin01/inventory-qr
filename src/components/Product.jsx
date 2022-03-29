@@ -10,6 +10,7 @@ import React, { useRef } from "react";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 import { mobile } from "../responsive"
+import { publicRequest, userRequest } from '../requestMethods';
 
 const Info = styled.div`
 	opacity: 100;
@@ -197,15 +198,39 @@ const Product = ({item}) => {
 		//generateQrCode();
 	    content: () => componentRef.current,
 	});
+	var CodeGenerated = "";
+	const addActivity = async ()=> {
+		try{
+			var currentTimeInSeconds=Math.floor(Date.now()/1000);
+	        //alert(currentTimeInSeconds);
+			const newActivity = {
+				"productID": item._id,
+				"title": "HI",
+			    "QRID": item.sku+"-"+currentTimeInSeconds,
+			    "desc": "good",
+			    "status": "Code Generated",
+			    "price": 1999,
+			    "cost": 402,
+			    "quantity": 1
+			};
+			console.log(newActivity)
+			const res = await userRequest.post("/activities", newActivity) 
+			console.log(res.data);
+			CodeGenerated = res.data._id;
+			//navigate("/Inventory"); 
+			} catch(err) {
+				alert("error: "+err);
+			}
+	};
+	addActivity();/**/
 	const addToOrder = async () => {
 		try {
 	 		const sku = item.sku;
 	 		const _id = item._id;
 	        //const response = await QRCode.toDataURL(_id);
-	        var currentTimeInSeconds=Math.floor(Date.now()/1000);
-	        //var currentTimeInMilliseconds=Date.now();
-	        alert(currentTimeInSeconds);
-	        const qrCode = await QRCode.toDataURL(_id+"-"+currentTimeInSeconds);
+	        
+	        //const qrCode = await QRCode.toDataURL(_id+"-"+currentTimeInSeconds);
+	        const qrCode = await QRCode.toDataURL(CodeGenerated);
 	        var purchaseOrder = document.getElementById(item.sku+"_PurchaseOrder").value;
 	        //getElementsByClassName
 	      	//console.log(response);

@@ -242,16 +242,21 @@ const QRScan = () => {
                     // [ "Oh", "a", "cookie!" ]
                     const getProducts = async ()=>{
                         try {
-                            var productID = result.text.split("-")[0];
-                            var QRID = result.text;
-                            alert("productID: "+productID);
-                            const res = await axios.get(
-                                "https://inventory-qr-api.herokuapp.com/api/products/find/"+productID//result.text
-                                //"https://inventory-qr-api.herokuapp.com/api/products/find/623a2c1e6f9c8838e7b4189f"
+                            //var productID = result.text.split("-")[0];
+                            //var QRID = result.text;
+                            //alert("productID: "+productID);
+                            const activities_res = await axios.get( 
+                                "https://inventory-qr-api.herokuapp.com/api/activities/find/"+result.text//result.text
+                                //"https://inventory-qr-api.herokuapp.com/api/products/find/"+productID//result.text
+
                             );
+                            const products_res = await axios.get(
+                                "https://inventory-qr-api.herokuapp.com/api/products/find/"+activities_res.data.productID//result.text
+                                //"https://inventory-qr-api.herokuapp.com/api/products/find/623a2c1e6f9c8838e7b4189f"
+                            );/**/
                             //console.log(res.data);
                             //alert(res.data.sku+" "+res.data.stockQuantity);
-                            setProduct(res.data);
+                            setProduct(products_res.data);
                             //setOpen(o => !o);
                             setOpen(true);
                             //ControlledPopupNew("hi");
