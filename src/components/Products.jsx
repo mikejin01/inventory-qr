@@ -43,17 +43,18 @@ const Products = ({category, filters, sort}) => {
 				      }
 				    });
 				}; */
-				
+				res.data.sort((a, b) => (a.stockQuantity > b.stockQuantity) ? 1 : -1)
 				setProducts(res.data);
-				products.sort((first, second) => {
-			      if ( first.products[0].stockQuantity == second.products[0].stockQuantity ) {
+				/*products.sort((first, second) => {
+			      if ( first.stockQuantity == second.stockQuantity ) {
 			        return -1;
-			      } else if ( first.products[0].stockQuantity < second.products[0].stockQuantity ) {//>
+			      } else if ( first.stockQuantity < second.stockQuantity ) {//>
 			        return -1;
 			      } else {
 			        return 1;
 			      }
-			    });
+			    });*/
+			    //list.sort((a, b) => (a.qty > b.qty) ? 1 : -1)
 			} catch (err) {
 				console.log(err);
 			}
