@@ -234,7 +234,8 @@ const QRScan = () => {
                       result: result?.text
                     });*/
                     state.result = result?.text;
-                    const getProducts = async ()=>{
+                    var productID = "";
+                    const getActivity = async ()=>{
                         try {
                             //var productID = result.text.split("-")[0];
                             //var QRID = result.text;
@@ -244,8 +245,28 @@ const QRScan = () => {
                                 //"https://inventory-qr-api.herokuapp.com/api/products/find/"+productID//result.text
 
                             );
+                            productID = activities_res.data.productID;
+                            alert("productID: "+ productID);
+                            //setOpen(true);
+                            getProducts();
+                        } catch (err) {
+                            alert(err);
+                            console.log(err);
+                        }
+                     }
+                    const getProducts = async ()=>{
+                        try {
+                            //var productID = result.text.split("-")[0];
+                            //var QRID = result.text;
+                            //alert("productID: "+productID);
+                            /*const activities_res = await axios.get( 
+                                "https://inventory-qr-api.herokuapp.com/api/activities/find/"+result.text//result.text
+                                //"https://inventory-qr-api.herokuapp.com/api/products/find/"+productID//result.text
+
+                            );*/
                             const products_res = await axios.get(
-                                "https://inventory-qr-api.herokuapp.com/api/products/find/"+activities_res.data.productID//result.text
+                                "https://inventory-qr-api.herokuapp.com/api/products/find/"+productID
+                                //"https://inventory-qr-api.herokuapp.com/api/products/find/"+activities_res.data.productID//result.text
                                 //"https://inventory-qr-api.herokuapp.com/api/products/find/623a2c1e6f9c8838e7b4189f"
                             );/**/
                             //console.log(res.data);
@@ -260,10 +281,11 @@ const QRScan = () => {
                             //createThreeButtonAlert();
                             //setProducts(res.data);
                         } catch (err) {
+                            alert(err);
                             console.log(err);
                         }
                      }
-                     getProducts();
+                     getActivity();
                     //const res = await publicRequest.put("/products/"+id)
                   }
                   if (!!error) {
