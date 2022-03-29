@@ -246,7 +246,7 @@ const QRScan = () => {
 
                             );
                             productID = activities_res.data.productID;
-                            alert("productID: "+ productID);
+                            alert("productID: "+ productID + " is now "+activities_res.data.status);
                             //setOpen(true);
                             getProducts();
                         } catch (err) {
@@ -273,7 +273,7 @@ const QRScan = () => {
                             //alert(res.data.sku+" "+res.data.stockQuantity);
                             setProduct(products_res.data);
                             //setOpen(o => !o);
-                            alert(product.sku+": "+ activities_res.data.status);
+                            //alert(product.sku+": "+ activities_res.data.status);
                             setOpen(true);
                             //ControlledPopupNew("hi");
                             //this.props.setOpen(true)
