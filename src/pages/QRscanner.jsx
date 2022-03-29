@@ -234,12 +234,6 @@ const QRScan = () => {
                       result: result?.text
                     });*/
                     state.result = result?.text;
-
-                    /*var sentence = "Oh a cookie!"
-
-                    result.text.split("-");*/
-
-                    // [ "Oh", "a", "cookie!" ]
                     const getProducts = async ()=>{
                         try {
                             //var productID = result.text.split("-")[0];
@@ -258,6 +252,7 @@ const QRScan = () => {
                             //alert(res.data.sku+" "+res.data.stockQuantity);
                             setProduct(products_res.data);
                             //setOpen(o => !o);
+                            alert(product.sku+": "+ activities_res.data.status);
                             setOpen(true);
                             //ControlledPopupNew("hi");
                             //this.props.setOpen(true)
