@@ -228,7 +228,7 @@ const Product = ({item}) => {
 			dispatch(
 				addProduct({...item, qrCode, quantity, purchaseOrder})
 			);
-			alert(item.sku+"ADD TO Order Done");
+			alert(item.sku+" ADD TO Order Done");
 			//navigate("/Inventory"); 
 			} catch(err) {
 				alert("error: "+err);
