@@ -32,6 +32,26 @@ const Products = ({category, filters, sort}) => {
 				);
 				console.log("getProducts:");
 				console.log(res.data);
+				/*const sortDataByQuantity = (items) => {
+				    return items.sort((first, second) => {
+				      if (moment(first.items[0].date).isSame(second.items[0].date)) {
+				        return -1;
+				      } else if (moment(first.items[0].date).isBefore(second.items[0].date)) {
+				        return -1;
+				      } else {
+				        return 1;
+				      }
+				    });
+				}; */
+				res.data.sort((first, second) => {
+			      if ( first.res.data[0].stockQuantity == second.res.data[0].stockQuantity ) {
+			        return -1;
+			      } else if ( first.res.data[0].stockQuantity > second.res.data[0].stockQuantity ) {
+			        return -1;
+			      } else {
+			        return 1;
+			      }
+			    });
 				setProducts(res.data);
 			} catch (err) {
 				console.log(err);
