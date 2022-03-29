@@ -222,7 +222,7 @@ const Product = ({item}) => {
 				alert("error: "+err);
 			}
 	};
-	addActivity();/**/
+	//addActivity();/**/
 	const addToOrder = async () => {
 		try {
 	 		const sku = item.sku;
