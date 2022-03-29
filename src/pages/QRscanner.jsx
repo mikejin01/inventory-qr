@@ -83,6 +83,7 @@ const QRScan = () => {
     const id = "";
     const navigate  = useNavigate();
     const [product, setProduct] = useState({});
+    const [activity, setActivity] = useState({});
     /*const [new_sku, setSku] = useState(product.sku)
     const [new_title, setTitle] = useState(product.title)
     const [new_category, setCategory] = useState(product.category)
@@ -197,13 +198,18 @@ const QRScan = () => {
                 </a>
                 {product.sku}
                 <br/>
-                <StockInButton onClick={handleStockIn}>
-                    Stock In
-                </StockInButton>
+                {activity.status == "Code Generated" ? (
+                    <StockInButton onClick={handleStockIn}>
+                        Stock In
+                    </StockInButton>
+                ) : null}
                 <br/>
-                <StockOutButton onClick={handleStockOut}>
-                    Stock Out
-                </StockOutButton>
+                {activity.status == "Stocked In" ? (
+                        <StockOutButton onClick={handleStockOut}>
+                            Stock Out
+                        </StockOutButton>
+                ) : null}
+                
             </div>
           </Popup>
         </div>
@@ -245,6 +251,7 @@ const QRScan = () => {
                                 //"https://inventory-qr-api.herokuapp.com/api/products/find/"+productID//result.text
 
                             );
+                            setActivity(activities_res.data);
                             productID = activities_res.data.productID;
                             alert("productID: "+ productID + " is now "+activities_res.data.status);
                             //setOpen(true);
