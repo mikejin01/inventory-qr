@@ -230,6 +230,8 @@ const Product = ({item}) => {
 	}
 	/*
 	name
+
+	Purchase Order
 	*/
 	return(
 		<Container>
@@ -242,7 +244,7 @@ const Product = ({item}) => {
 			<Title>{item.stockQuantity}</Title>
 			<ButtonArea>
 				<SearchContainer> 
-					<Input id={`${item.sku}_PurchaseOrder`} placeholder="Purchase Order" onChange={handleSearch} />
+					<Input id={`${item.sku}_PurchaseOrder`} placeholder="Invoice #" onChange={handleSearch} />
 				</SearchContainer>
 				
 				<Button onClick={addToOrder}>

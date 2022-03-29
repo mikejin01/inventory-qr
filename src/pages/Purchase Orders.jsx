@@ -234,6 +234,7 @@ const PurchaseOrders = () => {
 		      			}
 		      			<StatLine color={alternatingColor[index % alternatingColor.length]}  {...season}/>;
 		      			<ProductPrice>${product.price*product.quantity}</ProductPrice>
+		      			Purchase Order
 	      	*/
 	      	const alternatingClass = ["begin", "end"];
 	      	const current = new Date();
@@ -290,7 +291,7 @@ const PurchaseOrders = () => {
 
 									<ProductSku><b>SKU: </b>{product.sku}</ProductSku>
 									<ProductName><b>Title: </b>{product.title}</ProductName>
-									<ProductName><b>Purchase Order: </b>{product.purchaseOrder}</ProductName>
+									<ProductName><b>Invoice #: </b>{product.purchaseOrder}</ProductName>
 									<ProductSku><b>Date Printed: </b>{date}</ProductSku>
 								</Details>
 							</ProductDetail>
