@@ -248,7 +248,7 @@ const QRScan = () => {
                             productID = activities_res.data.productID;
                             alert("productID: "+ productID + " is now "+activities_res.data.status);
                             //setOpen(true);
-                            //getProducts();
+                            getProducts();
                         } catch (err) {
                             alert(err);
                             console.log(err);
