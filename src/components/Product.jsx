@@ -218,7 +218,7 @@ const Product = ({item}) => {
 			console.log(res.data);
 			CodeGenerated = res.data._id;
 
-			alert("adding "+CodeGenerated);
+			//alert("adding "+CodeGenerated);
 	        const qrCode = await QRCode.toDataURL(CodeGenerated);
 	        var purchaseOrder = document.getElementById(item.sku+"_PurchaseOrder").value;
 	        //getElementsByClassName
