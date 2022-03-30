@@ -143,8 +143,6 @@ const QRScan = () => {
                 const min = Math.min(...arr)*/
                 if (product.type == "part") {
                     alert("here");
-
-
                     console.log(updatedProduct)
                     const res = await userRequest.put("/products/"+product._id, updatedProduct)
                     .then((child_res) =>{  //parent_res_2
@@ -154,8 +152,8 @@ const QRScan = () => {
                         //updateParent();   
                     });
                     //const res2 = await userRequest.put("/activities/"+activity._id, updatedActivity)
-                    console.log(res.data);
-                    navigate("/"); 
+                    //console.log(res.data);
+                    //navigate("/"); 
                     alert(product.sku+" Stock In Done");
 
                     /*const parent_res = await axios.get(
