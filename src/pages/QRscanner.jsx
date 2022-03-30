@@ -95,13 +95,7 @@ const QRScan = () => {
         try{
             alert("parent_id: "+parent_id);
             alert("called");
-            
-            } catch(err2) {
-                alert("error2: "+err2);
-            }
-    };
-
-    /*const parent_res = await axios.get(
+            const parent_res = await axios.get(
                 "https://inventory-qr-api.herokuapp.com/api/activities/find/"+parent_id
             ).then((parent_res) =>{
                 for (var i = parent_res.data.children.length - 1; i >= 0; i--) {
@@ -110,7 +104,14 @@ const QRScan = () => {
                 //setParent_product(parent_res_2.data);
                 //updateParent();   
             })
-            .catch((e) => alert(e));*/
+            .catch((e) => alert(e));/**/
+            
+            } catch(err2) {
+                alert("error2: "+err2);
+            }
+    };
+
+    
 
 
             /*console.log("CALLED!!!!!")
@@ -149,7 +150,7 @@ const QRScan = () => {
                         parent_id = child_res.data.parents[0];
                         alert("!!!!!parent_id: "+parent_id);
                         //setParent_product(child_res.data.parents[0]);
-                        //updateParent();   
+                        updateParent();   
                     });
                     //const res2 = await userRequest.put("/activities/"+activity._id, updatedActivity)
                     //console.log(res.data);
