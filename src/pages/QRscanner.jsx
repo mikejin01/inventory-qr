@@ -107,7 +107,7 @@ const QRScan = () => {
                 /*const arr = [14, 58, 20, 77, 66, 82, 42, 67, 42, 4]
                 const min = Math.min(...arr)*/
             })
-            .catch((e) => alert(e));/**/
+            .catch((e) => alert("now: "+e));/**/
             
             } catch(err2) {
                 alert("error2: "+err2);
@@ -150,7 +150,7 @@ const QRScan = () => {
                     const res = await userRequest.put("/products/"+product._id, updatedProduct)
                     .then((child_res) =>{  //parent_res_2
                         parent_id = child_res.data.parents[0];
-                        alert("!!!!!parent_id: "+parent_id);
+                        //alert("!!!!!parent_id: "+parent_id);
                         //setParent_product(child_res.data.parents[0]);
                         updateParent();   
                     });
