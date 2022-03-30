@@ -93,23 +93,24 @@ const QRScan = () => {
     const [new_quantity, setQuantity] = useState("")*/
     const updateParent = async ()=> {
         try{
-            alert("parent_id: "+parent_id);
-            alert("called");
-            var arr = []
-            const parent_res = await axios.get(
-                "https://inventory-qr-api.herokuapp.com/api/activities/find/"+parent_id
-            ).then((parent_res2) =>{
+                alert("parent_id: "+parent_id);
+                alert("called");
+                var arr = []
+                const parent_res = await axios.get(
+                    "https://inventory-qr-api.herokuapp.com/api/activities/find/"+parent_id
+                )
+                /*.then((parent_res2) =>{
 
-                alert("sku: "+parent_res2.data.sku);
-                /*for (var i = parent_res2.data.children.length - 1; i >= 0; i--) {
-                    alert("child: "+parent_res2.data.children[i]);
+                    alert("sku: "+parent_res2.data.sku);
+                    
+                    //setParent_product(parent_res_2.data);
+                    //updateParent();   
+                    const arr = [14, 58, 20, 77, 66, 82, 42, 67, 42, 4]
+                    const min = Math.min(...arr)
+                });*/
+                for (var i = parent_res.data.children.length - 1; i >= 0; i--) {
+                    alert("child: "+parent_res.data.children[i]);
                 }
-                //setParent_product(parent_res_2.data);
-                //updateParent();   
-                /*const arr = [14, 58, 20, 77, 66, 82, 42, 67, 42, 4]
-                const min = Math.min(...arr)*/
-            });/**/
-            
             } catch(err2) {
                 alert("error2: "+err2);
             }
