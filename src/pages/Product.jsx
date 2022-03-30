@@ -161,20 +161,26 @@ const Product = () => {
 	const [new_sku, setSku] = useState(product.sku)
 	const [new_title, setTitle] = useState(product.title)
 	const [new_category, setCategory] = useState(product.category)
-	const [new_quantity, setQuantity] = useState("")
+	const [new_quantity, setQuantity] = useState(product.stockQuantity)
+	const [new_numberOfBoxes, setNumberOfBoxes] = useState(product.numberOfBoxes)
+	const [new_type, setType] = useState(product.type)
 	const navigate  = useNavigate();
 	const handleClick = (e)=> {
 		console.log("handleClick!!!!!!!")
 		e.preventDefault()
 		const addProduct = async ()=> {
-			try{
+			if (new_numberOfBoxes == 1) {
+				setType("simple");
+				alert("simple");
 				const newProduct = {
 					"title": new_title,
 					"sku": new_sku,
 				    "desc": "good",
 				    "img": "meble-200.jpg",
 				    "category": new_category,
-				    
+				    "numberOfBoxes": new_numberOfBoxes,
+				    "type": "simple", //simple, part
+				    "stockQuantity": new_quantity
 				};
 				/*
 				"size": ["Q"],
@@ -186,6 +192,11 @@ const Product = () => {
 				console.log(newProduct)
 				const res = await userRequest.put("/products/"+id, newProduct)
 				console.log(res.data);
+			} else {
+
+			}
+			try{
+				
 				navigate("/Inventory"); 
  			} catch(err) {
  				alert("error: "+err);
@@ -278,11 +289,53 @@ const Product = () => {
 						<Option>Wall Art</Option>
 						<Option>Other</Option>
 					</Select>
+					<Desc># of Boxes: {product.numberOfBoxes}</Desc>
+
+					<Select name="numberOfBoxes" defaultValue={product.numberOfBoxes} onChange={(e)=>setNumberOfBoxes(e.target.value)}>
+							<Option></Option>
+							<Option>I Don't Know</Option>
+							<Option>1</Option>
+							<Option>2</Option>
+							<Option>3</Option>
+							<Option>4</Option>
+							<Option>5</Option>	
+					</Select>
+					<Desc>Quantity: {product.stockQuantity}</Desc>
+					{
+						product.type == "complex" 
+						? (
+								<div>
+				              	<Desc>Children:</Desc>
+								<Desc>
+									{ product.children.length } Boxes
+									{product.children.map((child) =>
+										<Desc>
+										<Link to ={`/product/${child}`}>
+											{child}
+										</Link>
+										</Desc>
+									)}
+								</Desc>
+								</div>
+						) 
+						: (
+							<Input 
+							value={product.stockQuantity} onChange={(e)=>setQuantity(e.target.value)}
+							/> 
+						)
+						
+					}
+
+					{
+						product.type == "part" ? (
+							<div>
+			              	<Desc>Parents:</Desc>
+							<Desc>
+								{product.parents[0]}
+							</Desc>
+							</div>
+					) : null }
 					
-					<Desc>Quantity:</Desc>
-					<Input 
-						value={product.quantity} onChange={(e)=>setQuantity(e.target.value)}
-					/>
 					<Button onClick={handleClick}>
 						Update
 					</Button>

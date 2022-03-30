@@ -3,7 +3,7 @@ import { popularProducts } from "../data"
 import Product from "./Product"
 import { useState, useEffect } from 'react'
 import axios from "axios";
-
+import { BrowserRouter as  Router, Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 
 const Container = styled.div`
 	padding: 20px;
@@ -17,32 +17,23 @@ const Products = ({category, filters, sort}) => {
 	//console.log(category, filters, sort);
 	const [products, setProducts] = useState([]);
 	const [filteredProducts, setFilteredProducts] = useState([]);
+	const location = useLocation();
 
 	useEffect(()=>{
 		console.log("find category!!!!!!!");
+		console.log("category: "+category);
+		const categoryNew = window.location.href.split("?")[1];// var  "" TV Stand sofa location.pathname.split("/")[2];
+		console.log("categoryNew: "+categoryNew);
 		 const getProducts = async ()=>{
 		 	try {
 				const res = await axios.get(
-					/*category 
-					? `https://inventory-qr-api.herokuapp.com/api/products?category=${category}`
+					//category
+					categoryNew != null  
+					? `https://inventory-qr-api.herokuapp.com/api/products?category=${categoryNew}`
 					: "https://inventory-qr-api.herokuapp.com/api/products"
-					*/
-					//?category=TV Stand
-					"https://inventory-qr-api.herokuapp.com/api/products"
 				);
 				console.log("getProducts:");
 				console.log(res.data);
-				/*const sortDataByQuantity = (items) => {
-				    return items.sort((first, second) => {
-				      if (moment(first.items[0].date).isSame(second.items[0].date)) {
-				        return -1;
-				      } else if (moment(first.items[0].date).isBefore(second.items[0].date)) {
-				        return -1;
-				      } else {
-				        return 1;
-				      }
-				    });
-				}; */
 				res.data.sort((a, b) => (a.stockQuantity < b.stockQuantity) ? 1 : -1)
 				setProducts(res.data);
 				/*products.sort((first, second) => {

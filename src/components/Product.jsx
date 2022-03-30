@@ -11,6 +11,7 @@ import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 import { mobile } from "../responsive"
 import { publicRequest, userRequest } from '../requestMethods';
+import axios from "axios";
 
 const Info = styled.div`
 	opacity: 100;
@@ -199,46 +200,195 @@ const Product = ({item}) => {
 	    content: () => componentRef.current,
 	});
 	var CodeGenerated = "";
+
+
+	//getElementsByClassName
+		      	//console.log(response);
+		      	//setImageUrl(qrCode);
+		      	//console.log(item);
+	var new_children = [];
+	var new_numberOfBoxes = 1;
 	const addActivity = async ()=> {
 		try{
 			var currentTimeInSeconds=Math.floor(Date.now()/1000);
-	        //alert(currentTimeInSeconds);
-			const newActivity = {
-				"productID": item._id,
-				"title": "HI",
-			    "QRID": item.sku+"-"+currentTimeInSeconds,
-			    "desc": "good",
-			    "status": "Code Generated",
-			    "price": 1999,
-			    "cost": 402,
-			    "quantity": 1
-			};
-			console.log(newActivity)
-			const res = await userRequest.post("/activities", newActivity) 
-			console.log(res.data);
-			CodeGenerated = res.data._id;
+			var new_child = "";
+			var new_parents = [];
+			if (item.type == "simple") {
+				//alert(currentTimeInSeconds);
+				const newActivity = {
+					"productID": item._id,
+					"title": "HI",
+				    "QRID": item.sku+"-"+currentTimeInSeconds,
+				    "desc": "good",
+				    "status": "Code Generated",
+				    "price": 0,
+				    "cost": 0,
+				    "quantity": 1
+				};
+				console.log(newActivity)
+				const res = await userRequest.post("/activities", newActivity) 
+				console.log(res.data);
+				CodeGenerated = res.data._id;
 
-			//alert("adding "+CodeGenerated);
-	        const qrCode = await QRCode.toDataURL(CodeGenerated);
-	        var purchaseOrder = document.getElementById(item.sku+"_PurchaseOrder").value;
-	        //getElementsByClassName
-	      	//console.log(response);
-	      	//setImageUrl(qrCode);
-	      	//console.log(item);
-			dispatch(
-				addProduct({...item, qrCode, quantity, purchaseOrder})
-			);
+				//alert("adding "+CodeGenerated);
+		        const qrCode = await QRCode.toDataURL(CodeGenerated);
+		        var purchaseOrder = document.getElementById(item.sku+"_PurchaseOrder").value;
+		        
+				dispatch(
+					addProduct({...item, qrCode, quantity, purchaseOrder})
+				);
+			} else if (item.type == "complex"){
+				for (var i = 0; i < item.children.length; i++) {
+					alert("Child #"+i+": "+item.children[i]);
+					const newActivity = {
+						"productID": item.children[i],
+						"title": "HI",
+					    "QRID": item.children[i]+"-"+currentTimeInSeconds,
+					    "desc": "good",
+					    "status": "Code Generated",
+					    "price": 0,
+					    "cost": 0,
+					    "quantity": 1
+					};
+					console.log(newActivity)
+					const res = await userRequest.post("/activities", newActivity) 
+					console.log(res.data);
+					CodeGenerated = res.data._id;
+
+					//alert("adding "+CodeGenerated);
+			        const qrCode = await QRCode.toDataURL(CodeGenerated);
+			        var purchaseOrder = document.getElementById(item.sku+"_PurchaseOrder").value;
+			        //getElementsByClassName
+			      	//console.log(response);
+			      	//setImageUrl(qrCode);
+			      	//console.log(item);
+			      	const products_res = await axios.get(
+                        "https://inventory-qr-api.herokuapp.com/api/products/find/"+item.children[i]
+                    );/**/;
+					dispatch(
+						addProduct({...products_res.data, qrCode, quantity, purchaseOrder})
+					);
+
+					//Things[i]
+					/*const newPart = {
+						"title": new_sku+"-Box "+i+" of "+new_numberOfBoxes,
+						"sku": new_sku+"-Box "+i+" of "+new_numberOfBoxes,
+					    "desc": "",
+					    "img": "",
+					    "category": ["Part"],
+					    "size": [""],
+						"color": [""],
+					    "price": 0,
+					    "cost": 0,
+					    "stockQuantity": 0,
+					    "type": "part", //simple, part
+						"numberOfBoxes": 1,
+						"children": [],
+						"parents": [new_sku],
+					};
+					const res = await userRequest.post("/products", newPart) 
+					new_children.push(res.data._id);  */ 
+				}
+			} else {
+				//alert("item.type unkown!");
+				const enterednNumberOfBoxes = prompt('Please enter Number of Boxes foe EACH SINGLE Product')
+				new_numberOfBoxes = parseInt(enterednNumberOfBoxes);
+				if (new_numberOfBoxes == 1) {
+					const newProduct = {
+					    "numberOfBoxes": new_numberOfBoxes,
+					    "type": "simple", //simple, part
+					};
+					console.log(newProduct)
+					const res = await userRequest.put("/products/"+item._id, newProduct)
+					console.log(res.data);
+				} else {
+					//new_type = "complex"; //complex, part
+					
+					for (var i = 1; i <= new_numberOfBoxes; i++) {
+						//Things[i]
+						const newPart = {
+							"title": item.sku+"-Box "+i+" of "+new_numberOfBoxes,
+							"sku": item.sku+"-Box "+i+" of "+new_numberOfBoxes,
+						    "desc": "",
+						    "img": "",
+						    "category": ["Part"],
+						    "size": [""],
+							"color": [""],
+						    "price": 0,
+						    "cost": 0,
+						    "stockQuantity": 0,
+						    "type": "part", //simple, part
+							"numberOfBoxes": 1,
+							"children": [],
+							"parents": [item._id],
+						};
+						const res = await userRequest.post("/products", newPart)
+						.then((res) =>{ 
+							//alert("parent: "+res._id);
+							alert(res.data._id);
+							new_children.push(res.data._id); 
+							console.log("CALLED!!!!!")
+							console.log(new_children)
+							//new_child = res.data._id;
+							//console.log("!!!!!!!!!!!!!!RES")
+							//console.log(res)
+							//parent_id = parent_res._id;
+					        updateParent();   
+					    })
+					    .catch((e) => alert(e));
+					}
+
+				}
+				//alert(new_numberOfBoxes);
+			    /* update state of this component with data provided by user. store data
+			       in 'enteredName' state field. calling setState triggers a render of
+			       this component meaning the enteredName value will be visible via the
+			       updated render() function below */
+			    //this.setState({ enteredName : enteredName })
+			}
+			
+	        
 			alert(item.sku+" ADD TO Order Done");
+			//navigate("/Inventory"); 
 			//navigate("/Inventory"); 
 			} catch(err) {
 				alert("error: "+err);
 			}
+			
+
+			
+	};
+	const updateParent = async ()=> {
+		try{
+			console.log("CALLED!!!!!")
+			console.log(new_children)
+			const updatedParent = {
+				"type": "complex",
+				"numberOfBoxes": new_numberOfBoxes,
+				"children": new_children,
+			};
+			alert("new_numberOfBoxes: "+new_numberOfBoxes);
+			/*const newProduct = {
+					    "numberOfBoxes": new_numberOfBoxes,
+					    "type": "simple", //simple, part
+					};
+					console.log(newProduct)
+					const res = await userRequest.put("/products/"+item._id, newProduct)*/
+			//console.log(newProduct)
+			const updateParentRes = await userRequest.put("/products/"+item._id, updatedParent)
+			console.log("updateParentRes!!!!!!!!!!!")
+			console.log(updateParentRes)
+			/**/
+			} catch(err2) {
+				alert("error2: "+err2);
+			}
 	};
 	//addActivity();/**/
-	const addToOrder = async () => {
+	//const addToOrder = async () => {
+	const addToOrder = (e)=> {
 		try {
-	 		const sku = item.sku;
-	 		const _id = item._id;
+	 		//const sku = item.sku;
+	 		//const _id = item._id;
 	        //const response = await QRCode.toDataURL(_id);
 	        
 	        //const qrCode = await QRCode.toDataURL(_id+"-"+currentTimeInSeconds);
@@ -272,7 +422,12 @@ const Product = ({item}) => {
 				{item.sku}
 			</Link>
 			</Title> 
-			<Desc>{item.title}</Desc>
+			<Desc>
+				{item.title}
+				{item.type == "complex" ? (
+		              <span> ({item.numberOfBoxes} Boxes)</span>
+		        ) : null}
+			</Desc>
 			<Title>{item.stockQuantity}</Title>
 			<ButtonArea>
 				<SearchContainer> 

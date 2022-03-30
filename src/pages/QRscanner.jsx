@@ -84,10 +84,34 @@ const QRScan = () => {
     const navigate  = useNavigate();
     const [product, setProduct] = useState({});
     const [activity, setActivity] = useState({});
+
+    const [parent_product, setParent_product] = useState({});
+    var parent_id = "";
     /*const [new_sku, setSku] = useState(product.sku)
     const [new_title, setTitle] = useState(product.title)
     const [new_category, setCategory] = useState(product.category)
     const [new_quantity, setQuantity] = useState("")*/
+    const updateParent = async ()=> {
+        try{
+            alert("parent_id: "+parent_id);
+            /*console.log("CALLED!!!!!")
+            console.log(new_children)
+            const updatedParent = {
+                "type": "complex",
+                "numberOfBoxes": new_numberOfBoxes,
+                "children": new_children,
+            };
+            alert("new_numberOfBoxes: "+new_numberOfBoxes);
+            
+            //console.log(newProduct)
+            const updateParentRes = await userRequest.put("/products/"+item._id, updatedParent)
+            console.log("updateParentRes!!!!!!!!!!!")
+            console.log(updateParentRes)*/
+            /**/
+            } catch(err2) {
+                alert("error2: "+err2);
+            }
+    };
     const handleStockIn = (e)=> {
         console.log("handleClick!!!!!!!")
         e.preventDefault()
@@ -99,6 +123,51 @@ const QRScan = () => {
                 const updatedActivity = {
                     "status": "Stocked In",
                 };
+
+                /*const arr = [14, 58, 20, 77, 66, 82, 42, 67, 42, 4]
+                const min = Math.min(...arr)*/
+                if (product.type == "part") {
+                    alert("here");
+
+
+                    console.log(updatedProduct)
+                    const res = await userRequest.put("/products/"+product._id, updatedProduct)
+                    .then((child_res) =>{  //parent_res_2
+                        parent_id = child_res.data.parents[0];
+                        //setParent_product(child_res.data.parents[0]);
+                        updateParent();   
+                    });
+                    const res2 = await userRequest.put("/activities/"+activity._id, updatedActivity)
+                    console.log(res.data);
+                    navigate("/"); 
+                    alert(product.sku+" Stock In Done");
+
+
+
+                    /*const parent_res = await axios.get(
+                        "https://inventory-qr-api.herokuapp.com/api/activities/find/"+product.parents[0]
+                    ).then((parent_res_2) =>{ 
+                        setParent_product(parent_res_2.data);
+                        updateParent();   
+                    })
+                    .catch((e) => alert(e));*/
+                    //setParent_product(parent_res.data);
+                    
+
+                } else {
+
+                    console.log(updatedProduct)
+                    const res = await userRequest.put("/products/"+product._id, updatedProduct)
+                    const res2 = await userRequest.put("/activities/"+activity._id, updatedActivity)
+                    console.log(res.data);
+                    navigate("/"); 
+                    alert(product.sku+" Stock In Done");
+
+
+                }
+
+
+
                 /*
                 "size": ["Q"],
                     "color": ["RED"],
@@ -106,12 +175,7 @@ const QRScan = () => {
                     "cost": 402,
                     "stockQuantity": 0
                 */
-                console.log(updatedProduct)
-                const res = await userRequest.put("/products/"+product._id, updatedProduct)
-                const res2 = await userRequest.put("/activities/"+activity._id, updatedActivity)
-                console.log(res.data);
-                navigate("/"); 
-                alert(product.sku+" Stock In Done");
+                
                 setOpen(false);
             } catch(err) {
                 alert("error: "+err);

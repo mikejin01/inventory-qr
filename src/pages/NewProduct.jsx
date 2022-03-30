@@ -132,6 +132,15 @@ const Button = styled.button`
 	margin-bottom: 10px;
 `
 
+const Select = styled.select`
+	padding: 10px;
+	${mobile({ margin: "10px 0px" })};
+	margin: 20px 0px;
+`
+
+const Option = styled.option`
+`
+
 const NewProduct = () => {
 	//const location = useLocation();
 	//const id = location.pathname.split("/")[2];
@@ -162,28 +171,142 @@ const NewProduct = () => {
 	*/
 	const [new_sku, setSku] = useState("")
 	const [new_title, setTitle] = useState("")
+	const [numberOfBoxes, setNumberOfBoxes] = useState("")
 	const navigate  = useNavigate();
 	const handleClick = (e)=> {
 		console.log("handleClick!!!!!!!")
 		e.preventDefault()
 		//login(dispatch, {username, password});
+		var parent_id = "";
+		var new_type = "simple"; //complex, part
+		var new_children = [];
+		var new_parents = [];
+		var new_numberOfBoxes = 1;
 		const addProduct = async ()=> {
 			try{
-				const newProduct = {
-					"title": new_title,
-					"sku": new_sku,
-				    "desc": "good",
-				    "img": "meble-200.jpg",
-				    "category": ["Other"],
-				    "size": [""],
-					"color": [""],
-				    "price": 0,
-				    "cost": 0,
-				    "stockQuantity": 0
-				};
-				console.log(newProduct)
-				const res = await userRequest.post("/products", newProduct) 
-				console.log(res.data);
+				if (numberOfBoxes == "I Don't Know" || numberOfBoxes == "") {
+					//alert("no!!!!!");
+					const newProduct = {
+						"title": new_title,
+						"sku": new_sku,
+					    "desc": "good",
+					    "img": "meble-200.jpg",
+					    "category": ["Other"],
+					    "size": [""],
+						"color": [""],
+					    "price": 0,
+					    "cost": 0,
+					    "stockQuantity": 0,
+					    "type": new_type, //simple, part
+						"numberOfBoxes": new_numberOfBoxes,
+						"children": new_children,
+						//"parents": new_parents,
+					};
+					console.log(newProduct)
+					const parent_res = await userRequest.post("/products", newProduct) 
+
+				} else {
+					new_numberOfBoxes = numberOfBoxes;
+					new_type = "complex"; //complex, part
+					for (var i = 1; i <= numberOfBoxes; i++) {
+						//Things[i]
+						const newPart = {
+							"title": new_sku+"-Box "+i+" of "+new_numberOfBoxes,
+							"sku": new_sku+"-Box "+i+" of "+new_numberOfBoxes,
+						    "desc": "",
+						    "img": "",
+						    "category": ["Part"],
+						    "size": [""],
+							"color": [""],
+						    "price": 0,
+						    "cost": 0,
+						    "stockQuantity": 0,
+						    "type": "part", //simple, part
+							"numberOfBoxes": 1,
+							"children": [],
+							"parents": [new_sku],
+						};
+						const res = await userRequest.post("/products", newPart) 
+						new_children.push(res.data._id);   
+					}
+					const newProduct = {
+						"title": new_title,
+						"sku": new_sku,
+					    "desc": "good",
+					    "img": "meble-200.jpg",
+					    "category": ["Other"],
+					    "size": [""],
+						"color": [""],
+					    "price": 0,
+					    "cost": 0,
+					    "stockQuantity": 0,
+					    "type": new_type, //simple, part
+						"numberOfBoxes": new_numberOfBoxes,
+						"children": new_children,
+						//"parents": new_parents,
+					};
+					console.log(newProduct)
+					const parent_res = await userRequest.post("/products", newProduct)
+					.then((res) =>{ 
+						//alert("parent: "+res._id);
+						parent_id = res.data._id;
+						console.log("!!!!!!!!!!!!!!RES")
+						console.log(res)
+						//parent_id = parent_res._id;
+				        updateChildren();   
+				        /*for (var i = 0; i < new_children.length; i++) {
+							alert("parent: "+res.data._id);
+							alert("add to: "+new_children[i]);
+							const updatedChild = {
+								"parents": [res.data._id],
+							};
+							//console.log(newProduct)
+							const updatedChildRes = await userRequest.put("/products/"+new_children[i], updatedChild)
+							//console.log(res.data);
+							//alert("Child #"+i+": "+new_children[i]);
+						}/**/ /**/
+				    })
+				    .catch((e) => alert(e));
+
+					//parent_id = parent_res._id;
+
+
+					/*const uploadData = axios
+				    .post("http://localhost:80/newItem", {
+				        photos: photo,
+				        title: title,
+				    })
+				    .then((res) =>{ 
+				            alert(JSON.stringify(res))
+				            setPhotoUrl('');
+				            setTitle('');
+				    })
+				    .catch((e) => alert(e));
+					//console.log(res.data);
+				    updateChildren();*/	
+					
+
+					
+				}
+				
+				navigate("/Inventory"); 
+ 			} catch(err) {
+ 				alert("error: "+err);
+ 			}
+		};
+		const updateChildren = async ()=> {
+			try{
+				for (var i = 0; i < new_children.length; i++) {
+					alert("parent: "+parent_id);
+					alert("add to: "+new_children[i]);
+					const updatedChild = {
+						"parents": [parent_id],
+					};
+					//console.log(newProduct)
+					const res = await userRequest.put("/products/"+new_children[i], updatedChild)
+					//console.log(res.data);
+					//alert("Child #"+i+": "+new_children[i]);
+				}
 				navigate("/Inventory"); 
  			} catch(err) {
  				alert("error: "+err);
@@ -205,12 +328,20 @@ const NewProduct = () => {
 				<Desc>SKU:</Desc>
 				<Input 
 					placeholder="SKU" onBlur={formatInput}	onChange={(e)=>setSku(e.target.value)}
-	
 				/> 
 				<Desc>Title:</Desc>
 				<Input 
 					placeholder="Title" onChange={(e)=>setTitle(e.target.value)}
 				/> 
+				<Desc># of Boxes:</Desc>
+				<Select name="numberOfBoxes" onChange={(e)=>setNumberOfBoxes(e.target.value)}>
+						<Option>I Don't Know</Option>
+						<Option>1</Option>
+						<Option>2</Option>
+						<Option>3</Option>
+						<Option>4</Option>
+						<Option>5</Option>	
+				</Select>
 				<ImgContainer>
 					<Image src="https://amdiscountfurniture.com/wp-content/uploads/2022/02/A8000304-H-10X8-CROPAFHS-PDP-Zoomed-1200x800.jpg" />
 				</ImgContainer>

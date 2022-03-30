@@ -54,8 +54,22 @@ const Option = styled.option`
 
 const Inventory = () => {
 	const location = useLocation();
-	const category = "";//TV Stand sofalocation.pathname.split("/")[2];
-	console.log("category is "+category+"!!!!!");
+	const category = "";// var  "" TV Stand sofa location.pathname.split("/")[2];
+	//const [category, setCategory] = useState("");
+	var newCategory = window.location.href.split("?")[1];
+	
+	if (newCategory != null) {
+		console.log("newCategory: "+newCategory);
+		//setCategory("Part");//newCategory
+	}
+
+	/*if (window.location.href.split("?")[1] != null) {
+		console.log(window.location.href.split("?")[1])
+		//category = window.location.href.split("?")[1];
+		console.log("category is now "+category);
+	}
+	
+	console.log("category is "+category+" or "+window.location.href.split("?")[1]+"!!!!!");*/
 	const [filters, setFilters] = useState({});
 	const [sort, setSort] = useState("newest");
 
