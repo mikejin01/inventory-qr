@@ -98,7 +98,7 @@ const QRScan = () => {
             var arr = []
             const parent_res = await axios.get(
                 "https://inventory-qr-api.herokuapp.com/api/activities/find/"+parent_id
-            ).then((parent_res) =>{
+            ).then((parent_res2) =>{
                 /*for (var i = parent_res.data.children.length - 1; i >= 0; i--) {
                     alert("child: "+parent_res.data.children[i]);
                 }
