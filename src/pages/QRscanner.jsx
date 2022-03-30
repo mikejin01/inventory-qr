@@ -149,7 +149,7 @@ const QRScan = () => {
                         //setParent_product(child_res.data.parents[0]);
                         updateParent();   
                     });
-                    const res2 = await userRequest.put("/activities/"+activity._id, updatedActivity)
+                    //const res2 = await userRequest.put("/activities/"+activity._id, updatedActivity)
                     console.log(res.data);
                     navigate("/"); 
                     alert(product.sku+" Stock In Done");
