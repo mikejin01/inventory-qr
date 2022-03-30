@@ -95,14 +95,17 @@ const QRScan = () => {
         try{
             alert("parent_id: "+parent_id);
             alert("called");
+            var arr = []
             const parent_res = await axios.get(
                 "https://inventory-qr-api.herokuapp.com/api/activities/find/"+parent_id
             ).then((parent_res) =>{
-                for (var i = parent_res.data.children.length - 1; i >= 0; i--) {
+                /*for (var i = parent_res.data.children.length - 1; i >= 0; i--) {
                     alert("child: "+parent_res.data.children[i]);
                 }
                 //setParent_product(parent_res_2.data);
                 //updateParent();   
+                /*const arr = [14, 58, 20, 77, 66, 82, 42, 67, 42, 4]
+                const min = Math.min(...arr)*/
             })
             .catch((e) => alert(e));/**/
             
@@ -140,8 +143,7 @@ const QRScan = () => {
                     "status": "Stocked In",
                 };
 
-                /*const arr = [14, 58, 20, 77, 66, 82, 42, 67, 42, 4]
-                const min = Math.min(...arr)*/
+                
                 if (product.type == "part") {
                     alert("here");
                     console.log(updatedProduct)
