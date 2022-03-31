@@ -184,7 +184,7 @@ const NewProduct = () => {
 		var new_numberOfBoxes = 1;
 		const addProduct = async ()=> {
 			try{
-				if (numberOfBoxes == "I Don't Know" || numberOfBoxes == "") {
+				if (numberOfBoxes == "I Don't Know" || numberOfBoxes == 0) {
 					//alert("no!!!!!");
 					const newProduct = {
 						"title": new_title,
