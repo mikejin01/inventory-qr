@@ -8,8 +8,10 @@ import Products from '../components/Products'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 import { mobile } from "../responsive"
-import { Search, ShoppingCartOutlined, AddCircleOutlined } from '@material-ui/icons'
+import { Search, ShoppingCartOutlined, AddCircleOutlined, RestartAltOutlined } from '@material-ui/icons'
 import { BrowserRouter as  Router, Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
+
+
 
 const Container = styled.div`
 `
@@ -91,6 +93,35 @@ const Inventory = () => {
 			["sku"]: e.target.value.toLowerCase(),//  e.target.value.toLowerCase() "meble-eva-kbl",//onChange=
 		});
 	}
+
+	const handleResetAll = (e)=> {
+		e.preventDefault()
+		const deleteProduct = async ()=> {
+			try{
+				var proceed = window.confirm("Are you sure you want to proceed?");
+				if (proceed) {
+					/*const res = await userRequest.delete("/products/"+id)
+					console.log(res.data);
+					navigate("/Inventory");*/
+				} else {
+				  //don't proceed
+				}
+ 			} catch(err) {
+ 				alert("error: "+err);
+ 			}
+		};
+		deleteProduct();
+	}
+	/*
+	<FilterText>Sort Products:</FilterText>
+					<Select onChange={e=>setSort(e.target.value)}>
+						<Option value="newest">
+							Newest
+						</Option>
+						<Option value="asc">Price (asc)</Option>
+						<Option value="desc">Price (desc)</Option>
+					</Select>
+	*/
 	return(
 		<Container>
 			<Title>
@@ -150,14 +181,13 @@ const Inventory = () => {
 					</FilterText>
 				</Filter>
 				<Filter>
-					<FilterText>Sort Products:</FilterText>
-					<Select onChange={e=>setSort(e.target.value)}>
-						<Option value="newest">
-							Newest
-						</Option>
-						<Option value="asc">Price (asc)</Option>
-						<Option value="desc">Price (desc)</Option>
-					</Select>
+					<FilterText>
+						<Button onClick={handleResetAll}>
+						<RestartAltOutlined style={{color:"gray", fontSize:16}}/>
+						Reset All
+						</Button>
+					</FilterText>
+					
 				</Filter>
 				
 			</FilterContainer>
