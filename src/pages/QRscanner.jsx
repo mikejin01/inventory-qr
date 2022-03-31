@@ -177,9 +177,8 @@ const QRScan = () => {
                         //setParent_product(child_res.data.parents[0]);
                         updateParent();   
                     });
-                    //const res2 = await userRequest.put("/activities/"+activity._id, updatedActivity)
+                    const res2 = await userRequest.put("/activities/"+activity._id, updatedActivity)
 
-                    //const res3 = await userRequest.put("/activities/"+activity._id, updatedActivity)
                     //console.log(res.data);
                     //navigate("/"); 
                     alert(product.sku+" Stock In Done");
@@ -195,19 +194,13 @@ const QRScan = () => {
                     
 
                 } else {
-
                     console.log(updatedProduct)
                     const res = await userRequest.put("/products/"+product._id, updatedProduct)
                     const res2 = await userRequest.put("/activities/"+activity._id, updatedActivity)
                     console.log(res.data);
                     navigate("/"); 
                     alert(product.sku+" Stock In Done");
-
-
                 }
-
-
-
                 /*
                 "size": ["Q"],
                     "color": ["RED"],
@@ -215,7 +208,6 @@ const QRScan = () => {
                     "cost": 402,
                     "stockQuantity": 0
                 */
-                
                 setOpen(false);
             } catch(err) {
                 alert("error: "+err);
