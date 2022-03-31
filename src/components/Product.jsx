@@ -281,26 +281,6 @@ const Product = ({item}) => {
 					dispatch(
 						addProduct({...products_res.data, qrCode, quantity, purchaseOrder, username})
 					);
-
-					//Things[i]
-					/*const newPart = {
-						"title": new_sku+"-Box "+i+" of "+new_numberOfBoxes,
-						"sku": new_sku+"-Box "+i+" of "+new_numberOfBoxes,
-					    "desc": "",
-					    "img": "",
-					    "category": ["Part"],
-					    "size": [""],
-						"color": [""],
-					    "price": 0,
-					    "cost": 0,
-					    "stockQuantity": 0,
-					    "type": "part", //simple, part
-						"numberOfBoxes": 1,
-						"children": [],
-						"parents": [new_sku],
-					};
-					const res = await userRequest.post("/products", newPart) 
-					new_children.push(res.data._id);  */ 
 				}
 			} else {
 				//alert("item.type unkown!");
@@ -359,9 +339,8 @@ const Product = ({item}) => {
 			       updated render() function below */
 			    //this.setState({ enteredName : enteredName })
 			}
-			
 			alert(item.sku+" ADD TO Order Done");
-			navigate("/Inventory"); 
+			//navigate("/Inventory"); 
 			//navigate("/Inventory"); 
 			} catch(err) {
 				alert("error: "+err);
