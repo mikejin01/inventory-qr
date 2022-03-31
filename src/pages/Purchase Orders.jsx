@@ -215,26 +215,7 @@ const PurchaseOrders = () => {
 	}, [stripeToken, cart.total, navigate]);//navigate
 	class ComponentToPrint extends React.Component {
 	  	render() {
-	  		/*const response = await QRCode.toDataURL(sku);
-	      	//console.log(response);
-	      	setImageUrl(response);
-
-
-
-
-
-		      									//{cartId += 1}
-									//response = await QRCode.toDataURL(sku)
-							      	//console.log(response); 
-							      	{setcartId(cartId+1)}
-							      	{
-		      				(index % 2 == 0) ? (
-					            
-					        ) : <div style={{ fontSize: "40px", color: "green" }}  >
-		      			}
-		      			<StatLine color={alternatingColor[index % alternatingColor.length]}  {...season}/>;
-		      			<ProductPrice>${product.price*product.quantity}</ProductPrice>
-		      			Purchase Order
+	  		/*
 	      	*/
 	      	const alternatingClass = ["begin", "end"];
 	      	const current = new Date();
@@ -287,8 +268,23 @@ const PurchaseOrders = () => {
 									alt="img"
 									className="logo" 
 									/>
-									<ProductSku><b>SKU: </b>{product.sku}</ProductSku>
-									<ProductName><b>Title: </b>{product.title}</ProductName>
+									{
+										product.type == "part" ? (
+											<div>
+												<ProductName><b>SKU: </b>{product.title}</ProductName>
+												<ProductSku><b>Title: </b>{product.sku}</ProductSku>
+											</div>
+					
+										) : (
+											<div>
+												<ProductSku><b>SKU: </b>{product.sku}</ProductSku>
+												<ProductName><b>Title: </b>{product.title}</ProductName>
+											</div>
+					
+										) 
+									}
+									{/*	<ProductSku><b>SKU: </b>{product.sku}</ProductSku>
+										<ProductName><b>Title: </b>{product.title}</ProductName>*/}
 									<ProductName><b>Invoice #: </b>{product.purchaseOrder} ordered by {product.username}</ProductName>
 									<ProductSku><b>Date Printed: </b>{date}</ProductSku>
 								</Details>
@@ -333,38 +329,7 @@ const PurchaseOrders = () => {
 	    }*/
 	}
 	/*
-	{cart.products.map(product=>(
-						<Product>
-							<ProductDetail>
-								{product.img!="" ? (
-					              <a href={product.img} download>
-					                  <img src={product.img} alt="img"/>
-					              </a>) : null}
-								<Details>
-									<ProductSku><b>SKU: </b>{product.sku}</ProductSku>
-									<ProductName><b>Title: </b>{product.title}</ProductName>
-								</Details>
-							</ProductDetail>
-							<PriceDetail>
-								<ProductQuantityContainer>
-									<Add/>
-									<ProductQuantity>{product.quantity}</ProductQuantity>
-									<Remove/>
-								</ProductQuantityContainer>
-								<ProductPrice>${product.price*product.quantity}</ProductPrice>
-							</PriceDetail>
-						</Product>
-						))}
-						<Hr/>
-
-
-
-					<TopButton>CONTINUE SHOPPING</TopButton>
-					<TopTexts>
-						<TopText>Shopping Cart (2)</TopText>
-						<TopText>Your Wishlist (0)</TopText>
-					</TopTexts>
-					<TopButton type="filled">CHECKOUT NOW</TopButton>
+	
 	*/
 	return(
 		<Container>
