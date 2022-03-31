@@ -345,17 +345,7 @@ const QRScan = () => {
         </div>
       );
     };
-    /*
-    <button type="button" className="button" onClick={() => setOpen(o => !o)}>
-            Controlled Popup
-          </button>
-    <StockInButton onClick={handleStockIn}>
-                Stock In
-            </StockInButton>
-            <StockOutButton onClick={handleStockOut}>
-                Stock Out
-            </StockOutButton>
-            */
+    /* */
     return (
         <div style={{ width: "100%" }}>
             <ControlledPopupNew/>
@@ -383,7 +373,7 @@ const QRScan = () => {
                             );
                             setActivity(activities_res.data);
                             productID = activities_res.data.productID;
-                            alert("productID: "+ productID + " is now "+activities_res.data.status);
+                            //alert("productID: "+ productID + " is now "+activities_res.data.status);
                             //setOpen(true);
                             getProducts();
                         } catch (err) {
