@@ -8,7 +8,7 @@ import Products from '../components/Products'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 import { mobile } from "../responsive"
-import { Search, ShoppingCartOutlined, AddCircleOutlined, RestartAltOutlined } from '@material-ui/icons'
+import { Search, ShoppingCartOutlined, AddCircleOutlined, RotateLeftOutlined } from '@material-ui/icons'
 import { BrowserRouter as  Router, Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 
 
@@ -53,6 +53,15 @@ const Input = styled.input`
 const Option = styled.option`
 `
 
+const Button = styled.button`
+	width: 40%;
+	border: none;
+	padding: 15px 20px;
+	background-color: teal;
+	color: white;
+	cursor: pointer;
+	margin-bottom: 10px;
+`
 
 const Inventory = () => {
 	const location = useLocation();
@@ -70,8 +79,8 @@ const Inventory = () => {
 		//category = window.location.href.split("?")[1];
 		console.log("category is now "+category);
 	}
-	
 	console.log("category is "+category+" or "+window.location.href.split("?")[1]+"!!!!!");*/
+	
 	const [filters, setFilters] = useState({});
 	const [sort, setSort] = useState("newest");
 
@@ -183,7 +192,7 @@ const Inventory = () => {
 				<Filter>
 					<FilterText>
 						<Button onClick={handleResetAll}>
-						<RestartAltOutlined style={{color:"gray", fontSize:16}}/>
+						<RotateLeftOutlined style={{color:"gray", fontSize:16}}/>
 						Reset All
 						</Button>
 					</FilterText>

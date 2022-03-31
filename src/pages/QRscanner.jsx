@@ -61,6 +61,17 @@ const QRScan = () => {
         result: "No result"
     };
 
+    
+    const ReStockInButton = styled.button`
+        width: 40%;
+        border: none;
+        padding: 15px 20px;
+        background-color: yellow;
+        color: white;
+        cursor: pointer;
+        margin-bottom: 10px;
+    `
+
     const StockInButton = styled.button`
         width: 40%;
         border: none;
@@ -312,6 +323,11 @@ const QRScan = () => {
                 </a>
                 {product.sku}
                 <br/>
+                {activity.status == "Stocked Out" ? (
+                    <ReStockInButton onClick={handleStockIn}>
+                        Re-Stock In
+                    </ReStockInButton>
+                ) : null}
                 {activity.status == "Code Generated" ? (
                     <StockInButton onClick={handleStockIn}>
                         Stock In
