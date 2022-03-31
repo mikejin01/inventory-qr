@@ -297,8 +297,8 @@ const NewProduct = () => {
 		const updateChildren = async ()=> {
 			try{
 				for (var i = 0; i < new_children.length; i++) {
-					alert("parent: "+parent_id);
-					alert("add to: "+new_children[i]);
+					//alert("parent: "+parent_id);
+					//alert("add to: "+new_children[i]);
 					const updatedChild = {
 						"parents": [parent_id],
 					};

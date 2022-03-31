@@ -169,7 +169,7 @@ const Product = () => {
 		console.log("handleClick!!!!!!!")
 		e.preventDefault()
 		const addProduct = async ()=> {
-			if (new_numberOfBoxes == 1) {
+			if (new_numberOfBoxes == 1) { //|| numberOfBoxes == ""
 				setType("simple");
 				alert("simple");
 				const newProduct = {
@@ -192,9 +192,69 @@ const Product = () => {
 				console.log(newProduct)
 				const res = await userRequest.put("/products/"+id, newProduct)
 				console.log(res.data);
-			} else {
+			} else if (new_numberOfBoxes > 1) {
+				new_numberOfBoxes = numberOfBoxes;
+				new_type = "complex"; //complex, part
 
-			}
+				//Things[i]
+				const newProduct = {
+					"title": new_title,
+					"sku": new_sku,
+				    "desc": "good",
+				    "img": "meble-200.jpg",
+				    "category": new_category,
+				    "numberOfBoxes": new_numberOfBoxes,
+				    "type": new_type, //simple, part
+				    //"stockQuantity": new_quantity
+				};
+
+				console.log(newProduct)
+				const res = await userRequest.put("/products/"+id, newProduct)
+				console.log(res.data);
+
+
+				/*const newPart = {
+					"title": new_sku+"-Box "+i+" of "+new_numberOfBoxes,
+					"sku": new_sku+"-Box "+i+" of "+new_numberOfBoxes,
+				    "desc": "",
+				    "img": "",
+				    "category": ["Part"],
+				    "size": [""],
+					"color": [""],
+				    "price": 0,
+				    "cost": 0,
+				    "stockQuantity": 0,
+				    "type": "part", //simple, part
+					"numberOfBoxes": 1,
+					"children": [],
+					"parents": [new_sku],
+				};
+				const res = await userRequest.post("/products", newPart) 
+				new_children.push(res.data._id); */  
+		} 
+		//part 
+		else {
+
+			new_numberOfBoxes = numberOfBoxes;
+			new_type = "complex"; //complex, part
+
+			//Things[i]
+			const newProduct = {
+				"title": new_title,
+				"sku": new_sku,
+			    "desc": "good",
+			    "img": "meble-200.jpg",
+			    //"category": new_category,
+			    //"numberOfBoxes": new_numberOfBoxes,
+			    //"type": new_type, //simple, part
+			    //"stockQuantity": new_quantity
+			};
+
+			console.log(newProduct)
+			const res = await userRequest.put("/products/"+id, newProduct)
+			console.log(res.data);
+
+		}
 			try{
 				
 				navigate("/Inventory"); 
