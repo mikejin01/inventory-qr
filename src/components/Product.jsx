@@ -73,6 +73,12 @@ const Image = styled.img`
 `
 
 const Title = styled.h1`
+	flex: 2;
+	color: blue;
+	margin-bottom: 2px;
+`
+
+const Quantity = styled.h1`
 	flex: 1;
 	color: blue;
 	margin-bottom: 2px;
@@ -420,7 +426,7 @@ const Product = ({item}) => {
 		              <span> ({item.numberOfBoxes} Boxes)</span>
 		        ) : null}
 			</Desc>
-			<Title>{item.stockQuantity}</Title>
+			<Quantity>{item.stockQuantity}</Quantity>
 			<ButtonArea>
 				<SearchContainer> 
 					<Input id={`${item.sku}_PurchaseOrder`} placeholder="Invoice #" onChange={handleSearch} />
