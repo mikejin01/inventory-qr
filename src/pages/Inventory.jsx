@@ -54,13 +54,11 @@ const Option = styled.option`
 `
 
 const Button = styled.button`
-	width: 40%;
 	border: none;
-	padding: 15px 20px;
+	/*padding: 15px 20px;*/
 	background-color: teal;
 	color: white;
 	cursor: pointer;
-	margin-bottom: 10px;
 `
 
 const Inventory = () => {
@@ -74,13 +72,13 @@ const Inventory = () => {
 		//setCategory("Part");//newCategory
 	}
 
-	/*if (window.location.href.split("?")[1] != null) {
+	/*if (window.location.href.split("?")[1] != null) { alon jonique deonjrah  
 		console.log(window.location.href.split("?")[1])
 		//category = window.location.href.split("?")[1];
 		console.log("category is now "+category);
 	}
 	console.log("category is "+category+" or "+window.location.href.split("?")[1]+"!!!!!");*/
-	
+
 	const [filters, setFilters] = useState({});
 	const [sort, setSort] = useState("newest");
 
@@ -192,7 +190,7 @@ const Inventory = () => {
 				<Filter>
 					<FilterText>
 						<Button onClick={handleResetAll}>
-						<RotateLeftOutlined style={{color:"gray", fontSize:16}}/>
+						<RotateLeftOutlined style={{color:"white"}}/>
 						Reset All
 						</Button>
 					</FilterText>
