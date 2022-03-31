@@ -193,7 +193,7 @@ const Product = () => {
 				const res = await userRequest.put("/products/"+id, newProduct)
 				console.log(res.data);
 			} else if (new_numberOfBoxes > 1) {
-				new_numberOfBoxes = numberOfBoxes;
+				//new_numberOfBoxes = numberOfBoxes;
 				new_type = "complex"; //complex, part
 
 				//Things[i]
@@ -234,9 +234,6 @@ const Product = () => {
 		} 
 		//part 
 		else {
-
-			new_numberOfBoxes = numberOfBoxes;
-			new_type = "complex"; //complex, part
 
 			//Things[i]
 			const newProduct = {
