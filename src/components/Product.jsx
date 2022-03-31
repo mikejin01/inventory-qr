@@ -360,9 +360,8 @@ const Product = ({item}) => {
 			    //this.setState({ enteredName : enteredName })
 			}
 			
-	        
-			//alert(item.sku+" ADD TO Order Done");
-			//navigate("/Inventory"); 
+			alert(item.sku+" ADD TO Order Done");
+			navigate("/Inventory"); 
 			//navigate("/Inventory"); 
 			} catch(err) {
 				alert("error: "+err);
