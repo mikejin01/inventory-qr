@@ -87,23 +87,26 @@ const QRScan = () => {
 
     const [parent_product, setParent_product] = useState({});
     var parent_id = "";
+    var new_children = [];
     /*const [new_sku, setSku] = useState(product.sku)
     const [new_title, setTitle] = useState(product.title)
     const [new_category, setCategory] = useState(product.category)
     const [new_quantity, setQuantity] = useState("")*/
-    const updateParent = async ()=> {
+    const updateParent = async ()=> { //updateParent getAllChildren 
         try{
-                alert("parent_id: "+parent_id);
-                alert("called");
+                alert("new_children = "+new_children.length);
+                //alert("parent_id: "+parent_id);
+                //alert("called");
                 var arr = []
                 const parent_res = await axios.get(
                     "https://inventory-qr-api.herokuapp.com/api/products/find/"+parent_id
                 )
                 .then((parent_res2) =>{
-                    alert("sku: "+parent_res2.data.sku);
+                    //alert("sku: "+parent_res2.data.sku);
 
                     for (var i = parent_res2.data.children.length - 1; i >= 0; i--) {
                         alert("child: "+parent_res2.data.children[i]);
+                        new_children.push(res.data._id);
                     }
                     
                     //setParent_product(parent_res_2.data);
@@ -111,6 +114,7 @@ const QRScan = () => {
                     /*const arr = [14, 58, 20, 77, 66, 82, 42, 67, 42, 4]
                     const min = Math.min(...arr)*/
                 });
+                alert("new_children = "+new_children.length);
                 
             } catch(err2) {
                 alert("error2: "+err2);
@@ -120,20 +124,20 @@ const QRScan = () => {
     
 
 
-            /*console.log("CALLED!!!!!")
-            console.log(new_children)
-            const updatedParent = {
-                "type": "complex",
-                "numberOfBoxes": new_numberOfBoxes,
-                "children": new_children,
-            };
-            alert("new_numberOfBoxes: "+new_numberOfBoxes);
-            
-            //console.log(newProduct)
-            const updateParentRes = await userRequest.put("/products/"+item._id, updatedParent)
-            console.log("updateParentRes!!!!!!!!!!!")
-            console.log(updateParentRes)*/
-            /**/
+    /*console.log("CALLED!!!!!")
+    console.log(new_children)
+    const updatedParent = {
+        "type": "complex",
+        "numberOfBoxes": new_numberOfBoxes,
+        "children": new_children,
+    };
+    alert("new_numberOfBoxes: "+new_numberOfBoxes);
+    
+    //console.log(newProduct)
+    const updateParentRes = await userRequest.put("/products/"+item._id, updatedParent)
+    console.log("updateParentRes!!!!!!!!!!!")
+    console.log(updateParentRes)*/
+    /**/
     const handleStockIn = (e)=> {
         console.log("handleClick!!!!!!!")
         e.preventDefault()
