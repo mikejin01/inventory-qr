@@ -171,7 +171,7 @@ const NewProduct = () => {
 	*/
 	const [new_sku, setSku] = useState("")
 	const [new_title, setTitle] = useState("")
-	const [numberOfBoxes, setNumberOfBoxes] = useState("")
+	const [numberOfBoxes, setNumberOfBoxes] = useState(0)
 	const navigate  = useNavigate();
 	const handleClick = (e)=> {
 		console.log("handleClick!!!!!!!")
@@ -197,7 +197,7 @@ const NewProduct = () => {
 					    "price": 0,
 					    "cost": 0,
 					    "stockQuantity": 0,
-					    "type": new_type, //simple, part
+					    "type": "", //new_type simple, part
 						"numberOfBoxes": new_numberOfBoxes,
 						"children": new_children,
 						//"parents": new_parents,
@@ -205,7 +205,28 @@ const NewProduct = () => {
 					console.log(newProduct)
 					const parent_res = await userRequest.post("/products", newProduct) 
 
-				} else {
+				} else if (numberOfBoxes == 1 ) {
+					//alert("no!!!!!");
+					const newProduct = {
+						"title": new_title,
+						"sku": new_sku,
+					    "desc": "good",
+					    "img": "meble-200.jpg",
+					    "category": ["Other"],
+					    "size": [""],
+						"color": [""],
+					    "price": 0,
+					    "cost": 0,
+					    "stockQuantity": 0,
+					    "type": "simple", //simple, part
+						"numberOfBoxes": new_numberOfBoxes,
+						"children": new_children,
+						//"parents": new_parents,
+					};
+					console.log(newProduct)
+					const parent_res = await userRequest.post("/products", newProduct) 
+
+				}else {
 					new_numberOfBoxes = numberOfBoxes;
 					new_type = "complex"; //complex, part
 					for (var i = 1; i <= numberOfBoxes; i++) {
