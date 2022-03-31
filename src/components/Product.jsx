@@ -209,7 +209,15 @@ const Product = ({item}) => {
 	var new_children = [];
 	var new_numberOfBoxes = 1;
 	const addActivity = async ()=> {
-		try{
+		try{	
+			const user = useSelector((state)=>state.user.currentUser);
+			if (user != null) {
+			    console.log("logged in as "+user.username);
+			    console.log("accessToken = "+user.accessToken);
+			    
+			    
+			    //console.log(useSelector((state)=>state);
+			}
 			var currentTimeInSeconds=Math.floor(Date.now()/1000);
 			var new_child = "";
 			var new_parents = [];
@@ -239,7 +247,7 @@ const Product = ({item}) => {
 				);
 			} else if (item.type == "complex"){
 				for (var i = 0; i < item.children.length; i++) {
-					alert("Child #"+i+": "+item.children[i]);
+					//alert("Child #"+i+": "+item.children[i]);
 					const newActivity = {
 						"productID": item.children[i],
 						"title": "HI",
@@ -266,7 +274,7 @@ const Product = ({item}) => {
                         "https://inventory-qr-api.herokuapp.com/api/products/find/"+item.children[i]
                     );/**/;
 					dispatch(
-						addProduct({...products_res.data, qrCode, quantity, purchaseOrder})
+						addProduct({...products_res.data, qrCode, quantity, purchaseOrder, user.username})
 					);
 
 					//Things[i]
