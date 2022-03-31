@@ -11,6 +11,7 @@ import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 import { mobile } from "../responsive"
 import { publicRequest, userRequest } from '../requestMethods';
+import { useSelector } from "react-redux"
 import axios from "axios";
 
 const Info = styled.div`
@@ -208,16 +209,18 @@ const Product = ({item}) => {
 		      	//console.log(item);
 	var new_children = [];
 	var new_numberOfBoxes = 1;
+	const user = useSelector((state)=>state.user.currentUser);
+	
 	const addActivity = async ()=> {
+		if (user != null) {
+		    console.log("logged in as "+user.username);
+		    console.log("accessToken = "+user.accessToken);
+		    
+		    
+		    //console.log(useSelector((state)=>state);
+		}
 		try{	
-			const user = useSelector((state)=>state.user.currentUser);
-			if (user != null) {
-			    console.log("logged in as "+user.username);
-			    console.log("accessToken = "+user.accessToken);
-			    
-			    
-			    //console.log(useSelector((state)=>state);
-			}
+			
 			var currentTimeInSeconds=Math.floor(Date.now()/1000);
 			var new_child = "";
 			var new_parents = [];
@@ -358,7 +361,7 @@ const Product = ({item}) => {
 			}
 			
 	        
-			alert(item.sku+" ADD TO Order Done");
+			//alert(item.sku+" ADD TO Order Done");
 			//navigate("/Inventory"); 
 			//navigate("/Inventory"); 
 			} catch(err) {

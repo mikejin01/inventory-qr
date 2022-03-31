@@ -281,17 +281,15 @@ const PurchaseOrders = () => {
 								{
 									console.log("here again!")}
 									{console.log(index)}
-								
 								<Details>
 									<img 
 									src="https://www.amdiscountfurniture.com/wp-content/uploads/2021/02/Logo-Black-Background.png" 
 									alt="img"
 									className="logo" 
 									/>
-
 									<ProductSku><b>SKU: </b>{product.sku}</ProductSku>
 									<ProductName><b>Title: </b>{product.title}</ProductName>
-									<ProductName><b>Invoice #: </b>{product.purchaseOrder}</ProductName>
+									<ProductName><b>Invoice #: </b>{product.purchaseOrder} ordered by {product.username}</ProductName>
 									<ProductSku><b>Date Printed: </b>{date}</ProductSku>
 								</Details>
 							</ProductDetail>
