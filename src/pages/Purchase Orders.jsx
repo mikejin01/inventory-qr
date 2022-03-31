@@ -271,13 +271,13 @@ const PurchaseOrders = () => {
 									{
 										product.type == "part" ? (
 											<div>
-												<ProductName><b>SKU: </b>{product.title}</ProductName>
+												<ProductName><b>SKU: </b>{product.title} </ProductName>
 												<ProductSku><b>Title: </b>{product.sku}</ProductSku>
 											</div>
 					
 										) : (
 											<div>
-												<ProductSku><b>SKU: </b>{product.sku}</ProductSku>
+												<ProductSku><b>SKU: </b>{product.sku} </ProductSku>
 												<ProductName><b>Title: </b>{product.title}</ProductName>
 											</div>
 					
