@@ -106,7 +106,7 @@ const QRScan = () => {
 
                     for (var i = parent_res2.data.children.length - 1; i >= 0; i--) {
                         alert("child: "+parent_res2.data.children[i]);
-                        new_children.push(res.data._id);
+                        new_children.push(parent_res2.data.children[i]);
                     }
                     
                     //setParent_product(parent_res_2.data);
