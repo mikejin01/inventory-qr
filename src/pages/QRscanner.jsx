@@ -97,7 +97,8 @@ const QRScan = () => {
                 //alert("new_children = "+new_children.length);
                 //alert("parent_id: "+parent_id);
                 //alert("called");
-                var stockQuantityArr = []
+                var stockQuantityArr = [];
+                //var lowestValue = 0;
                 const parent_res = await axios.get(
                     "https://inventory-qr-api.herokuapp.com/api/products/find/"+parent_id
                 )
@@ -115,15 +116,22 @@ const QRScan = () => {
                     const min = Math.min(...arr)*/
                 });
                 //alert("new_children = "+new_children.length);
+
                 for (var i = new_children.length - 1; i >= 0; i--) {
                     const child_res = await axios.get(
                         "https://inventory-qr-api.herokuapp.com/api/products/find/"+new_children[i]
                     )
-                    alert(child_res.data.sku + " is : "+child_res.data.stockQuantity);
+                    alert(child_res.data.sku + " is: "+child_res.data.stockQuantity);
                     stockQuantityArr.push(child_res.data.stockQuantity);
                 }
+                const lowestValue =  Math.min(...stockQuantityArr);
+                alert("lowestValue is: "+lowestValue);
+                const updatedProduct = {
+                    "stockQuantity": lowestValue,
+                };
+                const res = await userRequest.put("/products/"+parent_id, updatedProduct);
+                alert(product.sku+" Stock In Done");
 
-                
             } catch(err2) {
                 alert("error2: "+err2);
             }
