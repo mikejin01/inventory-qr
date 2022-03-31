@@ -161,6 +161,7 @@ const Product = () => {
 	const [new_sku, setSku] = useState(product.sku)
 	const [new_title, setTitle] = useState(product.title)
 	const [new_category, setCategory] = useState(product.category)
+	const [new_img, setImg] = useState(product.img)
 	const [new_quantity, setQuantity] = useState(product.stockQuantity)
 	const [new_numberOfBoxes, setNumberOfBoxes] = useState(product.numberOfBoxes)
 	const [new_type, setType] = useState(product.type)
@@ -176,7 +177,7 @@ const Product = () => {
 					"title": new_title,
 					"sku": new_sku,
 				    "desc": "good",
-				    "img": "meble-200.jpg",
+				    "img": new_img,
 				    "category": new_category,
 				    "numberOfBoxes": new_numberOfBoxes,
 				    "type": "simple", //simple, part
@@ -201,7 +202,7 @@ const Product = () => {
 					"title": new_title,
 					"sku": new_sku,
 				    "desc": "good",
-				    "img": "meble-200.jpg",
+				    "img": new_img,
 				    "category": new_category,
 				    "numberOfBoxes": new_numberOfBoxes,
 				    "type": new_type, //simple, part
@@ -240,7 +241,7 @@ const Product = () => {
 				"title": new_title,
 				"sku": new_sku,
 			    "desc": "good",
-			    "img": "meble-200.jpg",
+			    "img": new_img,
 			    //"category": new_category,
 			    //"numberOfBoxes": new_numberOfBoxes,
 			    //"type": new_type, //simple, part
@@ -298,7 +299,7 @@ const Product = () => {
 		<Container>	
 			<Wrapper>
 			<ImgContainer>
-				<Image src="https://amdiscountfurniture.com/wp-content/uploads/2022/02/A8000304-H-10X8-CROPAFHS-PDP-Zoomed-1200x800.jpg" />
+				<Image src={product.img} />
 			</ImgContainer>
 			<InfoContainer>
 				<Form>
@@ -310,6 +311,10 @@ const Product = () => {
 					<Desc>Title: {product.title}</Desc>
 					<Input 
 						defaultValue={product.title} onChange={(e)=>setTitle(e.target.value)}
+					/> 
+					<Desc>Photo: {product.img}</Desc>
+					<Input 
+						defaultValue={product.img} onChange={(e)=>setImg(e.target.value)}
 					/> 
 					<Desc>Category: {product.category}</Desc>
 					<Select name="color" onChange={(e)=>setCategory([e.target.value])}>

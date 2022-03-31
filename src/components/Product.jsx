@@ -409,6 +409,7 @@ const Product = ({item}) => {
 	return(
 		<Container>
 			<Title>
+			<Image src={item.img} style={{ width: "100px", height: "100px", justifyContent: "center" }} />
 			<Link to ={`/product/${item._id}`}>
 				{item.sku}
 			</Link>
