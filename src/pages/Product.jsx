@@ -310,9 +310,9 @@ const Product = () => {
 									{ product.children.length } Boxes
 									{product.children.map((child) =>
 										<Desc>
-										<Link to ={`/product/${child}`}>
-											{child}
-										</Link>
+											<Link to ={`/product/${child}`}>
+												{child}
+											</Link>
 										</Desc>
 									)}
 								</Desc>
@@ -331,7 +331,9 @@ const Product = () => {
 							<div>
 			              	<Desc>Parents:</Desc>
 							<Desc>
-								{product.parents[0]}
+								<Link to ={`/product/${product.parents[0]}`}>		
+									{product.parents[0]}
+								</Link>
 							</Desc>
 							</div>
 					) : null }
