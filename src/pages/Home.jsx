@@ -128,7 +128,23 @@ const Home = () => {
 				
 
 facingMode={'rear'}
+
+
+
 	Scanner!!!!!!!!!!
+
+	<h3>Qr Code Scan by Web Cam</h3>
+	        <QrReader
+	         delay={300}
+	         style={{width: '100%'}}
+	         onError={handleErrorWebCam}
+	         onScan={handleScanWebCam}
+	        />
+	        <h3>Scanned By WebCam Code: {scanResultWebCam}</h3>
+	        <h1>Hello QR Code Reader</h1>
+
+	        <h1>!------------</h1>
+	        <Scanner />
 	  ;*/
 
 	const [data, setData] = useState('No result');
@@ -144,18 +160,7 @@ facingMode={'rear'}
 		  		<QRScan />
 
 
-		  		<h3>Qr Code Scan by Web Cam</h3>
-	        <QrReader
-	         delay={300}
-	         style={{width: '100%'}}
-	         onError={handleErrorWebCam}
-	         onScan={handleScanWebCam}
-	        />
-	        <h3>Scanned By WebCam Code: {scanResultWebCam}</h3>
-	        <h1>Hello QR Code Reader</h1>
 
-	        <h1>!------------</h1>
-	        <Scanner />
 
 			</Wrapper>
 
