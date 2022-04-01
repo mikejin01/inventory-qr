@@ -245,7 +245,7 @@ const Product = () => {
 			    //"category": new_category,
 			    //"numberOfBoxes": new_numberOfBoxes,
 			    //"type": new_type, //simple, part
-			    //"stockQuantity": new_quantity
+			    "stockQuantity": new_quantity
 			};
 
 			console.log(newProduct)
