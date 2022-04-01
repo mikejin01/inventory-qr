@@ -243,7 +243,7 @@ const Product = () => {
 				"sku": new_sku,
 			    "desc": "good",
 			    "img": new_img,
-			    //"category": new_category,
+			    "category": new_category,
 			    //"numberOfBoxes": new_numberOfBoxes,
 			    //"type": new_type, //simple, part
 			    "stockQuantity": new_quantity
