@@ -413,7 +413,12 @@ const Product = ({item}) => {
 	Purchase Order
 	*/
 	return(
-		<Container style={{ width: "100px", height: "100px", justifyContent: "center" }}>
+		<Container 
+		{item.type == "complex" ? (
+		              style={{ justifyContent: "center" }}
+		        ) : null} 
+
+		>
 			<Title>
 			<Image src={item.img} style={{ width: "100px", height: "100px", justifyContent: "center" }} />
 			<Link to ={`/product/${item._id}`}>
