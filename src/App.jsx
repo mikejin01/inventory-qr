@@ -51,7 +51,7 @@ function App() {
         <Route path="/product/:sku" element={<Product />} />
         <Route path="/PurchaseOrders" element={<PurchaseOrders />} />
       </Routes>
-      <Newsletter />
+      {/*<Newsletter />*/}
       <Footer />
     </Router>
   );
