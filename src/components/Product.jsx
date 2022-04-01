@@ -412,13 +412,15 @@ const Product = ({item}) => {
 
 	Purchase Order
 	*/
+	var displayColor = item.type;
+	const spanStyles = {
+	  color: "#fff",
+	  backgroundColor: "lightgray"
+	};
 	return(
 		<Container 
-		{item.type == "complex" ? (
-		              style={{ justifyContent: "center" }}
-		        ) : null} 
-
-		>
+			style={ item.type == "part" ? spanStyles : null} 
+		>	
 			<Title>
 			<Image src={item.img} style={{ width: "100px", height: "100px", justifyContent: "center" }} />
 			<Link to ={`/product/${item._id}`}>
