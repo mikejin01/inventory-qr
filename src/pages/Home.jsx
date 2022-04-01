@@ -124,11 +124,10 @@ const Home = () => {
 	  document.body.appendChild(script)
 
 
-	<Scanner />
+	
 				
 
-
-
+facingMode={'rear'}
 	Scanner!!!!!!!!!!
 	  ;*/
 
@@ -149,12 +148,14 @@ const Home = () => {
 	        <QrReader
 	         delay={300}
 	         style={{width: '100%'}}
-	         facingMode={'rear'}
 	         onError={handleErrorWebCam}
 	         onScan={handleScanWebCam}
 	        />
 	        <h3>Scanned By WebCam Code: {scanResultWebCam}</h3>
 	        <h1>Hello QR Code Reader</h1>
+
+	        <h1>!------------</h1>
+	        <Scanner />
 
 			</Wrapper>
 
