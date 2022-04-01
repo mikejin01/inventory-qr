@@ -73,6 +73,7 @@ const Image = styled.img`
 `
 
 const Title = styled.h1`
+	font-size: 1em;
 	flex: 2;
 	color: blue;
 	margin-bottom: 2px;
@@ -84,6 +85,7 @@ const Quantity = styled.h1`
 	margin-bottom: 2px;
 `
 const Desc = styled.h1` //p
+	font-size: 1em;
 	flex: 2;
 	color: black;
 	margin-bottom: 2px;
