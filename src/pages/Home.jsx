@@ -125,16 +125,7 @@ const Home = () => {
 
 
 	<Scanner />
-				<h3>Qr Code Scan by Web Cam</h3>
-	             <QrReader
-	             delay={300}
-	             style={{width: '100%'}}
-	             facingMode={'rear'}
-	             onError={handleErrorWebCam}
-	             onScan={handleScanWebCam}
-	             />
-	             <h3>Scanned By WebCam Code: {scanResultWebCam}</h3>
-	             <h1>Hello QR Code Reader</h1>
+				
 
 
 
@@ -152,6 +143,18 @@ const Home = () => {
 				</Button>
 				
 		  		<QRScan />
+
+
+		  		<h3>Qr Code Scan by Web Cam</h3>
+	        <QrReader
+	         delay={300}
+	         style={{width: '100%'}}
+	         facingMode={'rear'}
+	         onError={handleErrorWebCam}
+	         onScan={handleScanWebCam}
+	        />
+	        <h3>Scanned By WebCam Code: {scanResultWebCam}</h3>
+	        <h1>Hello QR Code Reader</h1>
 
 			</Wrapper>
 
