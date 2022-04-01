@@ -68,11 +68,12 @@ const Products = ({category, filters, sort}) => {
 	 			Object.entries(filters).every(([key, value])=>
 	 				/*if (key == "category") {
 	 					
-	 					//item["category"].includes(value)
+	 					item["category"].includes(value)
 	 				}
-	 				else {*/
-	 					item[key].toLowerCase().includes(value) || item['title'].toLowerCase().includes(value) || item["category"].indexOf(value[0]) > -1
-	 				//}
+	 				else {/**/
+	 					//item[key].toLowerCase().includes(value.toLowerCase())
+	 					item['sku'].toLowerCase().includes(value.toLowerCase()) || item['title'].toLowerCase().includes(value.toLowerCase()) || item["category"].indexOf(value) > -1
+	 				//}value[0]
 	 				//item['title'].includes('YORK')
 	 				
 	 			)

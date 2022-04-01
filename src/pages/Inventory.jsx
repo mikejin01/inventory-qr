@@ -86,7 +86,7 @@ const Inventory = () => {
 		const value = e.target.value;
 		setFilters({
 			...filters,
-			[e.target.name]: [value],
+			[e.target.name]: value/*[]*/,
 		});
 	};
 	console.log(filters);
