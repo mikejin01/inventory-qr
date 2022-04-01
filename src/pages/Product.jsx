@@ -382,7 +382,7 @@ const Product = () => {
 						) 
 						: (
 							<Input 
-							value={product.stockQuantity} onChange={(e)=>setQuantity(e.target.value)}
+							{/*value={product.stockQuantity}*/} onChange={(e)=>setQuantity(e.target.value)}
 							/> 
 						)
 						

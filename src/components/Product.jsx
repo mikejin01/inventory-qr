@@ -413,7 +413,7 @@ const Product = ({item}) => {
 	Purchase Order
 	*/
 	return(
-		<Container>
+		<Container style={{ width: "100px", height: "100px", justifyContent: "center" }}>
 			<Title>
 			<Image src={item.img} style={{ width: "100px", height: "100px", justifyContent: "center" }} />
 			<Link to ={`/product/${item._id}`}>
