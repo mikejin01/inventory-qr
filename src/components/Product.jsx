@@ -352,8 +352,6 @@ const Product = ({item}) => {
 				alert("error: "+err);
 			}
 			
-
-			
 	};
 	const updateParent = async ()=> {
 		try{
@@ -400,16 +398,12 @@ const Product = ({item}) => {
 	const handleSearch = (e)=> {
 		//console.log("handleSearch!!!!!!!!!!"+e.target.value);
 		//const value = e.target.value;
-		console.log("!handleSearch: "+e.target.value); //.toLowerCase
-		console.log("!!!!!!!!!"); //.toLowerCase
-		/*setFilters({
-			//...filters,
-			["sku"]: e.target.value.toLowerCase(),//  e.target.value.toLowerCase() "meble-eva-kbl",//onChange=
-		});*/
+		//console.log("!handleSearch: "+e.target.value); //.toLowerCase
+		//console.log("!!!!!!!!!"); //.toLowerCase
 	}
+
 	/*
 	name
-
 	Purchase Order
 	*/
 	var displayColor = item.type;
@@ -417,7 +411,7 @@ const Product = ({item}) => {
 	  	color: "#fff",
 	  	backgroundColor: "lightgray",
 	  	fontSsize: "10px",
-    	height: "40px"
+    	height: "80px"
 	};
 	return(
 		<Container 
