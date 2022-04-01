@@ -405,13 +405,14 @@ const Product = ({item}) => {
 	/*
 	name
 	Purchase Order
+	fontSsize: "10px",
+    	height: "80px"
 	*/
 	var displayColor = item.type;
 	const spanStyles = {
 	  	color: "#fff",
 	  	backgroundColor: "lightgray",
-	  	fontSsize: "10px",
-    	height: "80px"
+	  	
 	};
 	return(
 		<Container 
