@@ -363,6 +363,7 @@ const Product = () => {
 							<Option>5</Option>	
 					</Select>
 					<Desc>Quantity: {product.stockQuantity}</Desc>
+					{/*value={product.stockQuantity}*/}
 					{
 						product.type == "complex" 
 						? (
@@ -382,7 +383,7 @@ const Product = () => {
 						) 
 						: (
 							<Input 
-							{/*value={product.stockQuantity}*/} onChange={(e)=>setQuantity(e.target.value)}
+							 onChange={(e)=>setQuantity(e.target.value)}
 							/> 
 						)
 						
