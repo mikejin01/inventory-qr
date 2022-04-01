@@ -10,6 +10,7 @@ import { mobile } from "../responsive"
 import { BrowserRouter as  Router, Routes, Route, Link, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import { publicRequest, userRequest } from '../requestMethods';
 import { useState, useEffect } from 'react'
+import axios from "axios";
 
 const Container = styled.div`
 `
@@ -272,22 +273,13 @@ const Product = () => {
 	const updateParent = async ()=> { //updateParent getAllChildren 
         try{
                 var stockQuantityArr = [];
-                //var lowestValue = 0;
                 const parent_res = await axios.get(
                     "https://inventory-qr-api.herokuapp.com/api/products/find/"+parent_id
                 )
-                .then((parent_res2) =>{
-                    //alert("sku: "+parent_res2.data.sku);
-
+                .then((parent_res2) =>{;
                     for (var i = parent_res2.data.children.length - 1; i >= 0; i--) {
-                        //alert("child: "+parent_res2.data.children[i]);
                         new_children.push(parent_res2.data.children[i]);
                     }
-                    
-                    //setParent_product(parent_res_2.data);
-                    //updateParent();   
-                    /*const arr = [14, 58, 20, 77, 66, 82, 42, 67, 42, 4]
-                    const min = Math.min(...arr)*/
                 });
                 //alert("new_children = "+new_children.length);
 
@@ -299,13 +291,11 @@ const Product = () => {
                     stockQuantityArr.push(child_res.data.stockQuantity);
                 }
                 const lowestValue =  Math.min(...stockQuantityArr);
-                //alert("lowestValue is: "+lowestValue);
                 const updatedProduct = {
                     "stockQuantity": lowestValue,
                 };
                 const res = await userRequest.put("/products/"+parent_id, updatedProduct);
                 //alert(product.sku+" Stock In Done");
-
             } catch(err2) {
                 alert("error2: "+err2);
             }
