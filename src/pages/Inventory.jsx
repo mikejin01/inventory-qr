@@ -79,6 +79,7 @@ const Inventory = () => {
 	}
 	console.log("category is "+category+" or "+window.location.href.split("?")[1]+"!!!!!");*/
 
+	const [resetAll, setResetAll] = useState(false); 
 	const [filters, setFilters] = useState({});
 	const [sort, setSort] = useState("newest");
 
@@ -107,7 +108,14 @@ const Inventory = () => {
 			try{
 				var proceed = window.confirm("Are you sure you want to proceed?");
 				if (proceed) {
-					/*const res = await userRequest.delete("/products/"+id)
+					setResetAll(true);
+					console.log("handleResetAll done!!!!!!")
+					/*setFilters({
+						//...filters,
+						["sku"]: "",//  e.target.value.toLowerCase() "meble-eva-kbl",//onChange=
+					});
+					
+					const res = await userRequest.delete("/products/"+id)
 					console.log(res.data);
 					navigate("/Inventory");*/
 				} else {
@@ -120,6 +128,7 @@ const Inventory = () => {
 		deleteProduct();
 	}
 	/*
+
 	<FilterText>Sort Products:</FilterText>
 					<Select onChange={e=>setSort(e.target.value)}>
 						<Option value="newest">
@@ -198,7 +207,7 @@ const Inventory = () => {
 				</Filter>
 				
 			</FilterContainer>
-			<Products category={category} filters={filters} sort={sort} />
+			<Products category={category} filters={filters} sort={sort} resetAll={resetAll} />
 		</Container>
 		) 
 }//here

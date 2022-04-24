@@ -214,8 +214,16 @@ const QRScan = () => {
             try{
                 //var proceed = window.confirm("Are you sure you want to proceed?");
                 //if (proceed) {
+
+                    var updatedQuantity = 0;
+                    if (product.stockQuantity == 0) {
+                        updatedQuantity = 0;
+                    } else {
+                        updatedQuantity = product.stockQuantity-1;
+                    }
+
                     const updatedProduct = {
-                        "stockQuantity": product.stockQuantity-1,
+                        "stockQuantity": updatedQuantity,
                     };
                     const updatedActivity = {
                         "status": "Stocked Out",

@@ -7,6 +7,7 @@ import Announcement from './components/Announcement'
 import Newsletter from './components/Newsletter'
 import Footer from './components/Footer'
 import Home from "./pages/Home";
+import ActivityList from "./pages/ActivityList";
 import Inventory from "./pages/Inventory";
 import PurchaseOrders from "./pages/Purchase Orders";
 import ProductList from "./pages/ProductList";
@@ -45,6 +46,7 @@ function App() {
       <Announcement />
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route path="/Activities" element={<ActivityList />} />
         <Route path="/Inventory" element={<Inventory />} />
         <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>} />
         <Route path="/NewProduct" element={<NewProduct />} />

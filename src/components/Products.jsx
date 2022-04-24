@@ -3,6 +3,7 @@ import { popularProducts } from "../data"
 import Product from "./Product"
 import { useState, useEffect } from 'react'
 import axios from "axios";
+import { publicRequest, userRequest } from '../requestMethods';
 import { BrowserRouter as  Router, Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 
 const Container = styled.div`
@@ -13,7 +14,7 @@ const Container = styled.div`
 	justify-content: space-between;*/
 `
 
-const Products = ({category, filters, sort}) => {
+const Products = ({category, filters, sort, resetAll}) => {
 	//console.log(category, filters, sort);
 	const [products, setProducts] = useState([]);
 	const [filteredProducts, setFilteredProducts] = useState([]);
@@ -80,6 +81,56 @@ const Products = ({category, filters, sort}) => {
 	 		)
 	 	);
 	}, [products, filters]);
+	useEffect(()=>{
+		//alert("resetAll is now "+resetAll);
+		if (resetAll == true) {
+			alert("!!!!!!resetAll is now "+resetAll);
+
+			for (var i = products.length - 1; i >= 0; i--) {
+				//console.log("checking "+ products[i].sku);
+				if (products[i].stockQuantity > 0) {
+
+					console.log("checking "+ products[i].sku + " > 0");
+					const updatedProduct = {
+                        "stockQuantity": 0,
+                    };
+                    const resetProduct = async ()=>{
+					 	try {
+							const res = await userRequest.put("/products/"+products[i]._id, updatedProduct)
+						} catch (err) {
+							console.log(err);
+						}
+					}
+					resetProduct();
+
+                    
+
+				}
+				
+			}
+
+
+
+
+		}
+		/*console.log("set Filtered Products!!!!!!!!");
+	 	setFilteredProducts(
+	 		products.filter(item => 
+	 			Object.entries(filters).every(([key, value])=>
+	 				/*if (key == "category") {
+	 					
+	 					item["category"].includes(value)
+	 				}
+	 				else {/*
+	 					//item[key].toLowerCase().includes(value.toLowerCase())
+	 					item['sku'].toLowerCase().includes(value.toLowerCase()) || item['title'].toLowerCase().includes(value.toLowerCase()) || item["category"].indexOf(value) > -1
+	 				//}value[0]
+	 				//item['title'].includes('YORK')
+	 				
+	 			)
+	 		)
+	 	);*/
+	}, [products, filters, resetAll]);
 
 	return(
 		<Container>

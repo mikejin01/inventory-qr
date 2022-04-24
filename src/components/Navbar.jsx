@@ -140,6 +140,7 @@ const Navbar = () => {
 					<Language>EN</Language>
 					<Link to={`/Inventory`}><MenuItem>Inventory</MenuItem></Link>
 					<Link to={`/Inventory?Part`}><MenuItem>Parts</MenuItem></Link>
+					<Link to={`/Activities`}><MenuItem>Activities</MenuItem></Link>
 					<Link to={`/PurchaseOrders`}><MenuItem>Purchase Orders</MenuItem></Link>
 					<Link to={`/`}><MenuItem>Scan</MenuItem></Link>
 				</Left>

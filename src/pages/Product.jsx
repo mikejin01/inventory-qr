@@ -329,7 +329,7 @@ const Product = () => {
 					<Input 
 						defaultValue={product.title} onChange={(e)=>setTitle(e.target.value)}
 					/> 
-					<Desc>Photo: {product.img}</Desc>
+					<Desc>Photo: {/*product.img*/}</Desc>
 					<Input 
 						defaultValue={product.img} onChange={(e)=>setImg(e.target.value)}
 					/> 
