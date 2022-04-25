@@ -170,9 +170,10 @@ const Product = () => {
 	const handleClick = (e)=> {
 		console.log("handleClick!!!!!!!")
 		e.preventDefault()
-		const addProduct = async ()=> {
-
+		const updateProduct = async ()=> {
+			console.log("id is "+id)
 			if (new_numberOfBoxes == 1) { //|| numberOfBoxes == ""
+				console.log("new_numberOfBoxes == 1!!!!!!!")
 				setType("simple");
 				alert("simple");
 				const newProduct = {
@@ -196,6 +197,7 @@ const Product = () => {
 				const res = await userRequest.put("/products/"+id, newProduct)
 				//console.log(res.data);
 			} else if (new_numberOfBoxes > 1) {
+				console.log("new_numberOfBoxes > 1!!!!!!!")
 				//new_numberOfBoxes = numberOfBoxes;
 				new_type = "complex"; //complex, part
 				//Things[i]
@@ -212,38 +214,41 @@ const Product = () => {
 				//console.log(newProduct)
 				const res = await userRequest.put("/products/"+id, newProduct)
 				//console.log(res.data); 
-		} 
-		//part 
-		else {
+			} 
+			//part 
+			else {
+				console.log("else!!!!!!!")
+				//Things[i]
+				const newProduct = {
+					"title": new_title,
+					"sku": new_sku,
+				    "desc": "good",
+				    "img": new_img,
+				    "category": new_category,
+				    //"numberOfBoxes": new_numberOfBoxes,
+				    //"type": new_type, //simple, part
+				    "stockQuantity": new_quantity
+				};
 
-			//Things[i]
-			const newProduct = {
-				"title": new_title,
-				"sku": new_sku,
-			    "desc": "good",
-			    "img": new_img,
-			    "category": new_category,
-			    //"numberOfBoxes": new_numberOfBoxes,
-			    //"type": new_type, //simple, part
-			    "stockQuantity": new_quantity
-			};
+				//console.log(newProduct)
+				const res = await userRequest.put("/products/"+id, newProduct)
+				parent_id = product.parents[0];
+				console.log("parent_id = "+parent_id)
+				if (parent_id != null) {
+	    			updateParent();
+				}
+				  
+				//console.log(res.data);
 
-			//console.log(newProduct)
-			const res = await userRequest.put("/products/"+id, newProduct)
-
-			parent_id = product.parents[0];
-    		updateParent();  
-			//console.log(res.data);
-
-		}
-
-		/*try{			
-				navigate("/Inventory"); 
- 		} catch(err) {
- 				alert("error: "+err);
- 		}*/
+			}
+			navigate("/Inventory"); 
+			/*try{			
+					navigate("/Inventory"); 
+	 		} catch(err) {
+	 				alert("error: "+err);
+	 		}*/
 		};
-		addProduct();/**/
+		updateProduct();/**/
 	}
 
 	var parent_id = "";
