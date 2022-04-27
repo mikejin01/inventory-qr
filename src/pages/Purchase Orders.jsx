@@ -89,9 +89,11 @@ const Details = styled.div`
 `
 const ProductName = styled.span`
 	flex: 3;
+	font-size: 25px;
 `
 const ProductSku = styled.span`
 	flex: 3;
+	font-size: 25px;
 `
 const ProductInfo = styled.span`
 	flex: 3;
