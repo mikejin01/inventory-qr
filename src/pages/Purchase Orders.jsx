@@ -93,6 +93,10 @@ const ProductName = styled.span`
 const ProductSku = styled.span`
 	flex: 3;
 `
+const ProductInfo = styled.span`
+	flex: 3;
+	font-size: 20px;
+`
 const ProductVariation = styled.span`
 	flex: 3;
 `
@@ -263,21 +267,24 @@ const PurchaseOrders = () => {
 									console.log("here again!")}
 									{console.log(index)}
 								<Details>
-									<img 
-									src="https://www.amdiscountfurniture.com/wp-content/uploads/2021/02/Logo-Black-Background.png" 
-									alt="img"
-									className="logo" 
-									/>
 									{
 										product.type == "part" ? (
 											<div>
-												<ProductName><b>SKU: </b>{product.title} </ProductName>
+												<ProductName><b>Part of </b></ProductName><br/>
+												<Image src={product.parent_img} style={{ width: "100px", height: "100px", justifyContent: "center" }} />
+												{/*<img 
+												src="https://www.amdiscountfurniture.com/wp-content/uploads/2021/02/Logo-Black-Background.png" 
+												alt="img"
+												className="logo" 
+												/>*/}<br/>
+												<ProductName><b>SKU: </b>{product.title} </ProductName><br/>
 												<ProductSku><b>Title: </b>{product.sku}</ProductSku>
 											</div>
 					
 										) : (
 											<div>
-												<ProductSku><b>SKU: </b>{product.sku} </ProductSku>
+												<Image src={product.img} style={{ width: "150px", height: "150px", justifyContent: "center" }} /><br/>
+												<ProductSku><b>SKU: </b>{product.sku} </ProductSku><br/>
 												<ProductName><b>Title: </b>{product.title}</ProductName>
 											</div>
 					
@@ -285,8 +292,8 @@ const PurchaseOrders = () => {
 									}
 									{/*	<ProductSku><b>SKU: </b>{product.sku}</ProductSku>
 										<ProductName><b>Title: </b>{product.title}</ProductName>*/}
-									<ProductName><b>Invoice #: </b>{product.purchaseOrder} ordered by {product.username}</ProductName>
-									<ProductSku><b>Date Printed: </b>{date}</ProductSku>
+									<ProductInfo><b>Invoice #: </b>{product.purchaseOrder} ordered by {product.username}</ProductInfo>
+									<ProductInfo><b>Date Printed: </b>{date}</ProductInfo>
 								</Details>
 							</ProductDetail>
 							<PriceDetail>
@@ -297,8 +304,6 @@ const PurchaseOrders = () => {
 							</PriceDetail>
 						</Product>
 						<br/>
-			            <br/>
-			            <br/>
 			            <br/>
 					</div>
 				))}

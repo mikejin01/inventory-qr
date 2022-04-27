@@ -258,6 +258,7 @@ const Product = ({item}) => {
 					addProduct({...item, qrCode, quantity, purchaseOrder, username})
 				);
 			} else if (item.type == "complex"){
+				const parent_img = item.img;
 				for (var i = 0; i < item.children.length; i++) {
 					//alert("Child #"+i+": "+item.children[i]);
 					const newActivity = {
@@ -286,8 +287,10 @@ const Product = ({item}) => {
 			      	const products_res = await axios.get(
                         "https://inventory-qr-api.herokuapp.com/api/products/find/"+item.children[i]
                     );/**/;
+
+                    
 					dispatch(
-						addProduct({...products_res.data, qrCode, quantity, purchaseOrder, username})
+						addProduct({...products_res.data, parent_img, qrCode, quantity, purchaseOrder, username})
 					);
 				}
 			} else {
