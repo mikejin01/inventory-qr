@@ -17,6 +17,7 @@ const Container = styled.div`
 const Products = ({category, filters, sort, resetAll}) => {
 	//console.log(category, filters, sort);
 	const [products, setProducts] = useState([]);
+	const [activities, setActivities] = useState([]);
 	const [filteredProducts, setFilteredProducts] = useState([]);
 	const location = useLocation();
 
@@ -51,7 +52,20 @@ const Products = ({category, filters, sort, resetAll}) => {
 				console.log(err);
 			}
 		 }
+		 const getActivities = async ()=>{
+		 	try {
+				const activitiesRes = await axios.get(
+					//`https://inventory-qr-api.herokuapp.com/api/activities?category=${categoryNew}`
+					"https://inventory-qr-api.herokuapp.com/api/activities"
+				);
+				setActivities(activitiesRes.data);
+				//alert("# of activities retrieved: "+activities.length);
+			} catch (err) {
+				console.log(err);
+			}
+		 }
 		 getProducts();
+		 getActivities();
 	}, [category]);
 	/*useEffect(()=>{
 	 	category && setFilteredProducts(
@@ -63,6 +77,7 @@ const Products = ({category, filters, sort, resetAll}) => {
 	 	);
 	}, [products, category, filters]);*/
 	useEffect(()=>{
+		//alert("# of activities retrieved: "+activities.length);
 		console.log("set Filtered Products!!!!!!!!");
 	 	setFilteredProducts(
 	 		products.filter(item => 
@@ -83,8 +98,41 @@ const Products = ({category, filters, sort, resetAll}) => {
 	}, [products, filters]);
 	useEffect(()=>{
 		//alert("resetAll is now "+resetAll);
+
 		if (resetAll == true) {
 			alert("!!!!!!resetAll is now "+resetAll);
+			alert("# of activities retrieved: "+activities.length);
+
+			for (var i = activities.length - 1; i >= 0; i--) {
+				//console.log("checking "+ products[i].sku);
+				if (activities[i].status == "Code Generated") {
+					console.log("deleting "+ activities[i]._id);
+
+                    const deleteActivity = async ()=>{
+					 	try {
+							const res = await userRequest.delete("/activities/"+activities[i]._id)
+						} catch (err) {
+							console.log(err);
+						}
+					}
+					deleteActivity();
+				} else if (activities[i].status == "Stocked In"){
+					console.log("checking "+ activities[i].sku + " is Stocked In");
+					const updatedActivity = {
+                        "status": "Code Generated",
+                    };
+                    const resetActivity = async ()=>{
+					 	try {
+							const res = await userRequest.put("/activities/"+activities[i]._id, updatedActivity)
+						} catch (err) {
+							console.log(err);
+						}
+					}
+					resetActivity();
+
+				}
+				
+			}
 
 			for (var i = products.length - 1; i >= 0; i--) {
 				//console.log("checking "+ products[i].sku);
@@ -102,9 +150,6 @@ const Products = ({category, filters, sort, resetAll}) => {
 						}
 					}
 					resetProduct();
-
-                    
-
 				}
 				
 			}
