@@ -272,7 +272,7 @@ const PurchaseOrders = () => {
 									{
 										product.type == "part" ? (
 											<div>
-												<ProductName><b>Part of </b></ProductName><br/>
+												<ProductInfo><b>Part of </b></ProductInfo><br/>
 												<Image src={product.parent_img} style={{ width: "100px", height: "100px", justifyContent: "center" }} />
 												{/*<img 
 												src="https://www.amdiscountfurniture.com/wp-content/uploads/2021/02/Logo-Black-Background.png" 
