@@ -259,6 +259,7 @@ const Product = ({item}) => {
 				);
 			} else if (item.type == "complex"){
 				const parent_img = item.img;
+				const parent_name = item.title;
 				for (var i = 0; i < item.children.length; i++) {
 					//alert("Child #"+i+": "+item.children[i]);
 					const newActivity = {
@@ -290,7 +291,7 @@ const Product = ({item}) => {
 
                     
 					dispatch(
-						addProduct({...products_res.data, parent_img, qrCode, quantity, purchaseOrder, username})
+						addProduct({...products_res.data, parent_img, parent_name, qrCode, quantity, purchaseOrder, username})
 					);
 				}
 			} else {
