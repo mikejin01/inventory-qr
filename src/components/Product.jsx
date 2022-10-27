@@ -427,7 +427,7 @@ const Product = ({item}) => {
 			<Title>
 			{ item.type == "part" 
 				? null 
-				: <Image src={item.img} style={{ width: "100px", height: "100px", justifyContent: "center" }} />
+				: <Image src={item.img} style={{ height: "100px", justifyContent: "center" }} />
 			}
 			
 			<Link to ={`/product/${item._id}`}>
