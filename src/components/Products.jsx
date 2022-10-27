@@ -14,12 +14,24 @@ const Container = styled.div`
 	justify-content: space-between;*/
 `
 
+const Spinner = styled.div`
+	border: 16px solid #f3f3f3; /* Light grey */
+	border-top: 16px solid #3498db; /* Blue */
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	animation: spin 2s linear infinite;
+}
+`
+
 const Products = ({category, filters, sort, resetAll}) => {
 	//console.log(category, filters, sort);
 	const [products, setProducts] = useState([]);
 	const [activities, setActivities] = useState([]);
 	const [filteredProducts, setFilteredProducts] = useState([]);
 	const location = useLocation();
+
+	const [hiddenLoader, setHiddenLoader] = useState(false);
 
 	useEffect(()=>{
 		console.log("find category!!!!!!!");
@@ -38,6 +50,7 @@ const Products = ({category, filters, sort, resetAll}) => {
 				console.log(res.data);
 				res.data.sort((a, b) => (a.stockQuantity < b.stockQuantity) ? 1 : -1)
 				setProducts(res.data);
+				setHiddenLoader(s => !s)
 				/*products.sort((first, second) => {
 			      if ( first.stockQuantity == second.stockQuantity ) {
 			        return -1;
@@ -177,8 +190,14 @@ const Products = ({category, filters, sort, resetAll}) => {
 	 	);*/
 	}, [products, filters, resetAll]);
 
+
+
+
+
 	return(
 		<Container>
+			{!hiddenLoader ? <div class="loader"></div> : null}
+
 			{filteredProducts.map((item) =>
 				<Product item={item} key={item.id} />)}
 
