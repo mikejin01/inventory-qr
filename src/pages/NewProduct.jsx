@@ -171,6 +171,12 @@ const NewProduct = () => {
 	*/
 	const [new_sku, setSku] = useState("")
 	const [new_title, setTitle] = useState("")
+
+	const [new_img, setImg] = useState("")
+	const [new_qty, setQty] = useState("")
+
+
+
 	const [numberOfBoxes, setNumberOfBoxes] = useState(0)
 	const navigate  = useNavigate();
 	const handleClick = (e)=> {
@@ -190,13 +196,13 @@ const NewProduct = () => {
 						"title": new_title,
 						"sku": new_sku,
 					    "desc": "good",
-					    "img": "meble-200.jpg",
+					    "img": new_img,
 					    "category": ["Other"],
 					    "size": [""],
 						"color": [""],
 					    "price": 0,
 					    "cost": 0,
-					    "stockQuantity": 0,
+					    "stockQuantity": new_qty,
 					    "type": "", //new_type simple, part
 						"numberOfBoxes": new_numberOfBoxes,
 						"children": new_children,
@@ -354,6 +360,19 @@ const NewProduct = () => {
 				<Input 
 					placeholder="Title" onChange={(e)=>setTitle(e.target.value)}
 				/> 
+			
+				<Desc>Photo: {/*product.img*/}</Desc>
+				<Input 
+					defaultValue="" onChange={(e)=>setImg(e.target.value)}
+				/> 
+
+				<Desc>Quantity: 0</Desc>
+				<Input 
+				 	onChange={(e)=>setQty(e.target.value)}
+				/> 
+
+
+
 				<Desc># of Boxes:</Desc>
 				<Select name="numberOfBoxes" onChange={(e)=>setNumberOfBoxes(e.target.value)}>
 						<Option>I Don't Know</Option>
