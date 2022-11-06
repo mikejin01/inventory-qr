@@ -119,7 +119,8 @@ const Products = ({category, filters, sort, resetAll}) => {
 			for (var i = activities.length - 1; i >= 0; i--) {
 				//console.log("checking "+ products[i].sku);
 				if (activities[i].status == "Code Generated") {
-					console.log("deleting "+ activities[i]._id);
+					//delete activity to save space
+					/*console.log("deleting "+ activities[i]._id);
 
                     const deleteActivity = async ()=>{
 					 	try {
@@ -128,7 +129,7 @@ const Products = ({category, filters, sort, resetAll}) => {
 							console.log(err);
 						}
 					}
-					deleteActivity();
+					deleteActivity();*/
 				} else if (activities[i].status == "Stocked In"){
 					console.log("checking "+ activities[i].sku + " is Stocked In");
 					const updatedActivity = {
