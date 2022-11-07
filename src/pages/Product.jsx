@@ -240,29 +240,43 @@ const Product = () => {
 					//setParents(current => [...current, new_parent]);
 
 					const arr2 = [...product.parents, new_parent];
-					setParents(arr2);
-					console.log("new_parents: "+ arr2 + " and: " +new_parents);
+					console.log("new_parents: "+ arr2);
+
+					const newProduct = {
+						"title": new_title,
+						"sku": new_sku,
+					    "desc": "good",
+					    "img": new_img,
+					    "category": new_category,
+					    //"numberOfBoxes": new_numberOfBoxes,
+					    //"type": new_type, //simple, part
+
+					    "parents": arr2,
+					    "stockQuantity": new_quantity
+					};
 					
 				} else {
 					console.log("new_parent == !!!!!!!")
 					//const new_parents = product.parents;
+
+					const newProduct = {
+						"title": new_title,
+						"sku": new_sku,
+					    "desc": "good",
+					    "img": new_img,
+					    "category": new_category,
+					    //"numberOfBoxes": new_numberOfBoxes,
+					    //"type": new_type, //simple, part
+
+					    //"parents": arr2,
+					    "stockQuantity": new_quantity
+					};
 				}
 				//const new_parents = product.parents.push(new_parent);
 				console.log("else!!!!!!!")
 				console.log("parents to add is " + new_parent)
 				//Things[i]
-				const newProduct = {
-					"title": new_title,
-					"sku": new_sku,
-				    "desc": "good",
-				    "img": new_img,
-				    "category": new_category,
-				    //"numberOfBoxes": new_numberOfBoxes,
-				    //"type": new_type, //simple, part
-
-				    "parents": new_parents,
-				    "stockQuantity": new_quantity
-				};
+				
 
 				//console.log(newProduct)
 				const res = await userRequest.put("/products/"+id, newProduct)
