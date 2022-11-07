@@ -281,8 +281,8 @@ const PurchaseOrders = () => {
 												alt="img"
 												className="logo" 
 												/>*/}<br/>
-												<ProductName><b>SKU: </b>{product.title} </ProductName><br/>
-												<ProductSku><b>Title: </b>{product.sku}</ProductSku>
+												<ProductName><b>SKU: </b>{product.sku}</ProductName><br/>
+												<ProductSku><b>Title: </b>{product.title}</ProductSku>
 											</div>
 					
 										) : (
