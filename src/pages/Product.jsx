@@ -166,7 +166,7 @@ const Product = () => {
 	const [new_quantity, setQuantity] = useState(product.stockQuantity)
 	const [new_numberOfBoxes, setNumberOfBoxes] = useState(product.numberOfBoxes)
 	const [new_type, setType] = useState(product.type)
-	const [new_parents, setParents] = useState(product.parents)
+	const [new_parents, setParents] = useState([])
 	const [new_parent, setNewParent] = useState()
 
 	/*const setNewParents = (e) => {
