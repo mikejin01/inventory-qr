@@ -173,7 +173,37 @@ const Product = () => {
 		console.log("here!!!!!!!!!!!" + e);
 		setNewParent(e);
 	}*/
+	const updateNewParent = async ()=> { //updateParent getAllChildren 
+        try{
 
+
+
+                const parent_res = await axios.get(
+                    "https://inventory-qr-api.herokuapp.com/api/products/find/"+new_parent
+                )
+                .then((new_parent_res) =>{
+
+
+                    const child_arr2 = [...new_parent_res.children, id];
+                	const new_parent_res_updated = {
+					    "numberOfBoxes": new_parent_res.numberOfBoxes+1,
+					    "children": child_arr2	
+					};
+                });
+                //alert("new_children = "+new_children.length);
+
+
+                //alert("lowestValue is: "+lowestValue);
+                /*const updatedProduct = {
+                    "stockQuantity": lowestValue,
+                };*/
+                const res = await userRequest.put("/products/"+new_parent, new_parent_res_updated);
+                //alert(product.sku+" Stock In Done");
+
+            } catch(err2) {
+                alert("error2: "+err2);
+            }
+    };
 	
 
 	const navigate  = useNavigate();
@@ -236,17 +266,21 @@ const Product = () => {
 					console.log("new_parent != !!!!!!!")
 
 
+
+
+
+
 					const new_parent_res = await axios.get(
 	                    "https://inventory-qr-api.herokuapp.com/api/products/find/"+new_parent
 	                )
 	                .then((new_parent_res2) =>{
-	                	const child_arr2 = [...new_parent_res.children, id];
+	                	/*const child_arr2 = [...new_parent_res.children, id];
 	                	const new_parent_res_updated = {
 						    "numberOfBoxes": new_parent_res.numberOfBoxes+1,
 						    "children": child_arr2	
 						    //"stockQuantity": new_quantity
-						};
-						const res = await userRequest.put("/products/"+new_parent, new_parent_res_updated)
+						};*/
+						updateNewParent();
 
 	                });
 
