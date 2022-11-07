@@ -166,6 +166,7 @@ const Product = () => {
 	const [new_quantity, setQuantity] = useState(product.stockQuantity)
 	const [new_numberOfBoxes, setNumberOfBoxes] = useState(product.numberOfBoxes)
 	const [new_type, setType] = useState(product.type)
+	const [new_parents, setParents] = useState(product.parents)
 	const [new_parent, setNewParent] = useState()
 
 	/*const setNewParents = (e) => {
@@ -227,13 +228,16 @@ const Product = () => {
 			//part 
 			else {
 
-				var new_parents = product.parents;
+				//var new_parents = product.parents;
 
 
 				//const new_parents = product.parents;
 				if (new_parent != null) {
 					console.log("new_parent != !!!!!!!")
-					new_parents = product.parents.push(new_parent);
+					//new_parents = product.parents; //.push(new_parent)
+
+
+					setParents(current => [...current, new_parent]);
 					console.log("new_parents: "+new_parents);
 					
 				} else {
