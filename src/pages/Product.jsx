@@ -183,6 +183,7 @@ const Product = () => {
                     "https://inventory-qr-api.herokuapp.com/api/products/find/"+new_parent
                 )
                 .then((new_parent_res) =>{
+                	console.log("now")
                     child_arr2 = [...new_parent_res.children, id];
                     newParentNumberOfBoxes = new_parent_res.numberOfBoxes+1;
                     updateNewParent2();
@@ -203,7 +204,7 @@ const Product = () => {
 				    "children": child_arr2	
 				};
                 const res = await userRequest.put("/products/"+new_parent, new_parent_res_updated);
-
+                navigate("/Inventory"); 
         		
             } catch(err2) {
                 alert("error2: "+err2);
@@ -240,6 +241,7 @@ const Product = () => {
 				//console.log(newProduct)
 				const res = await userRequest.put("/products/"+id, newProduct)
 				//console.log(res.data);
+				navigate("/Inventory"); 
 			} else if (new_numberOfBoxes > 1) {
 				console.log("new_numberOfBoxes > 1!!!!!!!")
 				//new_numberOfBoxes = numberOfBoxes;
@@ -258,6 +260,7 @@ const Product = () => {
 				//console.log(newProduct)
 				const res = await userRequest.put("/products/"+id, newProduct)
 				//console.log(res.data); 
+				navigate("/Inventory"); 
 			} 
 			//part 
 			else {
@@ -352,7 +355,7 @@ const Product = () => {
 				//console.log(res.data);
 
 			}
-			navigate("/Inventory"); 
+			//navigate("/Inventory"); 
 			/*try{			
 					navigate("/Inventory"); 
 	 		} catch(err) {
