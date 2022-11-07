@@ -179,19 +179,13 @@ const Product = () => {
         try{
 
         		console.log("BEGIN!")
-        		
                 const parent_res = await axios.get(
                     "https://inventory-qr-api.herokuapp.com/api/products/find/"+new_parent
                 )
                 .then((new_parent_res) =>{
-
-
                     child_arr2 = [...new_parent_res.children, id];
                     newParentNumberOfBoxes = new_parent_res.numberOfBoxes+1;
                     updateNewParent2();
-
-                    
-                	
                 });
 
             } catch(err2) {
@@ -276,7 +270,7 @@ const Product = () => {
 					console.log("new_parent != !!!!!!!")
 
 
-					updateNewParent();
+					//updateNewParent();
                     /**/
 
 
@@ -307,11 +301,18 @@ const Product = () => {
 
 					for (let i = 0; i < arr2.length; i++) {
 
-						parent_id = arr2[i];
+						console.log("parent_id = "+parent_id)
+						if (parent_id == new_parent) {
+			    			//updateParent();
+			    			updateNewParent();
+						}
+
+
+						/*parent_id = arr2[i];
 						console.log("parent_id = "+parent_id)
 						if (parent_id != null) {
 			    			updateParent();
-						}
+						}*/
 
 				    } 
 
