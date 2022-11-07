@@ -381,14 +381,14 @@ const Product = () => {
                     "https://inventory-qr-api.herokuapp.com/api/products/find/"+e
                 )
                 .then((parent_res2) =>{;
-                    //new_children_2 = [...parent_res.children, id];
-                    new_numberOfBoxes_2 = parent_res.numberOfBoxes+1;
+                    new_children_2 = [...parent_res2.data.children, id];
+                    new_numberOfBoxes_2 = parent_res2.data.numberOfBoxes+1;
                 });
                 //alert("new_children = "+new_children.length);
 
                 console.log("new_numberOfBoxes_2!!!!!!!!!!"+new_numberOfBoxes_2)	
                 const updatedProduct = {
-                    //"children": lowestValue,
+                    "children": new_children_2,
                     "numberOfBoxes": new_numberOfBoxes_2
                 };
                 console.log("over!!!!!!!!!!")
