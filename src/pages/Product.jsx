@@ -233,7 +233,7 @@ const Product = () => {
 					console.log("new_parent == !!!!!!!")
 					const new_parents = product.parents;
 				}
-				const new_parents = product.new_parents.push(new_parent);
+				//const new_parents = product.parents.push(new_parent);
 				console.log("else!!!!!!!")
 				console.log("parents to add is " + new_parent)
 				//Things[i]
