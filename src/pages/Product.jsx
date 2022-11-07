@@ -227,8 +227,10 @@ const Product = () => {
 			//part 
 			else {
 				if (new_parent != "") {
+					console.log("new_parent != ""!!!!!!!")
 					const new_parents = product.new_parents.push(new_parent);
 				} else {
+					console.log("new_parent == ""!!!!!!!")
 					const new_parents = product.new_parents;
 				}
 				const new_parents = product.new_parents.push(new_parent);
