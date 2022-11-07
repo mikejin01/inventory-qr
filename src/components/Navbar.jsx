@@ -147,7 +147,7 @@ const Navbar = () => {
 				<Link to={`/`}>	
 					<Center>
 						<Logo>Inventory QR</Logo> 
-						<Slogan>BY A&M Discount Furniture Version 1.2</Slogan> 	
+						<Slogan>BY A&M Discount Furniture Version 1.3</Slogan> 	
 					</Center>
 				</Link> 
 				<Right>
