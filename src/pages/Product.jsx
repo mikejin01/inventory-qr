@@ -177,18 +177,15 @@ const Product = () => {
         try{
 
 
-
+        		var const child_arr2 = [];
                 const parent_res = await axios.get(
                     "https://inventory-qr-api.herokuapp.com/api/products/find/"+new_parent
                 )
                 .then((new_parent_res) =>{
 
 
-                    const child_arr2 = [...new_parent_res.children, id];
-                	const new_parent_res_updated = {
-					    "numberOfBoxes": new_parent_res.numberOfBoxes+1,
-					    "children": child_arr2	
-					};
+                    child_arr2 = [...new_parent_res.children, id];
+                	
                 });
                 //alert("new_children = "+new_children.length);
 
@@ -197,6 +194,10 @@ const Product = () => {
                 /*const updatedProduct = {
                     "stockQuantity": lowestValue,
                 };*/
+                const new_parent_res_updated = {
+				    "numberOfBoxes": new_parent_res.numberOfBoxes+1,
+				    "children": child_arr2	
+				};
                 const res = await userRequest.put("/products/"+new_parent, new_parent_res_updated);
                 //alert(product.sku+" Stock In Done");
 
