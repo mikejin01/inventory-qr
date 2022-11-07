@@ -186,6 +186,9 @@ const Product = () => {
                 	console.log("now")
                     child_arr2 = [...new_parent_res.children, id];
                     newParentNumberOfBoxes = new_parent_res.numberOfBoxes+1;
+
+                    console.log("child_arr2: "+child_arr2)
+                    console.log("newParentNumberOfBoxes: "+newParentNumberOfBoxes)
                     updateNewParent2();
                 });
 
