@@ -381,8 +381,8 @@ const Product = () => {
                     "https://inventory-qr-api.herokuapp.com/api/products/find/"+e
                 )
                 .then((parent_res2) =>{;
-                    //new_children_2 = [...parent_res2.children, id];
-                    new_numberOfBoxes_2 = parent_res2.numberOfBoxes+1;
+                    new_children_2 = [...parent_res.children, id];
+                    new_numberOfBoxes_2 = parent_res.numberOfBoxes+1;
                 });
                 //alert("new_children = "+new_children.length);
 
