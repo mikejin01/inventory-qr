@@ -168,6 +168,10 @@ const Product = () => {
 	const [new_type, setType] = useState(product.type)
 	const [new_parent, setParents] = useState(product.parents)
 
+	const setNewParents = (e) => {
+		console.log("here!!!!!!!!!!!" + e);
+	}
+
 	
 
 	const navigate  = useNavigate();
@@ -311,6 +315,8 @@ const Product = () => {
 		deleteProduct();/**/
 	}
 
+
+
 	const formatInput = (event) => {
 	  const attribute = event.target.getAttribute('name');
 	  const removeExtraSpace = (s) => s.trim().split(/ +/).join('');
@@ -423,7 +429,7 @@ const Product = () => {
 							<div>
 			              	<Desc>Parents:</Desc>
 			              	<Input 
-							 onChange={(e)=>setParents(product.parents.push(e.target.value))}
+							 onChange={(e)=>setNewParents(e.target.value)}
 							/> 
 							<Desc>
 								{product.parents.map((parent) =>
