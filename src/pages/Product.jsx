@@ -386,10 +386,12 @@ const Product = () => {
                 });
                 //alert("new_children = "+new_children.length);
 
+                console.log("new_numberOfBoxes_2!!!!!!!!!!"+new_numberOfBoxes_2)	
                 const updatedProduct = {
                     //"children": lowestValue,
                     "numberOfBoxes": new_numberOfBoxes_2
                 };
+                console.log("over!!!!!!!!!!")
                 const res = await userRequest.put("/products/"+e, updatedProduct);
                 //alert(product.sku+" Stock In Done");
             } catch(err2) {
