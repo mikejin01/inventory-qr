@@ -301,8 +301,8 @@ const Product = () => {
 
 					for (let i = 0; i < arr2.length; i++) {
 
-						console.log("parent_id = "+parent_id)
-						if (parent_id == new_parent) {
+						console.log("parent_id = "+arr2[i])
+						if (arr2[i] == new_parent) {
 			    			//updateParent();
 			    			updateNewParent();
 						}
