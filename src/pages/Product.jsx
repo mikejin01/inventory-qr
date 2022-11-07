@@ -227,14 +227,14 @@ const Product = () => {
 			//part 
 			else {
 
-				state = { new_parents: product.parents };
+				var new_parents = product.parents;
 
 
 				//const new_parents = product.parents;
 				if (new_parent != null) {
 					console.log("new_parent != !!!!!!!")
-					//const new_parents = product.parents.push(new_parent);
-					this.setState({ new_parents: product.parents.push(new_parent) });
+					new_parents = product.parents.push(new_parent);
+					
 				} else {
 					console.log("new_parent == !!!!!!!")
 					//const new_parents = product.parents;
