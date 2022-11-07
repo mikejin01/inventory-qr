@@ -166,6 +166,8 @@ const Product = () => {
 	const [new_quantity, setQuantity] = useState(product.stockQuantity)
 	const [new_numberOfBoxes, setNumberOfBoxes] = useState(product.numberOfBoxes)
 	const [new_type, setType] = useState(product.type)
+	const [new_parent, addParent] = useState(product.parents)
+
 	const navigate  = useNavigate();
 	const handleClick = (e)=> {
 		console.log("handleClick!!!!!!!")
@@ -227,6 +229,8 @@ const Product = () => {
 				    "category": new_category,
 				    //"numberOfBoxes": new_numberOfBoxes,
 				    //"type": new_type, //simple, part
+
+				    "parents": product.parents.push(new_parent),
 				    "stockQuantity": new_quantity
 				};
 
@@ -415,6 +419,9 @@ const Product = () => {
 						product.type == "part" ? (
 							<div>
 			              	<Desc>Parents:</Desc>
+			              	<Input 
+							 onChange={(e)=>addParent(e.target.value)}
+							/> 
 							<Desc>
 								<Link to ={`/product/${product.parents[0]}`}>		
 									{product.parents[0]}

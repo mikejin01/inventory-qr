@@ -217,7 +217,7 @@ const NewProduct = () => {
 						"title": new_title,
 						"sku": new_sku,
 					    "desc": "good",
-					    "img": "meble-200.jpg",
+					    "img": new_img,
 					    "category": ["Other"],
 					    "size": [""],
 						"color": [""],
