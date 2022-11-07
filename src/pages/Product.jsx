@@ -423,7 +423,7 @@ const Product = () => {
 							<div>
 			              	<Desc>Parents:</Desc>
 			              	<Input 
-							 onChange={(e)=>setParents(product.parents => [...product.parents, e.target.value])}
+							 onChange={(e)=>setParents(product.parents.push(e.target.value))}
 							/> 
 							<Desc>
 								{product.parents.map((parent) =>
