@@ -309,8 +309,8 @@ const Product = () => {
 
 						console.log("parent_id = "+arr2[i])
 						if (arr2[i] == new_parent) {
-			    			//updateParent();
-			    			updateNewParent();
+			    			updateParent(new_parent);
+			    			//updateNewParent();
 						}
 
 
@@ -371,31 +371,26 @@ const Product = () => {
 	var parent_id = "";
     var new_children = [];
 
-	const updateParent = async ()=> { //updateParent getAllChildren 
+    var new_children_2 = [];
+    var new_numberOfBoxes_2 = 0;
+
+	const updateParent = async (e)=> { //updateParent getAllChildren 
         try{
-                var stockQuantityArr = [];
+        		console.log("working on "+e+"!!!!!")
                 const parent_res = await axios.get(
-                    "https://inventory-qr-api.herokuapp.com/api/products/find/"+parent_id
+                    "https://inventory-qr-api.herokuapp.com/api/products/find/"+e
                 )
                 .then((parent_res2) =>{;
-                    for (var i = parent_res2.data.children.length - 1; i >= 0; i--) {
-                        new_children.push(parent_res2.data.children[i]);
-                    }
+                    //new_children_2 = [...parent_res2.children, id];
+                    new_numberOfBoxes_2 = parent_res2.numberOfBoxes+1;
                 });
                 //alert("new_children = "+new_children.length);
 
-                for (var i = new_children.length - 1; i >= 0; i--) {
-                    const child_res = await axios.get(
-                        "https://inventory-qr-api.herokuapp.com/api/products/find/"+new_children[i]
-                    )
-                    //alert(child_res.data.sku + " is: "+child_res.data.stockQuantity);
-                    stockQuantityArr.push(child_res.data.stockQuantity);
-                }
-                const lowestValue =  Math.min(...stockQuantityArr);
                 const updatedProduct = {
-                    "stockQuantity": lowestValue,
+                    //"children": lowestValue,
+                    "numberOfBoxes": new_numberOfBoxes_2
                 };
-                const res = await userRequest.put("/products/"+parent_id, updatedProduct);
+                const res = await userRequest.put("/products/"+e, updatedProduct);
                 //alert(product.sku+" Stock In Done");
             } catch(err2) {
                 alert("error2: "+err2);
