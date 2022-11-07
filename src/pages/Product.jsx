@@ -425,7 +425,7 @@ const Product = () => {
 							<Desc>
 								{product.parents.map((parent) =>
 									<Desc>
-										<Link to ={`/product/${child}`}>
+										<Link to ={`/product/${parent}`}>
 											{parent}
 										</Link>
 									</Desc>
