@@ -251,7 +251,7 @@ const Product = () => {
 					    //"numberOfBoxes": new_numberOfBoxes,
 					    //"type": new_type, //simple, part
 
-					    "parents": [arr2],
+					    "parents": arr2,
 					    "stockQuantity": new_quantity
 					};
 					const res = await userRequest.put("/products/"+id, newProduct)
