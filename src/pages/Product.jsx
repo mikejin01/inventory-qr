@@ -241,7 +241,7 @@ const Product = () => {
 
 					const arr2 = [...product.parents, new_parent];
 					setParents(arr2);
-					console.log("new_parents: "+ arr2);
+					console.log("new_parents: "+ arr2 + " and: " +new_parents);
 					
 				} else {
 					console.log("new_parent == !!!!!!!")
