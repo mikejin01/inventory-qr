@@ -166,11 +166,12 @@ const Product = () => {
 	const [new_quantity, setQuantity] = useState(product.stockQuantity)
 	const [new_numberOfBoxes, setNumberOfBoxes] = useState(product.numberOfBoxes)
 	const [new_type, setType] = useState(product.type)
-	const [new_parent, setParents] = useState(product.parents)
+	const [new_parent, setNewParent] = useState()
 
-	const setNewParents = (e) => {
+	/*const setNewParents = (e) => {
 		console.log("here!!!!!!!!!!!" + e);
-	}
+		setNewParent(e);
+	}*/
 
 	
 
@@ -237,7 +238,7 @@ const Product = () => {
 				    //"numberOfBoxes": new_numberOfBoxes,
 				    //"type": new_type, //simple, part
 
-				    "parents": new_parent,
+				    "parents": [new_parent],
 				    "stockQuantity": new_quantity
 				};
 
@@ -429,7 +430,7 @@ const Product = () => {
 							<div>
 			              	<Desc>Parents:</Desc>
 			              	<Input 
-							 onChange={(e)=>setNewParents(e.target.value)}
+							 onChange={(e)=>setNewParent(e.target.value)}
 							/> 
 							<Desc>
 								{product.parents.map((parent) =>
