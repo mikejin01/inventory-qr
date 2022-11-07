@@ -423,9 +423,13 @@ const Product = () => {
 							 onChange={(e)=>addParent(e.target.value)}
 							/> 
 							<Desc>
-								<Link to ={`/product/${product.parents[0]}`}>		
-									{product.parents[0]}
-								</Link>
+								{product.parents.map((parent) =>
+									<Desc>
+										<Link to ={`/product/${child}`}>
+											{parent}
+										</Link>
+									</Desc>
+								)}
 							</Desc>
 							</div>
 					) : null }
