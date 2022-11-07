@@ -178,7 +178,7 @@ const Product = () => {
 	const updateNewParent = async ()=> { //updateParent getAllChildren 
         try{
 
-
+        		console.log("BEGIN!")
         		
                 const parent_res = await axios.get(
                     "https://inventory-qr-api.herokuapp.com/api/products/find/"+new_parent
@@ -201,6 +201,9 @@ const Product = () => {
 	
 	const updateNewParent2 = async ()=> { //updateParent getAllChildren 
         try{
+
+        	console.log("BEGIN updateNewParent2!")
+
         		const new_parent_res_updated = {
 				    "numberOfBoxes": newParentNumberOfBoxes,
 				    "children": child_arr2	
@@ -273,28 +276,7 @@ const Product = () => {
 					console.log("new_parent != !!!!!!!")
 
 
-
-
-
-
-					const new_parent_res = await axios.get(
-	                    "https://inventory-qr-api.herokuapp.com/api/products/find/"+new_parent
-	                )
-	                .then((new_parent_res2) =>{
-	                	/*const child_arr2 = [...new_parent_res.children, id];
-	                	const new_parent_res_updated = {
-						    "numberOfBoxes": new_parent_res.numberOfBoxes+1,
-						    "children": child_arr2	
-						    //"stockQuantity": new_quantity
-						};*/
-						updateNewParent();
-
-	                });
-
-
-	                
-
-
+					updateNewParent();
                     /**/
 
 
