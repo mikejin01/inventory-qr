@@ -306,6 +306,33 @@ const Product = ({item}) => {
 					console.log(newProduct)
 					const res = await userRequest.put("/products/"+item._id, newProduct)
 					console.log(res.data);
+
+
+					const newActivity = {
+						"productID": item._id,
+						"title": "HI",
+					    "QRID": item.sku+"-"+currentTimeInSeconds,
+					    "desc": "good",
+					    "status": "Code Generated",
+					    "price": 0,
+					    "cost": 0,
+					    "quantity": 1
+					};
+					console.log(newActivity)
+					const res = await userRequest.post("/activities", newActivity) 
+					console.log(res.data);
+					CodeGenerated = res.data._id;
+
+					//alert("adding "+CodeGenerated);
+			        const qrCode = await QRCode.toDataURL(CodeGenerated);
+			        var purchaseOrder = document.getElementById(item.sku+"_PurchaseOrder").value;
+			        
+					dispatch(
+						addProduct({...item, qrCode, quantity, purchaseOrder, username})
+					);
+
+
+
 				} else {
 					//new_type = "complex"; //complex, part
 					
