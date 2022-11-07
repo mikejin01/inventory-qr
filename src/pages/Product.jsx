@@ -177,7 +177,7 @@ const Product = () => {
         try{
 
 
-        		var const child_arr2 = [];
+        		var child_arr2 = [];
                 const parent_res = await axios.get(
                     "https://inventory-qr-api.herokuapp.com/api/products/find/"+new_parent
                 )
