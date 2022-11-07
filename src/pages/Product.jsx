@@ -226,6 +226,12 @@ const Product = () => {
 			} 
 			//part 
 			else {
+				if (new_parent != "") {
+					const new_parents = product.new_parents.push(new_parent);
+				} else {
+					const new_parents = product.new_parents;
+				}
+				const new_parents = product.new_parents.push(new_parent);
 				console.log("else!!!!!!!")
 				console.log("parents to add is " + new_parent)
 				//Things[i]
@@ -238,7 +244,7 @@ const Product = () => {
 				    //"numberOfBoxes": new_numberOfBoxes,
 				    //"type": new_type, //simple, part
 
-				    "parents": [new_parent],
+				    "parents": new_parents,
 				    "stockQuantity": new_quantity
 				};
 
