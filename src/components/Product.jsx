@@ -319,9 +319,9 @@ const Product = ({item}) => {
 					    "quantity": 1
 					};
 					console.log(newActivity)
-					const res = await userRequest.post("/activities", newActivity) 
-					console.log(res.data);
-					CodeGenerated = res.data._id;
+					const res2 = await userRequest.post("/activities", newActivity) 
+					console.log(res2.data);
+					CodeGenerated = res2.data._id;
 
 					//alert("adding "+CodeGenerated);
 			        const qrCode = await QRCode.toDataURL(CodeGenerated);
