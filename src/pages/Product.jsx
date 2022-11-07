@@ -234,6 +234,7 @@ const Product = () => {
 				if (new_parent != null) {
 					console.log("new_parent != !!!!!!!")
 					new_parents = product.parents.push(new_parent);
+					console.log("new_parents: "+new_parents);
 					
 				} else {
 					console.log("new_parent == !!!!!!!")
