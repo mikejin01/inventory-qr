@@ -254,6 +254,17 @@ const Product = () => {
 					    "parents": arr2,
 					    "stockQuantity": new_quantity
 					};
+					const res = await userRequest.put("/products/"+id, newProduct)
+
+					for (let i = 0; i < arr2.length; i++) {
+
+						parent_id = arr2[i];
+						console.log("parent_id = "+parent_id)
+						if (parent_id != null) {
+			    			updateParent();
+						}
+
+				    } 
 					
 				} else {
 					console.log("new_parent == !!!!!!!")
@@ -271,6 +282,7 @@ const Product = () => {
 					    //"parents": arr2,
 					    "stockQuantity": new_quantity
 					};
+					const res = await userRequest.put("/products/"+id, newProduct)
 				}
 				//const new_parents = product.parents.push(new_parent);
 				console.log("else!!!!!!!")
@@ -279,12 +291,10 @@ const Product = () => {
 				
 
 				//console.log(newProduct)
-				const res = await userRequest.put("/products/"+id, newProduct)
-				parent_id = product.parents[0];
-				console.log("parent_id = "+parent_id)
-				if (parent_id != null) {
-	    			updateParent();
-				}
+				
+
+				
+				
 				  
 				//console.log(res.data);
 
