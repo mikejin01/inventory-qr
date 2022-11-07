@@ -178,7 +178,7 @@ const Product = () => {
 	const updateNewParent = async ()=> { //updateParent getAllChildren 
         try{
 
-        		console.log("BEGIN!")
+        		console.log("BEGIN： "+new_parent)
                 const parent_res = await axios.get(
                     "https://inventory-qr-api.herokuapp.com/api/products/find/"+new_parent
                 )
