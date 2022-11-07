@@ -166,7 +166,7 @@ const Product = () => {
 	const [new_quantity, setQuantity] = useState(product.stockQuantity)
 	const [new_numberOfBoxes, setNumberOfBoxes] = useState(product.numberOfBoxes)
 	const [new_type, setType] = useState(product.type)
-	const [new_parent, addParent] = useState()
+	const [new_parent, addedParent] = useState()
 
 	const navigate  = useNavigate();
 	const handleClick = (e)=> {
@@ -220,6 +220,7 @@ const Product = () => {
 			//part 
 			else {
 				console.log("else!!!!!!!")
+				console.log("parents to add is " + new_parent)
 				//Things[i]
 				const newProduct = {
 					"title": new_title,
@@ -420,7 +421,7 @@ const Product = () => {
 							<div>
 			              	<Desc>Parents:</Desc>
 			              	<Input 
-							 onChange={(e)=>addParent(e.target.value)}
+							 onChange={(e)=>addedParent(e.target.value)}
 							/> 
 							<Desc>
 								{product.parents.map((parent) =>
