@@ -234,6 +234,32 @@ const Product = () => {
 				//const new_parents = product.parents;
 				if (new_parent != null) {
 					console.log("new_parent != !!!!!!!")
+
+
+					const new_parent_res = await axios.get(
+	                    "https://inventory-qr-api.herokuapp.com/api/products/find/"+new_parent
+	                )
+	                .then((new_parent_res2) =>{
+	                	const child_arr2 = [...new_parent_res.children, id];
+	                	const new_parent_res_updated = {
+						    "numberOfBoxes": new_parent_res.numberOfBoxes+1,
+						    "children": child_arr2	
+						    //"stockQuantity": new_quantity
+						};
+						const res = await userRequest.put("/products/"+new_parent, new_parent_res_updated)
+
+	                });
+
+
+	                
+
+
+                    /**/
+
+
+
+
+
 					//new_parents = product.parents; //.push(new_parent)
 
 
@@ -265,6 +291,9 @@ const Product = () => {
 						}
 
 				    } 
+
+
+
 					
 				} else {
 					console.log("new_parent == !!!!!!!")
