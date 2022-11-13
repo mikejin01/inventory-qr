@@ -527,6 +527,33 @@ const Product = () => {
 						
 					}
 
+					<Desc>Reserved for Customers: {product.stockQuantity}</Desc>
+					{/*value={product.stockQuantity}*/}
+					{
+						product.type == "complex" 
+						? (
+								<div>
+				              	<Desc>Children:</Desc>
+								<Desc>
+									{ product.children.length } Boxes
+									{product.children.map((child) =>
+										<Desc>
+											<Link to ={`/product/${child}`}>
+												{child}
+											</Link>
+										</Desc>
+									)}
+								</Desc>
+								</div>
+						) 
+						: (
+							<Input 
+							 onChange={(e)=>setQuantity(e.target.value)}
+							/> 
+						)
+						
+					}
+
 					{
 						product.type == "part" ? (
 							<div>

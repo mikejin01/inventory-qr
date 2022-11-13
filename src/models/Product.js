@@ -11,7 +11,8 @@ const ProductSchema = new mongoose.Schema(
 		color: { type: Array },
 		price: { type: Number, required: true },
 		cost: { type: Number, required: true },
-		stockQuantity: { type: Number, default: 0 }
+		stockQuantity: { type: Number, default: 0 },
+		reservedForCustomers:  { type: Number, default: 0 }
 	}, 
 	{timestamps: true}
 );
