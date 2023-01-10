@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/inventory-qr/static/css/main.88cd89e8.css",
+    "main.js": "/inventory-qr/static/js/main.712370de.js",
+    "static/js/787.e1d9c03b.chunk.js": "/inventory-qr/static/js/787.e1d9c03b.chunk.js",
+    "index.html": "/inventory-qr/index.html",
+    "main.88cd89e8.css.map": "/inventory-qr/static/css/main.88cd89e8.css.map",
+    "main.712370de.js.map": "/inventory-qr/static/js/main.712370de.js.map",
+    "787.e1d9c03b.chunk.js.map": "/inventory-qr/static/js/787.e1d9c03b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.88cd89e8.css",
+    "static/js/main.712370de.js"
+  ]
+}
